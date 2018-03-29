@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码12345678if( null != username &amp;amp;&amp;amp; (!username.isEmpty())&amp;#123;  ......&amp;#125;else if( null != password &amp;amp;&amp;am">
+<meta name="description" content="前言在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码">
 <meta name="keywords" content="Spring MVC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 SpringMVC 中对表单提交参数进行验证（使用 Bean Validator）">
 <meta property="og:url" content="/2017/12/01/2017-12-02-在 SpringMVC 中对表单提交参数进行验证 Bean Validator/index.html">
 <meta property="og:site_name" content="James&#39; Blog">
-<meta property="og:description" content="前言在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码12345678if( null != username &amp;amp;&amp;amp; (!username.isEmpty())&amp;#123;  ......&amp;#125;else if( null != password &amp;amp;&amp;am">
+<meta property="og:description" content="前言在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-16T12:11:25.499Z">
+<meta property="og:updated_time" content="2018-03-29T13:08:11.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 SpringMVC 中对表单提交参数进行验证（使用 Bean Validator）">
-<meta name="twitter:description" content="前言在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码12345678if( null != username &amp;amp;&amp;amp; (!username.isEmpty())&amp;#123;  ......&amp;#125;else if( null != password &amp;amp;&amp;am">
+<meta name="twitter:description" content="前言在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码">
 
 
 
@@ -378,7 +378,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="keyword">null</span> != username &amp;&amp; (!username.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( <span class="keyword">null</span> != password &amp;&amp; (!password.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( <span class="keyword">null</span> != phone &amp;&amp; (!phone.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="keyword">null</span> != username &amp;&amp; (!username.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( <span class="keyword">null</span> != password &amp;&amp; (!password.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( <span class="keyword">null</span> != phone &amp;&amp; (!phone.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
 <h2 id="Bean-Validator"><a href="#Bean-Validator" class="headerlink" title="Bean Validator"></a>Bean Validator</h2><p>Bean Validation 为 JavaBean 验证定义了相应的元数据模型和 API。缺省的元数据是 Java Annotations，通过使用 XML 可以对原有的元数据信息进行覆盖和扩展。在应用程序中，通过使用 Bean Validation 或是你自己定义的 constraint，例如 @NotNull, @Max, @ZipCode， 就可以确保数据模型（JavaBean）的正确性。constraint 可以附加到字段，getter 方法，类或者接口上面。对于一些特定的需求，用户可以很容易的开发定制化的 constraint。Bean Validation 是一个运行时的数据验证框架，在验证之后验证的错误信息会被马上返回。</p>
 <p>这里我们使用 Hibernate Validator 作为上述问题的解决方案</p>
 <h2 id="SpringMVC-中使用-Hibernate-Validator"><a href="#SpringMVC-中使用-Hibernate-Validator" class="headerlink" title="SpringMVC 中使用 Hibernate Validator"></a>SpringMVC 中使用 Hibernate Validator</h2><p>在合适的位置新建一个 ValidatorConfig 类，以 Java Config 的方式对 LocalFactoryBean 进行配置</p>

@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！ 作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的">
+<meta name="description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
 <meta name="keywords" content="爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 第一个爬虫-教务系统信息收集">
 <meta property="og:url" content="/2018/02/24/2018-02-24-Python 第一个爬虫-教务系统信息收集/index.html">
 <meta property="og:site_name" content="James&#39; Blog">
-<meta property="og:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！ 作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的">
+<meta property="og:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-286f834fd46caf89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-d14eaf5437d7dfc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-974fdb14f78e7210.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-ed103827cea8be42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-16T07:19:07.205Z">
+<meta property="og:updated_time" content="2018-03-29T13:08:21.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 第一个爬虫-教务系统信息收集">
-<meta name="twitter:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！ 作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的">
+<meta name="twitter:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -386,8 +386,7 @@
       
 
       
-        <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p><strong>本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！</strong></p>
-<p>作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的账号。登录后可以看到学生的学籍信息，包括高考报名时照片，家长联系方式等，联系地址甚至详细到几单元几楼几号门，<strong>个人信息泄露情况非常严重！</strong></p>
+        <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p><strong>本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！</strong><br><a id="more"></a><br>作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的账号。登录后可以看到学生的学籍信息，包括高考报名时照片，家长联系方式等，联系地址甚至详细到几单元几楼几号门，<strong>个人信息泄露情况非常严重！</strong></p>
 <h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>先说结果。经过两天连写带调试，终于完成了对全校本科生 17400 多个在网账号的测试，其中有 12600 多个账号使用的还是初始密码。此处隐去校名，统计结果如下：</p>
 <table>
 <thead>
