@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="郑保乐的博客">
 <meta property="og:description" content="Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-30T07:53:24.359Z">
+<meta property="og:updated_time" content="2018-03-30T15:20:19.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Hexo + Github 搭建自己的博客">
 <meta name="twitter:description" content="Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。">
@@ -454,7 +454,13 @@
 <p>如果觉得使用起来不是很方便，可以只给定一个分类，比如这样：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">日记</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">上海</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">旅行</span></span><br></pre></td></tr></table></figure></p>
 <p>站点首页会以分页的方式展示最近发布的文章，默认展示全文，如果想要只展示开头部分内容，比如这种效果：<br>图片</p>
 <p>可以在文章适当的位置添加 <code>&lt;!-- more --&gt;</code> 标记，这样可以在首页只展示标记之前的内容，避免首页一次加载过多内容造成不好的体验</p>
-<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>如果有可用的服务器，可以使用 <code>hexo g</code> 命令，生成静态站点，通过 FTP 或其他方式将站点上传到服务器对应目录，并配合 nginx 或 Apache 服务器，即可完成部署，这里介绍一下没有服务器情况下，如何</p>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>如果有可用的服务器，可以使用 <code>hexo g</code> 命令，生成静态站点，通过 FTP 或其他方式将站点上传到服务器对应目录，并配合 nginx 或 Apache 服务器，即可完成部署，这里介绍一下没有服务器情况下，如何搭建一个完整的博客站点</p>
+<p>首先要有一个 github 账号，如果没有，可到 <a href="http://github.com" target="_blank" rel="noopener">github</a> 用邮箱注册</p>
+<p>新建一个仓库，仓库的名字必须符合 <code>&lt;用户名&gt;.github.io</code>，用户名指的是浏览 github 个人主页的时候，浏览器地址栏 <code>github.com/</code> 后面的那个名字，比如我的 <a href="http://github.com/jameszbl" target="_blank" rel="noopener">github 主页</a>，则我的用户名就是 <code>jameszbl</code>，新建仓库后会跳转到初始化页面，显示一个类似于 <code>https://github.com/jameszbl/jameszbl.github.io.git</code> 的 url， 记下这个url，稍候会用到</p>
+<p>在 “站点配置文件” 中，找到 <code>deploy</code>，如果没有可以手动添加，像这样填写：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">    - type:</span> <span class="string">git</span></span><br><span class="line">      <span class="comment"># 远端仓库地址（刚才记下的 url)</span></span><br><span class="line"><span class="attr">      repo:</span> <span class="attr">https://github.com/JamesZBL/jameszbl.github.io.git</span></span><br><span class="line"><span class="attr">      branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的部署配置需要安装一个插件，因此在站点根目录运行命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>插件安装完成后，再执行：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure></p>
+<p>部署插件会自动将编译完成的静态站点推送到 github 的远端仓库，等待几分钟后，访问 <code>&lt;github 用户名&gt;.github.io</code>，即可看到搭建好的效果了</p>
 
       
     </div>
