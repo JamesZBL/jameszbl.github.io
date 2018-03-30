@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式,Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="用途将对象组合成树形结构以表示 “部分——整体” 的层次结构。 Composite使得用户对单个对象和组合对象的使用具有一致性。">
+<meta name="keywords" content="设计模式,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象软件设计模式-组合 Composite">
+<meta property="og:url" content="/2017/10/01/2017-10-01-面向对象软件设计模式-组合-Composite/index.html">
+<meta property="og:site_name" content="摆码王子的小屋">
+<meta property="og:description" content="用途将对象组合成树形结构以表示 “部分——整体” 的层次结构。 Composite使得用户对单个对象和组合对象的使用具有一致性。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/11/19/15fd45454f35913c?w=984&h=599&f=png&s=48305">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/11/19/15fd453dc4bcfe14?w=1526&h=376&f=png&s=39695">
+<meta property="og:updated_time" content="2018-03-29T14:30:49.121Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象软件设计模式-组合 Composite">
+<meta name="twitter:description" content="用途将对象组合成树形结构以表示 “部分——整体” 的层次结构。 Composite使得用户对单个对象和组合对象的使用具有一致性。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/11/19/15fd45454f35913c?w=984&h=599&f=png&s=48305">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'DQH9NUSGTQ',
+      apiKey: 'dd999b30a63c88fb422dc71142c6b7bc',
+      indexName: 'jamesblog_hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索文章标题或内容","hits_empty":"没有在这个星球上找到: ${query}","hits_stats":"共找到 ${hits} 条结果，用时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2017/10/01/2017-10-01-面向对象软件设计模式-组合-Composite/"/>
+
+
+
+
+
+  <title>面向对象软件设计模式-组合 Composite | 摆码王子的小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">摆码王子的小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">James' Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/01/2017-10-01-面向对象软件设计模式-组合-Composite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="摆码王子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="摆码王子的小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面向对象软件设计模式-组合 Composite</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T12:12:00+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>将对象组合成树形结构以表示 “部分——整体” 的层次结构。</p>
+<p>Composite使得用户对单个对象和组合对象的使用具有一致性。<br><a id="more"></a></p>
+<h2 id="模式要点"><a href="#模式要点" class="headerlink" title="模式要点"></a>模式要点</h2><p><img src="https://user-gold-cdn.xitu.io/2017/11/19/15fd45454f35913c?w=984&amp;h=599&amp;f=png&amp;s=48305" alt=""></p>
+<h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><ul>
+<li>Component : 是组合中的所有对象的统一接口；定义了特定情况下，类应当实现的货缺省的行为；Component 声明一个接口用于访问和管理 Component 的子组件；在递归结构中定义一个接口，用于访问一个父部件，并符合条件的类中实现它，当然这个是可选的。</li>
+<li>Leaf：在组合中表示叶节点对象，顾名思义，叶节点没有子节点。</li>
+<li>Composite：定义有子部件的那些部件的行为，同时存储子部件，实现 Component 中与子部件有关的接口。</li>
+<li>Client：通过Component接口，操纵组合部件的对象。<h3 id="协作原理"><a href="#协作原理" class="headerlink" title="协作原理"></a>协作原理</h3></li>
+<li>用户使用Component类接口与组合结构中的对象进行交互。 如果接收者是一个叶节点，则直接处理请求。 如果接收者是Composite， 它通常将请求发送给它的子部件， 在转发请求之前与/或之后可能执行一些辅助操作。</li>
+</ul>
+<h2 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a>实例分析</h2><p>在中文中，一句话是由词语组成的，而词语又由字组成；在英文中，句子由单词组成，而单词又由一个个字母组成。每个对象都可定义的它之前的或之后的内容。比如一个中文句子总是以句号结尾，一个英文单词之前通常是有空格的。这种结构可以形成了递归嵌套的结构，句子是父容器，单词是子容器，字母是叶节点。<br><img src="https://user-gold-cdn.xitu.io/2017/11/19/15fd453dc4bcfe14?w=1526&amp;h=376&amp;f=png&amp;s=39695" alt=""><br>CharacterComposite 是一个抽象类，定义了所有容器类或叶节点的接口，容器应当实现的功能有：获取子组件、对子组件进行计数、定义组件的格式化输出规则。Sentence(句子) 和 Word (单词)都属于容器，而 Character (字母)则属于叶节点，因为字母中无法再添加子组件了，它是层次结构中的最末端。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 所有容器的抽象父类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> List&lt;CharacterComposite&gt; children = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(CharacterComposite character)</span> </span>&#123;</span><br><span class="line">    children.add(character);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.children.size();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    printBefore();</span><br><span class="line">    <span class="keyword">for</span> (CharacterComposite item : children) &#123;</span><br><span class="line">      item.print();</span><br><span class="line">    &#125;</span><br><span class="line">    printAfter();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>EnglishWord 组件前应当输出一个空格，EnglishSentence 组件后应当输出一个“.”，ChineseSentence 组件后应当输出一个“。”等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 英文句子</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnglishSentence</span> <span class="keyword">extends</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">EnglishSentence</span><span class="params">(List&lt;EnglishWord&gt; words)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (EnglishWord word : words) &#123;</span><br><span class="line">      add(word);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 英文单词</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnglishWord</span> <span class="keyword">extends</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">EnglishWord</span><span class="params">(List&lt;Character&gt; characters)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Character c : characters) &#123;</span><br><span class="line">      add(c);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(<span class="string">" "</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Word 作为 Sentence 的子容器，Character 作为 Word 的子组件，属于叶节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 字母</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Character</span> <span class="keyword">extends</span> <span class="title">CharacterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">char</span> c;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Character</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.c = c;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(c);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Writer 为句子生成器，各个组件及子组件均由它负责填充，最终形成一个完成的结构。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 语句生成器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Writer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> CharacterComposite <span class="title">sentenceByChinese</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;ChineseWord&gt; words = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'我'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'是'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'来'</span>), <span class="keyword">new</span> Character(<span class="string">'自'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'北'</span>), <span class="keyword">new</span> Character(<span class="string">'京'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'的'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> ChineseWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'小'</span>), <span class="keyword">new</span> Character(<span class="string">'明'</span>))));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ChineseSentence(words);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> CharacterComposite <span class="title">sentenceByEnglish</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;EnglishWord&gt; words = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'I'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'a'</span>), <span class="keyword">new</span> Character(<span class="string">'m'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'a'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'s'</span>), <span class="keyword">new</span> Character(<span class="string">'t'</span>), <span class="keyword">new</span> Character(<span class="string">'u'</span>), <span class="keyword">new</span> Character(<span class="string">'d'</span>), <span class="keyword">new</span> Character(<span class="string">'e'</span>), <span class="keyword">new</span> Character(<span class="string">'n'</span>), <span class="keyword">new</span> Character(<span class="string">'t'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'f'</span>), <span class="keyword">new</span> Character(<span class="string">'r'</span>), <span class="keyword">new</span> Character(<span class="string">'o'</span>), <span class="keyword">new</span> Character(<span class="string">'m'</span>))));</span><br><span class="line">    words.add(<span class="keyword">new</span> EnglishWord(Arrays.asList(<span class="keyword">new</span> Character(<span class="string">'L'</span>), <span class="keyword">new</span> Character(<span class="string">'o'</span>), <span class="keyword">new</span> Character(<span class="string">'n'</span>), <span class="keyword">new</span> Character(<span class="string">'d'</span>), <span class="keyword">new</span> Character(<span class="string">'o'</span>), <span class="keyword">new</span> Character(<span class="string">'n'</span>))));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> EnglishSentence(words);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><ul>
+<li>Composite 模式定义了基本对象和组合对象的基本层次结构，基本对象可以组合形成更复杂的对象，这个对象还可以再次进行组合，依次类推，可以实现无限层的递归嵌套结构，上文中提到的句子-单词-字母结构即是如此。</li>
+<li>所有的容器都是这个接口的实现，用户可以一致地使用组合结构和单个对象，用户不需要知道它是否为叶节点或包含子容器的一个组件，从而大大简化了代码结构，定义组合的类时避免了各种复杂的包含着大量判断的方法。</li>
+<li>在增加新的组件的时候更简单，无论是新增一种容器或一个叶节点都很方便，无需单独再定义新类并且可以很容易和现有的组件或容器结合工作，客户端无需随新组件的增加而做任何改变</li>
+<li>使代码结构更具通用性，但也存在一些问题。增加组件很方便，但无法对子组件做过多的限制，即使客户希望在容器中只增加某种特定的组件，由于使用 Composite 而无法依靠别的类做过多的约束，这些检验类型的工作就要放到运行时去做了</li>
+</ul>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ul>
+<li>你想表示对象的部分-整体层次结构</li>
+<li>你希望用户忽略组合对象与单个对象的不同， 用户将统一地使用组合结构中的所有对象</li>
+</ul>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><p>有关其他模式本人的的开源项目：<br><a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">Java 实现的面向对象软件设计模式</a><br>如果觉得有用，欢迎 Star/Fork/提Issue<br>该项目目前处在开发阶段</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/15/2017-06-15-GridLayout + Animation 实现 Android 仿超级课程表“发现”全屏宫格图标弹出动画/" rel="next" title="GridLayout + Animation 实现 Android 仿超级课程表“发现”全屏宫格图标弹出动画">
+                <i class="fa fa-chevron-left"></i> GridLayout + Animation 实现 Android 仿超级课程表“发现”全屏宫格图标弹出动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/02/2017-10-02-面向对象软件设计模式-装饰器-Decorator/" rel="prev" title="面向对象软件设计模式-装饰器 Decorator">
+                面向对象软件设计模式-装饰器 Decorator <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="摆码王子" />
+            
+              <p class="site-author-name" itemprop="name">摆码王子</p>
+              <p class="site-description motion-element" itemprop="description">优秀的判断力来自经验<br>但经验来自错误的判断</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JamesZBL" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="tencent://message/?uin=1146556298&Site=摆码王子" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/James1996" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhengbaole_1996@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">1.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式要点"><span class="nav-number">2.</span> <span class="nav-text">模式要点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成部分"><span class="nav-number">2.1.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协作原理"><span class="nav-number">2.2.</span> <span class="nav-text">协作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例分析"><span class="nav-number">3.</span> <span class="nav-text">实例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">4.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景"><span class="nav-number">5.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源项目"><span class="nav-number">6.</span> <span class="nav-text">开源项目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">摆码王子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
