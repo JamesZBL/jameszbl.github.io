@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Spring,Shiro,权限控制," />
 
 
 
@@ -80,16 +80,16 @@
 
 
 <meta name="description" content="优秀的判断力来自经验但经验来自错误的判断">
-<meta name="keywords" content="Java,后端,博客,Spring Boot,Spring,设计模式,大数据,Spark,Hadoop,程序员">
-<meta property="og:type" content="website">
-<meta property="og:title" content="内容分类">
-<meta property="og:url" content="http://james.letec.top/categories/index.html">
+<meta name="keywords" content="Spring,Shiro,权限控制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 整合 Shiro 权限控制">
+<meta property="og:url" content="http://james.letec.top/2018/03/30/2018-03-30-Spring整合Shiro权限控制/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
 <meta property="og:description" content="优秀的判断力来自经验但经验来自错误的判断">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-29T14:19:03.213Z">
+<meta property="og:updated_time" content="2018-03-30T02:53:18.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="内容分类">
+<meta name="twitter:title" content="Spring 整合 Shiro 权限控制">
 <meta name="twitter:description" content="优秀的判断力来自经验但经验来自错误的判断">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://james.letec.top/categories/"/>
+  <link rel="canonical" href="http://james.letec.top/2018/03/30/2018-03-30-Spring整合Shiro权限控制/"/>
 
 
 
 
 
-  <title>内容分类 | 郑保乐的博客</title>
+  <title>Spring 整合 Shiro 权限控制 | 郑保乐的博客</title>
   
 
 
@@ -289,40 +289,173 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://james.letec.top/2018/03/30/2018-03-30-Spring整合Shiro权限控制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="James">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郑保乐的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">内容分类</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 6 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源项目/">开源项目</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">3</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">Spring 整合 Shiro 权限控制</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T10:50:07+08:00">
+                2018-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/Shiro/" rel="tag"># Shiro</a>
+          
+            <a href="/tags/权限控制/" rel="tag"># 权限控制</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/29/2018-03-29-基于SpringBoot的个人博客/" rel="next" title="基于 Spring Boot 的个人博客">
+                <i class="fa fa-chevron-left"></i> 基于 Spring Boot 的个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/30/2018-03-30-使用Hexo搭建自己的博客/" rel="prev" title="使用 Hexo 搭建自己的博客">
+                使用 Hexo 搭建自己的博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
