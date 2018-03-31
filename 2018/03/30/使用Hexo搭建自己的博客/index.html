@@ -91,17 +91,18 @@
 <meta property="og:site_name" content="郑保乐的博客">
 <meta property="og:description" content="Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c5e3beb8f919e30c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c1363a9feb73fda6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-df16f35a46e2c669.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c039d4e9117a5f31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c039d4e9117a5f31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-a3bf55f9e72586af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-e5fa264b0b204944.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-31T01:56:35.683Z">
+<meta property="og:updated_time" content="2018-03-31T05:41:53.073Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Hexo + Github 搭建自己的博客">
 <meta name="twitter:description" content="Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7134080-c1363a9feb73fda6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7134080-c5e3beb8f919e30c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -412,7 +413,8 @@
       
 
       
-        <p>Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。<br><a id="more"></a><br>本文涉及到的一些工具需要一定操作基础，若有疑问，请先自行搜索学习。</p>
+        <p><img src="https://upload-images.jianshu.io/upload_images/7134080-c5e3beb8f919e30c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。<br><a id="more"></a><br>本文涉及到的一些工具需要一定操作基础，若有疑问，请先自行搜索学习。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>Hexo 的运行和部署需要以下工具：</p>
 <ul>
 <li>Node.js</li>
@@ -447,8 +449,8 @@
 <p>我这里使用的是 Pisces，所有这样修改 “主题” 配置文件：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">scheme:</span> <span class="string">Pisces</span></span><br></pre></td></tr></table></figure>
 <p>Pisces 布局的效果：<br><img src="https://upload-images.jianshu.io/upload_images/7134080-a3bf55f9e72586af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><p>在站点根目录运行命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure></p>
-<p>其中，\&lt;title> 为文章题目，运行命令后在 <code>source/_posts</code> 目录下可以看到 <code>文章题目.md</code> 这样一个文件，用任意编辑器打开这个文件，里面的内容大概是这样：</p>
+<h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><p>在站点根目录运行命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [title]</span><br></pre></td></tr></table></figure></p>
+<p>其中，[title] 为文章题目，运行命令后在 <code>source/_posts</code> 目录下可以看到 <code>文章题目.md</code> 这样一个文件，用任意编辑器打开这个文件，里面的内容大概是这样：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 <p>这段内容在 Hexo 官方的叫法为 <code>Front matter</code>，在渲染文章的时候，渲染引擎会读取这段内容并在页面适当的地方展示文章的各种信息，<code>Front matter</code> 主要有一下几项：</p>
 <ul>
