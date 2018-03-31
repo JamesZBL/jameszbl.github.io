@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://james.letec.top/2018/03/31/Spring-MVC-%E4%B8%AD-ModelAttribute-%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%A6%99%E7%94%A8/</loc>
+    <lastmod>2018-03-31T03:48:00.959Z</lastmod>
+    <data>
+        <display>
+        <title>Spring MVC 中 @ModelAttribute 注解的妙用</title>
+        <pubTime>2018-03-31T02:44:32.000Z</pubTime>
+        
+        <tag>Spring</tag>
+         
+        <tag>Spring MVC</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="后端" url="http://james.letec.top/categories/%E5%90%8E%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://james.letec.top/2018/03/30/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2018-03-31T01:56:35.683Z</lastmod>
     <data>
@@ -157,9 +181,9 @@
         <title>面向对象软件设计模式-单例 Singleton</title>
         <pubTime>2017-11-29T04:00:00.000Z</pubTime>
         
-        <tag>设计模式</tag>
-         
         <tag>Java</tag>
+         
+        <tag>设计模式</tag>
          
          
            
@@ -179,9 +203,9 @@
         <title>面向对象软件设计模式-装饰器 Decorator</title>
         <pubTime>2017-10-02T02:12:00.000Z</pubTime>
         
-        <tag>设计模式</tag>
-         
         <tag>Java</tag>
+         
+        <tag>设计模式</tag>
          
          
            
@@ -201,9 +225,9 @@
         <title>面向对象软件设计模式-组合 Composite</title>
         <pubTime>2017-10-01T04:12:00.000Z</pubTime>
         
-        <tag>设计模式</tag>
-         
         <tag>Java</tag>
+         
+        <tag>设计模式</tag>
          
          
            

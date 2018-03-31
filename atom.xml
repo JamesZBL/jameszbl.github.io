@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://james.letec.top/"/>
-  <updated>2018-03-31T01:56:35.683Z</updated>
+  <updated>2018-03-31T03:48:00.959Z</updated>
   <id>http://james.letec.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring MVC 中 @ModelAttribute 注解的妙用</title>
+    <link href="http://james.letec.top/2018/03/31/Spring-MVC-%E4%B8%AD-ModelAttribute-%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%A6%99%E7%94%A8/"/>
+    <id>http://james.letec.top/2018/03/31/Spring-MVC-中-ModelAttribute-注解的妙用/</id>
+    <published>2018-03-31T02:44:32.000Z</published>
+    <updated>2018-03-31T03:48:00.959Z</updated>
+    
+    <content type="html"><![CDATA[<p>Spring MVC 提供的这种基于注释的编程模型，极大的简化了 web 应用的开发。其中 <code>@Controller</code> 和 <code>@RestController</code> 注解的组件使用 <code>@RequestMapping</code>、 <code>@ExceptionHandler</code> 等注解来表示请求映射，请求输入，异常处理等，使得开发者能专注于业务逻辑的编写，提高了开发效率。 带注释的控制器具有灵活的方法签名，不必扩展基类，也不需要实现特定的接口。<br><a id="more"></a></p><p>可以使用 <code>Servlet</code> 的 <code>WebApplicationContext</code> 中的标准 <code>Spring bean</code> 定义来定义控制器 bean。 所有带有 <code>@Controller</code> 注解的类会被自动检测，就像 Spring 通常的扫描方式一样，检测类路径中的 <code>@Component</code> 类，并为它们自动注册 bean 定义。 它也充当注释类的刻板，表示它可以作为一个 Web 组件。</p><p>带有 <code>@RequestMapping</code> 注解的方法叫做 <code>Handler Method</code> - 处理器方法，它的参数可以来自很多地方，比如 <code>ServletRequest</code> 、 <code>ServletResponse</code> 、 <code>HttpSession</code> 等。</p><h1 id="ModelAttribute"><a href="#ModelAttribute" class="headerlink" title="@ModelAttribute"></a>@ModelAttribute</h1><p>在控制器的处理器方法参数上添加 <code>@ModelAttribute</code> 注释可以访问模型中的属性，如果不存在这个模型，则会自动将其实例化，产生一个新的模型。 模型属性还覆盖了来自 HTTP Servlet 请求参数的名称与字段名称匹配的值，也就是请求参数如果和模型类中的域变量一致，则会自动将这些请求参数绑定到这个模型对象，这被称为数据绑定，从而避免了解析和转换每个请求参数和表单字段这样的代码。 例如：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/owners/&#123;componyId&#125;/departments/&#123;departmentId&#125;/edit"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">processSubmit</span><span class="params">(@ModelAttribute Department department)</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure><p>这个处理器方法中的 department 参数会被从以下几个来源进行匹配绑定：</p><ul><li>已经定义过的模型方法（带有 <code>@ModelAttribute</code> 的方法，后面解释）</li><li>HTTP Session 中和字段名匹配的会话方法（带有 <code>@SessionAttribute</code> 的方法，和模型方法类似，只是作用域不同）</li><li>经过 URL 转换器解析过的路径变量</li><li>该模型类的默认构造方法</li><li>调用具有与 Servlet 请求参数匹配的参数的 “主构造函数”; 参数名称通过 JavaBeans <code>@ConstructorProperties</code> 或通过字节码中的运行时保留参数名称确定。</li></ul><p>虽然一般都是使用模型方法 Model method 来使用属性填充模型，但另一种方法是依靠 <code>Converter&lt;String,T&gt;</code> 识别 URI 路径变量来绑定。在下面的例子中，模型属性名称 “user” 与 URI 路径变量 “user” 匹配，并且通过将 String 类型的用户名交给给已注册的 <code>Converter&lt;String,User&gt;</code> 这个转换器来生成创建模型：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping</span>(<span class="string">"/users/&#123;user&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">saveUser</span><span class="params">(@ModelAttribute(<span class="string">"user"</span>)</span> User user) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在获得模型属性实例之后，请求数据就会被绑定到模型属性上。 <code>WebDataBinder</code> 负责将 Servlet 请求参数名称（查询参数或表单字段）和目标模型对象上的字段名称进行匹配。 必要时会将属性的类型进行转换后再填充对应字段。</p><p>数据绑定不能保证不会出错，发生错误时默认情况下会抛出 <code>BindException</code> 异常，但要在处理器方法中识别出这些错误，需要在 @ModelAttribute 后面添加一个 <code>BindingResult</code> 类型的参数，需要注意的是：这个参数必须和模型属性参数 (<code>@ModelAtrribute</code> 参数) 如下所示：</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Spring MVC 提供的这种基于注释的编程模型，极大的简化了 web 应用的开发。其中 &lt;code&gt;@Controller&lt;/code&gt; 和 &lt;code&gt;@RestController&lt;/code&gt; 注解的组件使用 &lt;code&gt;@RequestMapping&lt;/code&gt;、 &lt;code&gt;@ExceptionHandler&lt;/code&gt; 等注解来表示请求映射，请求输入，异常处理等，使得开发者能专注于业务逻辑的编写，提高了开发效率。 带注释的控制器具有灵活的方法签名，不必扩展基类，也不需要实现特定的接口。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="后端" scheme="http://james.letec.top/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="Spring" scheme="http://james.letec.top/tags/Spring/"/>
+    
+      <category term="Spring MVC" scheme="http://james.letec.top/tags/Spring-MVC/"/>
+    
+      <category term="Java" scheme="http://james.letec.top/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 Hexo + Github 搭建自己的博客</title>
@@ -220,9 +246,9 @@
       <category term="设计模式" scheme="http://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://james.letec.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
       <category term="Java" scheme="http://james.letec.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="http://james.letec.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -244,9 +270,9 @@
       <category term="设计模式" scheme="http://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://james.letec.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
       <category term="Java" scheme="http://james.letec.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="http://james.letec.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -269,9 +295,9 @@
       <category term="设计模式" scheme="http://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://james.letec.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
       <category term="Java" scheme="http://james.letec.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="http://james.letec.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
