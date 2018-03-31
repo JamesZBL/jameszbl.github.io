@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-james.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-james.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring,Spring Boot,MyBatis,BootStrap,个人博客," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="郑保乐的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在线 Demo：http://fsblog.letec.topGithub 地址：https://github.com/jameszbl/fs-blog 1. 涉及技术及工具 核心框架：SpringBoot ORM 框架：MyBatis MyBatis 工具：MyBatis Mapper MVC 框架：Spring MVC 模板引擎：Freemarker 编译辅助插件：Lombok CSS 框架：">
+<meta name="keywords" content="Spring,Spring Boot,MyBatis,BootStrap,个人博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Spring Boot 的个人博客">
+<meta property="og:url" content="http://james.letec.top/2018/03/29/基于SpringBoot的个人博客/index.html">
+<meta property="og:site_name" content="郑保乐的博客">
+<meta property="og:description" content="在线 Demo：http://fsblog.letec.topGithub 地址：https://github.com/jameszbl/fs-blog 1. 涉及技术及工具 核心框架：SpringBoot ORM 框架：MyBatis MyBatis 工具：MyBatis Mapper MVC 框架：Spring MVC 模板引擎：Freemarker 编译辅助插件：Lombok CSS 框架：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-9314125f0eba4b91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-5bc39b987193939f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-7f49df2f61559bcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-188d16150bfc2019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-05a4df2254471c7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-29T14:31:23.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于 Spring Boot 的个人博客">
+<meta name="twitter:description" content="在线 Demo：http://fsblog.letec.topGithub 地址：https://github.com/jameszbl/fs-blog 1. 涉及技术及工具 核心框架：SpringBoot ORM 框架：MyBatis MyBatis 工具：MyBatis Mapper MVC 框架：Spring MVC 模板引擎：Freemarker 编译辅助插件：Lombok CSS 框架：">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7134080-9314125f0eba4b91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'DQH9NUSGTQ',
+      apiKey: 'dd999b30a63c88fb422dc71142c6b7bc',
+      indexName: 'jamesblog_hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索文章标题或内容","hits_empty":"没有在这个星球上找到: ${query}","hits_stats":"共找到 ${hits} 条结果，用时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://james.letec.top/2018/03/29/基于SpringBoot的个人博客/"/>
+
+
+
+
+
+  <title>基于 Spring Boot 的个人博客 | 郑保乐的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8c29d46a5fdb9bba0c5b918524bba2c0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郑保乐的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">James' Blog</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://james.letec.top/2018/03/29/基于SpringBoot的个人博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑保乐">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郑保乐的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">基于 Spring Boot 的个人博客</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T22:14:57+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开源项目/" itemprop="url" rel="index">
+                    <span itemprop="name">开源项目</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/29/基于SpringBoot的个人博客/" class="leancloud_visitors" data-flag-title="基于 Spring Boot 的个人博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  740 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://fsblog.letec.top" target="_blank" rel="noopener">在线 Demo：http://fsblog.letec.top</a><br><a href="https://github.com/jameszbl/fs-blog" target="_blank" rel="noopener">Github 地址：https://github.com/jameszbl/fs-blog</a></p>
+<h2 id="1-涉及技术及工具"><a href="#1-涉及技术及工具" class="headerlink" title="1. 涉及技术及工具"></a>1. 涉及技术及工具</h2><ul>
+<li>核心框架：SpringBoot</li>
+<li>ORM 框架：MyBatis</li>
+<li>MyBatis 工具：MyBatis Mapper</li>
+<li>MVC 框架：Spring MVC</li>
+<li>模板引擎：Freemarker</li>
+<li>编译辅助插件：Lombok</li>
+<li>CSS 框架：BootStrap 4.0</li>
+<li>Markdown 编辑器：Editor.md</li>
+<li>数据库：MySQL<a id="more"></a>
+<h2 id="2-效果图"><a href="#2-效果图" class="headerlink" title="2. 效果图"></a>2. 效果图</h2><h3 id="2-1-首页"><a href="#2-1-首页" class="headerlink" title="2.1 首页"></a>2.1 首页</h3><img src="https://upload-images.jianshu.io/upload_images/7134080-9314125f0eba4b91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="首页"><h4 id="2-2-博客列表页"><a href="#2-2-博客列表页" class="headerlink" title="2.2 博客列表页"></a>2.2 博客列表页</h4><img src="https://upload-images.jianshu.io/upload_images/7134080-5bc39b987193939f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="博客列表页"><h3 id="2-3-博客阅读页"><a href="#2-3-博客阅读页" class="headerlink" title="2.3 博客阅读页"></a>2.3 博客阅读页</h3><img src="https://upload-images.jianshu.io/upload_images/7134080-7f49df2f61559bcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="博客阅读"><h4 id="2-4-个人简历页"><a href="#2-4-个人简历页" class="headerlink" title="2.4 个人简历页"></a>2.4 个人简历页</h4><img src="https://upload-images.jianshu.io/upload_images/7134080-188d16150bfc2019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="个人简历"><h4 id="2-5-文章编辑"><a href="#2-5-文章编辑" class="headerlink" title="2.5 文章编辑"></a>2.5 文章编辑</h4><img src="https://upload-images.jianshu.io/upload_images/7134080-05a4df2254471c7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章编辑"><h3 id="3-构建及运行"><a href="#3-构建及运行" class="headerlink" title="3. 构建及运行"></a>3. 构建及运行</h3><h3 id="3-1-服务器环境"><a href="#3-1-服务器环境" class="headerlink" title="3.1 服务器环境"></a>3.1 服务器环境</h3></li>
+<li>安装 <code>MySQL</code></li>
+<li>安装 <code>Gradle</code></li>
+<li>在项目目录下运行 <code>gradle clean build</code>，生成的 jar 包位于 <code>build/libs</code> 目录下，使用 <code>java -jar .../fsblog.jar</code> 运行</li>
+<li>在 <code>application-dev.yml</code> 中配置数据库用户名和密码，默认为：<code>username: root password: root</code></li>
+<li>默认自动创建数据库、数据表并自动导入初始数据，同样在<code>application-dev.yml</code>中配置<h3 id="3-2-开发环境"><a href="#3-2-开发环境" class="headerlink" title="3.2 开发环境"></a>3.2 开发环境</h3></li>
+<li>可直接在 IntelliJ IDEA 或 Eclipse 中打开项目进行二次开发<h2 id="4-配置文件"><a href="#4-配置文件" class="headerlink" title="4. 配置文件"></a>4. 配置文件</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="comment"># 应用名称</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">FS-Blog</span></span><br><span class="line">  <span class="comment"># 缓存</span></span><br><span class="line"><span class="attr">  cache:</span></span><br><span class="line"><span class="attr">    cache-names:</span> <span class="string">ehcache</span></span><br><span class="line"><span class="attr">    ehcache:</span></span><br><span class="line">      <span class="comment"># 缓存的配置文件</span></span><br><span class="line"><span class="attr">      config:</span> <span class="string">ehcache.xml</span></span><br><span class="line">  <span class="comment"># Spring Boot 热部署工具</span></span><br><span class="line"><span class="attr">  devtools:</span></span><br><span class="line"><span class="attr">    restart:</span></span><br><span class="line"><span class="attr">      enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 模板引擎</span></span><br><span class="line"><span class="attr">  freemarker:</span></span><br><span class="line"><span class="attr">    enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    cache:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    suffix:</span> <span class="string">.ftl</span></span><br><span class="line"><span class="attr">    charset:</span> <span class="string">utf-8</span></span><br><span class="line">    <span class="comment"># 逻辑视图名（所有视图都要写在这里）</span></span><br><span class="line"><span class="attr">    view-names:</span> <span class="string">index,</span></span><br><span class="line">                <span class="string">error,</span></span><br><span class="line">                <span class="string">userlogin,</span></span><br><span class="line">                <span class="string">adminlogin,</span></span><br><span class="line">                <span class="string">register,</span></span><br><span class="line">                <span class="string">article,</span></span><br><span class="line">                <span class="string">posts,</span></span><br><span class="line">                <span class="string">admin/index,</span></span><br><span class="line">                <span class="string">admin/userlogin,</span></span><br><span class="line">                <span class="string">admin/blogadd,</span></span><br><span class="line">                <span class="string">admin/blog_manage,</span></span><br><span class="line">                <span class="string">admin/blog_modify,</span></span><br><span class="line">                <span class="string">admin/admin_user_manage,</span></span><br><span class="line">                <span class="string">admin/admin_user_pwd_modify</span></span><br><span class="line"><span class="attr">    content-type:</span> <span class="string">text/html</span></span><br><span class="line"><span class="attr">    allow-request-override:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    check-template-location:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    expose-request-attributes:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    expose-session-attributes:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    expose-spring-macro-helpers:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    request-context-attribute:</span> <span class="string">request</span></span><br><span class="line"><span class="attr">    template-loader-path:</span> <span class="attr">classpath:/templates/</span></span><br><span class="line">  <span class="comment"># 静态资源</span></span><br><span class="line"><span class="attr">  resources:</span></span><br><span class="line"><span class="attr">    chain:</span></span><br><span class="line"><span class="attr">      strategy:</span></span><br><span class="line"><span class="attr">        content:</span></span><br><span class="line"><span class="attr">          enabled:</span> <span class="literal">true</span></span><br><span class="line">          <span class="comment"># 静态资源位置</span></span><br><span class="line"><span class="attr">          paths:</span> <span class="string">/**</span></span><br><span class="line"><span class="attr">        fixed:</span></span><br><span class="line"><span class="attr">          enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">          paths:</span> <span class="string">/js/lib</span></span><br><span class="line"><span class="attr">          version:</span> <span class="string">v12</span></span><br><span class="line"><span class="attr">    static-locations:</span> <span class="attr">classpath:/static/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/public/</span></span><br><span class="line">  <span class="comment"># 数据源</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line">    <span class="comment"># 数据库连接</span></span><br><span class="line">    <span class="comment"># 用户名</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line">    <span class="comment"># 密码</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line">    <span class="comment"># 数据库 URL</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://127.0.0.1:3306?useUnicode:true&amp;amp;characterEncoding:UTF-8</span></span><br><span class="line">    <span class="comment"># 数据库连接驱动</span></span><br><span class="line"><span class="attr">    driverClassName:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">    <span class="comment"># SQL 编码</span></span><br><span class="line"><span class="attr">    sql-script-encoding:</span> <span class="string">UTF-8</span></span><br><span class="line"><span class="attr">    hikari:</span></span><br><span class="line">      <span class="comment"># 连接存活时间</span></span><br><span class="line"><span class="attr">      connection-timeout:</span> <span class="number">30000</span></span><br><span class="line">      <span class="comment"># 连接池容量</span></span><br><span class="line"><span class="attr">      maximum-pool-size:</span> <span class="number">50</span></span><br><span class="line"><span class="attr">      minimum-idle:</span> <span class="number">5</span></span><br><span class="line">    <span class="comment"># 数据库定义</span></span><br><span class="line"><span class="attr">    schema:</span> <span class="attr">classpath:schema.sql</span></span><br><span class="line">    <span class="comment"># 测试数据</span></span><br><span class="line"><span class="attr">    data:</span> <span class="attr">classpath:data.sql</span></span><br><span class="line">    <span class="comment"># 是否自动创建数据库并自动导入初始数据</span></span><br><span class="line"><span class="attr">    initialize:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    continue-on-error:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment"># 服务器配置</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="comment"># 端口</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8083</span></span><br><span class="line"><span class="attr">  max-http-header-size:</span> <span class="number">8192</span></span><br><span class="line"><span class="attr">  compression:</span></span><br><span class="line"><span class="attr">      min-response-size:</span> <span class="number">512</span></span><br><span class="line"><span class="attr">      enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      mime-types:</span> <span class="string">text/html,text/css,text/javascript,application/javascript,image/gif,image/png,image/jpg</span></span><br><span class="line"><span class="attr">  tomcat:</span></span><br><span class="line"><span class="attr">        maxThreads:</span> <span class="number">12</span></span><br><span class="line"><span class="attr">        minSpareThreads:</span> <span class="number">3</span></span><br><span class="line">        <span class="comment"># 访问日志</span></span><br><span class="line"><span class="attr">        accesslog:</span></span><br><span class="line"><span class="attr">          directory:</span> <span class="string">/home/fullstack/app/fullstack</span></span><br><span class="line"><span class="attr">          pattern:</span> <span class="string">combined</span></span><br><span class="line"><span class="attr">          enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment"># 会话</span></span><br><span class="line"><span class="attr">  session:</span></span><br><span class="line"><span class="attr">    cookie:</span></span><br><span class="line">      <span class="comment"># Session 存活时间</span></span><br><span class="line"><span class="attr">      max-age:</span> <span class="number">1800</span></span><br><span class="line"><span class="comment"># 日志</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">    <span class="comment"># Log4j2 配置文件</span></span><br><span class="line"><span class="attr">    config:</span> <span class="attr">classpath:log4j2.xml</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">    <span class="comment"># 实体类所在包</span></span><br><span class="line"><span class="attr">    type-aliases-package:</span> <span class="string">me.zbl.fullstack.entity</span></span><br><span class="line">    <span class="comment"># xml 文件位置</span></span><br><span class="line"><span class="attr">    mapper-locations:</span> <span class="attr">classpath:mapping/*.xml</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    <!-- s reward 默认位置 -->
+
+    <!-- e resume 默认位置 -->
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    郑保乐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://james.letec.top/2018/03/29/基于SpringBoot的个人博客/" title="基于 Spring Boot 的个人博客">http://james.letec.top/2018/03/29/基于SpringBoot的个人博客/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="郑保乐 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="郑保乐 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          
+            <a href="/tags/BootStrap/" rel="tag"># BootStrap</a>
+          
+            <a href="/tags/个人博客/" rel="tag"># 个人博客</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/29/SpringMVC 解析之 DispatcherServlet/" rel="next" title="SpringMVC 解析之 DispatcherServlet">
+                <i class="fa fa-chevron-left"></i> SpringMVC 解析之 DispatcherServlet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/30/Spring整合Shiro权限控制/" rel="prev" title="Spring 整合 Shiro 权限控制">
+                Spring 整合 Shiro 权限控制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_qzone"></a>
+<a class="jiathis_button_weixin"></a>
+<a class="jiathis_button_tsina"></a>
+<a class="jiathis_button_tqq"></a>
+<a class="jiathis_button_cqq"></a>
+<a class="jiathis_button_qq"></a>
+<a class="jiathis_button_kaixin001"></a>
+<a class="jiathis_button_douban"></a>
+<a class="jiathis_button_tieba"></a>
+<a class="jiathis_button_renren"></a>
+<a class="jiathis_button_ydnote"></a>
+<a href="http://www.jiathis.com/share?uid=2160247" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+	data_track_clickback:true,
+	summary:"",
+	shortUrl:false,
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2160247" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="郑保乐" />
+            
+              <p class="site-author-name" itemprop="name">郑保乐</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JamesZBL" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="tencent://message/?uin=1146556298&Site=摆码王子" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/James1996" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhengbaole_1996@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/77df8abd9a98" title="EEE凯飞" target="_blank">EEE凯飞</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://winterchen.com/" title="WinterChen" target="_blank">WinterChen</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wuchong.me/" title="云邪" target="_blank">云邪</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zmister.com/" title="州的先生" target="_blank">州的先生</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-涉及技术及工具"><span class="nav-number">1.</span> <span class="nav-text">1. 涉及技术及工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-效果图"><span class="nav-number">2.</span> <span class="nav-text">2. 效果图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-首页"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 首页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-博客列表页"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.2 博客列表页</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-博客阅读页"><span class="nav-number">2.2.</span> <span class="nav-text">2.3 博客阅读页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-个人简历页"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.4 个人简历页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-文章编辑"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.5 文章编辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-构建及运行"><span class="nav-number">2.3.</span> <span class="nav-text">3. 构建及运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-服务器环境"><span class="nav-number">2.4.</span> <span class="nav-text">3.1 服务器环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-开发环境"><span class="nav-number">2.5.</span> <span class="nav-text">3.2 开发环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-配置文件"><span class="nav-number">3.</span> <span class="nav-text">4. 配置文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郑保乐 | James Zheng</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">所有文章字数总计&#58;</span>
+    
+    <span title="所有文章字数总计">21.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div>
+<a href="http://www.miitbeian.gov.cn/">冀 ICP 备 18000182 号</a>
+</div>
+
+        
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273289170&web_id=1273289170" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("noQxgNi7RfBVPLkKkLSqJfgu-gzGzoHsz", "KgdngJPIsywPsYCvOUx1zF88");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
