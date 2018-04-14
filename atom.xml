@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://james.letec.top/"/>
-  <updated>2018-04-14T13:05:54.393Z</updated>
+  <updated>2018-04-14T15:52:32.861Z</updated>
   <id>http://james.letec.top/</id>
   
   <author>
@@ -17,11 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Ubuntu Linux 中虚拟主机的配置 - 搭配Nginx</title>
+    <title>Nginx 解决浏览器 Ajax 跨域问题</title>
+    <link href="http://james.letec.top/2018/04/14/Nginx-%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8-Ajax-%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/"/>
+    <id>http://james.letec.top/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/</id>
+    <published>2018-04-14T14:52:21.000Z</published>
+    <updated>2018-04-14T15:52:32.861Z</updated>
+    
+    <content type="html"><![CDATA[<p>跨域是指 host 为 A 页面中的 Ajax 发起指向 host B 的请求，只要 A 和 B 的协议、域名、端口、子域名其中任何一项不同，则执行的访问都会被认为是跨域的请求，几乎所有的浏览器为了安全等问题，对跨域访问做了限制，也就是无法通过浏览器发起跨域请求。跨域问题的本质是浏览器的限制。但也并不意味着浏览器根本不能发出任何跨域请求，在发起跨域请求后，浏览器总会发送一个 OPTION 请求，并根据响应的 Header 中 <code>Access-Control-Allow-Origin</code> 参数值进行下一步操作，如果这个参数不存在或不符合当前的域，则拒绝这个跨域请求。解决这个问题的一个简单方法就是使用 Nginx 反向代理。<br><a id="more"></a></p><h1 id="场景示例"><a href="#场景示例" class="headerlink" title="场景示例"></a>场景示例</h1><p>现在假设在同一台主机上部署有两个网站，访问地址分别为 <code>localhost:8080</code>（A） 和 <code>localhost:8081</code>（B）， A 站的某个页面 Ajax 想要访问 B 的某个接口，以 jQuery 的 Ajax 为例：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.get(</span><br><span class="line">    <span class="string">"http://localhost:8081/api/orders"</span>,</span><br><span class="line">    &#123;&#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>显然，在没有做任何其他配置的情况下，这个请求一定会发送失败。</p><h1 id="Nginx-反向代理"><a href="#Nginx-反向代理" class="headerlink" title="Nginx 反向代理"></a>Nginx 反向代理</h1><p>修改 Nginx 安装目录下 conf/nginx.conf 文件，添加如下内容：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen  80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    location /&#123;</span><br><span class="line">        proxy_pass http://localhost:8080</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 所有跨域访问以 /api 开头</span><br><span class="line">    location /api &#123;</span><br><span class="line">        # 请求改写</span><br><span class="line">rewrite  ^/api/(.*)$ /$1 break;</span><br><span class="line">proxy_pass   http://localhost:8081;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>这样配置并启动 Nginx 之后，可以通过 <code>localhost</code> 的 <code>80</code> 端口 访问 <code>8080</code>和 <code>8081</code> 端口的网站</li><li>所有以 <code>/api</code> 开头的请求将被重写，然后被发送给 <code>8081</code> 端口</li><li>对请求的重写为正则式的形式： <code>^/api/(.*)$ /$1 break;</code> <code>$1</code> 表示匹配正则表达式中的第一个分组，也就是 <code>(.*)</code> 匹配的内容，将其改写为 <code>/匹配内容</code>，比如 <code>/api/abc/def/ghi</code> 将被改写为 <code>/abc/def/ghi</code>， <code>break</code> 表示一次匹配成功则结束。</li></ul><h1 id="URL-更改"><a href="#URL-更改" class="headerlink" title="URL 更改"></a>URL 更改</h1><p>原来 Ajax 请求中所有指向 <code>localhost:8081/***</code> 的请求现在都应该改成 <code>localhost/api/***</code>，比如这样：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.get(</span><br><span class="line">    <span class="string">"http://localhost/api/orders"</span>,</span><br><span class="line">    &#123;&#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h1 id="其他方案"><a href="#其他方案" class="headerlink" title="其他方案"></a>其他方案</h1><p>CORS （跨域资源共享），需要设置服务端响应头中 <code>Access-Control-Allow-Origin</code> 参数。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;跨域是指 host 为 A 页面中的 Ajax 发起指向 host B 的请求，只要 A 和 B 的协议、域名、端口、子域名其中任何一项不同，则执行的访问都会被认为是跨域的请求，几乎所有的浏览器为了安全等问题，对跨域访问做了限制，也就是无法通过浏览器发起跨域请求。跨域问题的本质是浏览器的限制。但也并不意味着浏览器根本不能发出任何跨域请求，在发起跨域请求后，浏览器总会发送一个 OPTION 请求，并根据响应的 Header 中 &lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt; 参数值进行下一步操作，如果这个参数不存在或不符合当前的域，则拒绝这个跨域请求。解决这个问题的一个简单方法就是使用 Nginx 反向代理。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="后端" scheme="http://james.letec.top/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="服务器" scheme="http://james.letec.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="架构" scheme="http://james.letec.top/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="Nginx" scheme="http://james.letec.top/tags/Nginx/"/>
+    
+      <category term="Ajax" scheme="http://james.letec.top/tags/Ajax/"/>
+    
+      <category term="跨域" scheme="http://james.letec.top/tags/%E8%B7%A8%E5%9F%9F/"/>
+    
+      <category term="CORS" scheme="http://james.letec.top/tags/CORS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx</title>
     <link href="http://james.letec.top/2018/04/14/Ubuntu-Linux-%E4%B8%AD%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE/"/>
     <id>http://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/</id>
     <published>2018-04-14T12:30:53.000Z</published>
-    <updated>2018-04-14T13:05:54.393Z</updated>
+    <updated>2018-04-14T14:58:11.127Z</updated>
     
     <content type="html"><![CDATA[<p>虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。</p><p>Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代理服务器的身份实现负载均衡。<br><a id="more"></a></p><p>使用 Nginx 配置虚拟主机只需编辑 Nginx 安装目录下 conf/nginx.conf 即可，增加一个虚拟主机只需要在配置文件中添加一个 server 节点，就像这样：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name test1.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html;</span><br><span class="line">        root /home/www/test1/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name test2.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html;</span><br><span class="line">        root /home/www/test2/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>listen</code> 为监听的端口，本例中监听 80 端口<br><code>server_name</code> 即指定的虚拟主机名<br><code>location</code> 只 Nginx 代理的相对 URL 范围<br><code>index</code> 指主页的文件名<br><code>root</code> 为网站根目录在系统中的实际位置</p><p><code>location /</code> 表示匹配这个主机名下的所有请求，<code>server_name</code> 的值可以为 <code>*.example.com</code> 这种形式，即匹配所有以 <code>example.com</code> 结尾的主机名，亦或 <code>test.*</code>，即所有以 <code>test</code> 开头的主机名，还可以用正则表达式的形式，比如 <code>~^test\d+\.example\.com$</code>，如果使用正则表达式，最前面要加上 <code>~</code> 这个符号。</p><p>以上两个虚拟主机实现了将对不同主机名的请求指向不同的物理目录，下面介绍如何用虚拟主机实现区分端口，即将不同主机名的请求分发到不同端口上</p><p>和上面的配置写法类似：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name demo1.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name demo2.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8081;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>proxy_pass 表示将请求转发到某个 URL，这样便可以实现虚拟主机名和端口的映射了。如果采用一台物理机部署多个 Tocmat 服务实例则可以采用这种方式，这样就避免了暴露多个端口的问题。</p>]]></content>
     
@@ -32,14 +64,20 @@
     
     </summary>
     
+      <category term="运维" scheme="http://james.letec.top/categories/%E8%BF%90%E7%BB%B4/"/>
     
-      <category term="Linux" scheme="http://james.letec.top/tags/Linux/"/>
+    
+      <category term="架构" scheme="http://james.letec.top/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="Nginx" scheme="http://james.letec.top/tags/Nginx/"/>
+    
+      <category term="Linux" scheme="http://james.letec.top/tags/Linux/"/>
     
       <category term="虚拟主机" scheme="http://james.letec.top/tags/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/"/>
     
       <category term="域名" scheme="http://james.letec.top/tags/%E5%9F%9F%E5%90%8D/"/>
+    
+      <category term="运维" scheme="http://james.letec.top/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   

@@ -4,23 +4,60 @@
 
     
   <url>
-    <loc>http://james.letec.top/2018/04/14/Ubuntu-Linux-%E4%B8%AD%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2018-04-14T13:05:54.393Z</lastmod>
+    <loc>http://james.letec.top/2018/04/14/Nginx-%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8-Ajax-%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-04-14T15:52:32.861Z</lastmod>
     <data>
         <display>
-        <title>Ubuntu Linux 中虚拟主机的配置 - 搭配Nginx</title>
-        <pubTime>2018-04-14T12:30:53.000Z</pubTime>
+        <title>Nginx 解决浏览器 Ajax 跨域问题</title>
+        <pubTime>2018-04-14T14:52:21.000Z</pubTime>
         
-        <tag>Linux</tag>
+        <tag>服务器</tag>
+         
+        <tag>架构</tag>
          
         <tag>Nginx</tag>
+         
+        <tag>Ajax</tag>
+         
+        <tag>跨域</tag>
+         
+        <tag>CORS</tag>
+         
+         
+           
+             
+              <breadCrumb title="后端" url="http://james.letec.top/categories/%E5%90%8E%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://james.letec.top/2018/04/14/Ubuntu-Linux-%E4%B8%AD%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2018-04-14T14:58:11.127Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx</title>
+        <pubTime>2018-04-14T12:30:53.000Z</pubTime>
+        
+        <tag>架构</tag>
+         
+        <tag>Nginx</tag>
+         
+        <tag>Linux</tag>
          
         <tag>虚拟主机</tag>
          
         <tag>域名</tag>
          
+        <tag>运维</tag>
+         
          
            
+             
+              <breadCrumb title="运维" url="http://james.letec.top/categories/%E8%BF%90%E7%BB%B4/"/>
+          
         </display>
     </data>
     </url>

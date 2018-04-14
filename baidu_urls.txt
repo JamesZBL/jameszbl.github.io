@@ -1,1 +1,1 @@
-http://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/
+http://james.letec.top/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/
