@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://james.letec.top/"/>
-  <updated>2018-03-31T06:03:12.288Z</updated>
+  <updated>2018-04-14T13:05:54.393Z</updated>
   <id>http://james.letec.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu Linux 中虚拟主机的配置 - 搭配Nginx</title>
+    <link href="http://james.letec.top/2018/04/14/Ubuntu-Linux-%E4%B8%AD%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE/"/>
+    <id>http://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/</id>
+    <published>2018-04-14T12:30:53.000Z</published>
+    <updated>2018-04-14T13:05:54.393Z</updated>
+    
+    <content type="html"><![CDATA[<p>虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。</p><p>Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代理服务器的身份实现负载均衡。<br><a id="more"></a></p><p>使用 Nginx 配置虚拟主机只需编辑 Nginx 安装目录下 conf/nginx.conf 即可，增加一个虚拟主机只需要在配置文件中添加一个 server 节点，就像这样：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name test1.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html;</span><br><span class="line">        root /home/www/test1/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name test2.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html;</span><br><span class="line">        root /home/www/test2/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>listen</code> 为监听的端口，本例中监听 80 端口<br><code>server_name</code> 即指定的虚拟主机名<br><code>location</code> 只 Nginx 代理的相对 URL 范围<br><code>index</code> 指主页的文件名<br><code>root</code> 为网站根目录在系统中的实际位置</p><p><code>location /</code> 表示匹配这个主机名下的所有请求，<code>server_name</code> 的值可以为 <code>*.example.com</code> 这种形式，即匹配所有以 <code>example.com</code> 结尾的主机名，亦或 <code>test.*</code>，即所有以 <code>test</code> 开头的主机名，还可以用正则表达式的形式，比如 <code>~^test\d+\.example\.com$</code>，如果使用正则表达式，最前面要加上 <code>~</code> 这个符号。</p><p>以上两个虚拟主机实现了将对不同主机名的请求指向不同的物理目录，下面介绍如何用虚拟主机实现区分端口，即将不同主机名的请求分发到不同端口上</p><p>和上面的配置写法类似：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name demo1.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name demo2.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8081;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>proxy_pass 表示将请求转发到某个 URL，这样便可以实现虚拟主机名和端口的映射了。如果采用一台物理机部署多个 Tocmat 服务实例则可以采用这种方式，这样就避免了暴露多个端口的问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。&lt;/p&gt;
+&lt;p&gt;Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代理服务器的身份实现负载均衡。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://james.letec.top/tags/Linux/"/>
+    
+      <category term="Nginx" scheme="http://james.letec.top/tags/Nginx/"/>
+    
+      <category term="虚拟主机" scheme="http://james.letec.top/tags/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/"/>
+    
+      <category term="域名" scheme="http://james.letec.top/tags/%E5%9F%9F%E5%90%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring MVC 中 @ModelAttribute 注解的妙用</title>
@@ -61,11 +88,11 @@
       <category term="博客" scheme="http://james.letec.top/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
+      <category term="Linux" scheme="http://james.letec.top/tags/Linux/"/>
+    
       <category term="博客" scheme="http://james.letec.top/tags/%E5%8D%9A%E5%AE%A2/"/>
     
       <category term="Git" scheme="http://james.letec.top/tags/Git/"/>
-    
-      <category term="Linux" scheme="http://james.letec.top/tags/Linux/"/>
     
       <category term="Hexo" scheme="http://james.letec.top/tags/Hexo/"/>
     
@@ -89,9 +116,9 @@
       <category term="后端" scheme="http://james.letec.top/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
-      <category term="Spring" scheme="http://james.letec.top/tags/Spring/"/>
-    
       <category term="Shiro" scheme="http://james.letec.top/tags/Shiro/"/>
+    
+      <category term="Spring" scheme="http://james.letec.top/tags/Spring/"/>
     
       <category term="权限控制" scheme="http://james.letec.top/tags/%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/"/>
     
@@ -209,9 +236,9 @@
       <category term="后端" scheme="http://james.letec.top/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
-      <category term="Spring" scheme="http://james.letec.top/tags/Spring/"/>
-    
       <category term="Shiro" scheme="http://james.letec.top/tags/Shiro/"/>
+    
+      <category term="Spring" scheme="http://james.letec.top/tags/Spring/"/>
     
   </entry>
   

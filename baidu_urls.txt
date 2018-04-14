@@ -1,1 +1,1 @@
-http://james.letec.top/2018/03/31/Spring-MVC-中-ModelAttribute-注解的妙用/
+http://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/
