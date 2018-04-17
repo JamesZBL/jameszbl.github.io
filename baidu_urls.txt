@@ -1,1 +1,1 @@
-http://james.letec.top/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/
+http://james.letec.top/2018/04/16/基于-Spring-Boot-2-0-构建一个-RESTful-WebService/
