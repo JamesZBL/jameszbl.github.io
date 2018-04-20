@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://james.letec.top/2017/11/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%E5%8D%95%E4%BE%8B/</loc>
+    <lastmod>2018-04-20T05:17:42.584Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记（2）单例</title>
+        <pubTime>2017-11-29T04:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://james.letec.top/2017/10/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E7%BB%84%E5%90%88/</loc>
     <lastmod>2018-04-20T05:16:18.373Z</lastmod>
     <data>
@@ -32,28 +54,6 @@
         <display>
         <title>设计模式学习笔记（3）装饰器</title>
         <pubTime>2017-10-02T02:12:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://james.letec.top/2017/11/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%E5%8D%95%E4%BE%8B/</loc>
-    <lastmod>2018-04-20T05:11:16.122Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式学习笔记（2）-单例</title>
-        <pubTime>2017-11-29T04:00:00.000Z</pubTime>
         
         <tag>Java</tag>
          
