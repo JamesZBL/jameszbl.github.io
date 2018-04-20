@@ -9,7 +9,7 @@ http://james.letec.top/2018/03/29/SpringMVC 解析之 DispatcherServlet/
 http://james.letec.top/2018/02/24/Python 第一个爬虫-教务系统信息收集/
 http://james.letec.top/2018/02/17/Spring 应用中集成 Apache Shiro/
 http://james.letec.top/2017/12/01/在 SpringMVC 中对表单提交参数进行验证 Bean Validator/
-http://james.letec.top/2017/11/29/面向对象软件设计模式-单例-Singleton/
-http://james.letec.top/2017/10/02/面向对象软件设计模式-装饰器-Decorator/
-http://james.letec.top/2017/10/01/面向对象软件设计模式-组合-Composite/
+http://james.letec.top/2017/11/29/设计模式学习笔记（2）单例/
+http://james.letec.top/2017/10/02/设计模式学习笔记（3）装饰器/
+http://james.letec.top/2017/10/01/设计模式学习笔记（1）组合/
 http://james.letec.top/2017/06/15/GridLayout + Animation 实现 Android 仿超级课程表“发现”全屏宫格图标弹出动画/
