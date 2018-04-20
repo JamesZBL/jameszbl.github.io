@@ -81,20 +81,20 @@
 
 
 
-<meta name="description" content="用途将对象组合成树形结构以表示 “部分——整体” 的层次结构。 Composite使得用户对单个对象和组合对象的使用具有一致性。">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 组合（Composite）模式用于将对象组合成树形结构以表示 “部分——整体” 的层次结构。它使得用户对单个对象和组合对象的使用具有一致性。">
 <meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式学习笔记（1）组合">
 <meta property="og:url" content="https://james.letec.top/2018/04/17/设计模式学习笔记（1）组合/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="用途将对象组合成树形结构以表示 “部分——整体” 的层次结构。 Composite使得用户对单个对象和组合对象的使用具有一致性。">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 组合（Composite）模式用于将对象组合成树形结构以表示 “部分——整体” 的层次结构。它使得用户对单个对象和组合对象的使用具有一致性。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/11/19/15fd45454f35913c?w=984&h=599&f=png&s=48305">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/11/19/15fd453dc4bcfe14?w=1526&h=376&f=png&s=39695">
-<meta property="og:updated_time" content="2018-04-20T05:56:18.581Z">
+<meta property="og:updated_time" content="2018-04-20T06:11:22.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记（1）组合">
-<meta name="twitter:description" content="用途将对象组合成树形结构以表示 “部分——整体” 的层次结构。 Composite使得用户对单个对象和组合对象的使用具有一致性。">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 组合（Composite）模式用于将对象组合成树形结构以表示 “部分——整体” 的层次结构。它使得用户对单个对象和组合对象的使用具有一致性。">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/11/19/15fd45454f35913c?w=984&h=599&f=png&s=48305">
 
 
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,531 字
+                  1,492 字
                 </span>
               
 
@@ -458,8 +458,8 @@
       
 
       
-        <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>将对象组合成树形结构以表示 “部分——整体” 的层次结构。</p>
-<p>Composite使得用户对单个对象和组合对象的使用具有一致性。<br><a id="more"></a></p>
+        <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>组合（Composite）模式用于将对象组合成树形结构以表示 “部分——整体” 的层次结构。它使得用户对单个对象和组合对象的使用具有一致性。<br><a id="more"></a></p>
 <h2 id="模式要点"><a href="#模式要点" class="headerlink" title="模式要点"></a>模式要点</h2><p><img src="https://user-gold-cdn.xitu.io/2017/11/19/15fd45454f35913c?w=984&amp;h=599&amp;f=png&amp;s=48305" alt=""></p>
 <h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><ul>
 <li>Component : 是组合中的所有对象的统一接口；定义了特定情况下，类应当实现的货缺省的行为；Component 声明一个接口用于访问和管理 Component 的子组件；在递归结构中定义一个接口，用于访问一个父部件，并符合条件的类中实现它，当然这个是可选的。</li>
@@ -483,7 +483,6 @@
 <li>你想表示对象的部分-整体层次结构</li>
 <li>你希望用户忽略组合对象与单个对象的不同， 用户将统一地使用组合结构中的所有对象</li>
 </ul>
-<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><p>有关其他模式本人的的开源项目：<br><a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">Java 实现的面向对象软件设计模式</a><br>如果觉得有用，欢迎 Star/Fork/提Issue<br>该项目目前处在开发阶段</p>
 
       
     </div>
@@ -779,7 +778,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">1.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式要点"><span class="nav-number">2.</span> <span class="nav-text">模式要点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成部分"><span class="nav-number">2.1.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协作原理"><span class="nav-number">2.2.</span> <span class="nav-text">协作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例分析"><span class="nav-number">3.</span> <span class="nav-text">实例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">4.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景"><span class="nav-number">5.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源项目"><span class="nav-number">6.</span> <span class="nav-text">开源项目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式要点"><span class="nav-number">1.</span> <span class="nav-text">模式要点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成部分"><span class="nav-number">1.1.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协作原理"><span class="nav-number">1.2.</span> <span class="nav-text">协作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例分析"><span class="nav-number">2.</span> <span class="nav-text">实例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">3.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景"><span class="nav-number">4.</span> <span class="nav-text">适用场景</span></a></li></ol></div>
             
 
           </div>
@@ -813,7 +812,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">一共写了&#58;</span>
     
-    <span title="一共写了">25.1k字</span>
+    <span title="一共写了">24.8k字</span>
   
 </div>
 

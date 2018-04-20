@@ -81,20 +81,20 @@
 
 
 
-<meta name="description" content="用途用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 装饰器（Decorator）模式用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。">
 <meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式学习笔记（3）装饰器">
 <meta property="og:url" content="https://james.letec.top/2018/04/19/设计模式学习笔记（3）装饰器/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="用途用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 装饰器（Decorator）模式用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/JamesZBL/java_design_patterns/master/decorator/uml/Decorator.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/JamesZBL/java_design_patterns/master/decorator/uml/Decorator_impl.png">
-<meta property="og:updated_time" content="2018-04-20T05:55:50.683Z">
+<meta property="og:updated_time" content="2018-04-20T06:09:09.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记（3）装饰器">
-<meta name="twitter:description" content="用途用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 装饰器（Decorator）模式用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/JamesZBL/java_design_patterns/master/decorator/uml/Decorator.png">
 
 
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,470 字
+                  1,440 字
                 </span>
               
 
@@ -458,7 +458,8 @@
       
 
       
-        <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。<br><a id="more"></a><br>纯粹的装饰模式很难找到，大多数的装饰模式的实现都是“半透明”的，而不是完全透明的。换言之，允许装饰模式改变接口，增加新的方法。半透明的装饰模式是介于装饰模式和适配器模式之间的。适配器模式的用意是改变所考虑的类的接口，也可以通过改写一个或几个方法，或增加新的方法来增强或改变所考虑的类的功能。                                                                                     大多数的装饰模式实际上是半透明的装饰模式，这样的装饰模式也称做半装饰、半适配器模式。</p>
+        <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>装饰器（Decorator）模式用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。<br><a id="more"></a><br>纯粹的装饰模式很难找到，大多数的装饰模式的实现都是“半透明”的，而不是完全透明的。换言之，允许装饰模式改变接口，增加新的方法。半透明的装饰模式是介于装饰模式和适配器模式之间的。适配器模式的用意是改变所考虑的类的接口，也可以通过改写一个或几个方法，或增加新的方法来增强或改变所考虑的类的功能。                                                                                     大多数的装饰模式实际上是半透明的装饰模式，这样的装饰模式也称做半装饰、半适配器模式。</p>
 <h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>以下情况使用Decorator模式</p>
 <ul>
 <li>在不影响其他对象的情况下， 以动态、 透明的方式给单个对象添加职责。</li>
@@ -490,7 +491,6 @@
 <li>装饰者的对象和它装饰的对象本质上是完全不同的，装饰模式会生成许多的对象，导致区分各种对象变得困难</li>
 <li>由于使用相同的标识，对于程序的理解和拍错过程的难度也会随之增加</li>
 </ol>
-<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><p>有关其他模式本人的的开源项目：<br><a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">github.com/JamesZBL/java_design_patterns</a><br>如果觉得有用，欢迎 Star/Fork/提Issue<br>该项目目前处在开发阶段</p>
 
       
     </div>
@@ -786,7 +786,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">1.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景"><span class="nav-number">2.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式要点"><span class="nav-number">3.</span> <span class="nav-text">模式要点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成部分"><span class="nav-number">3.1.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协作原理"><span class="nav-number">3.2.</span> <span class="nav-text">协作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例分析"><span class="nav-number">4.</span> <span class="nav-text">实例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">5.</span> <span class="nav-text">效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">5.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">5.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源项目"><span class="nav-number">6.</span> <span class="nav-text">开源项目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景"><span class="nav-number">1.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式要点"><span class="nav-number">2.</span> <span class="nav-text">模式要点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成部分"><span class="nav-number">2.1.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协作原理"><span class="nav-number">2.2.</span> <span class="nav-text">协作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例分析"><span class="nav-number">3.</span> <span class="nav-text">实例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">4.</span> <span class="nav-text">效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">4.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">4.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -820,7 +820,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">一共写了&#58;</span>
     
-    <span title="一共写了">25.1k字</span>
+    <span title="一共写了">24.8k字</span>
   
 </div>
 
