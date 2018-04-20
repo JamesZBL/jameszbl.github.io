@@ -313,6 +313,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑保乐">
+      <meta itemprop="description" content="优秀的判断力来自经验，<br>但经验来自错误的判断。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郑保乐的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/20/设计模式学习笔记（5）抽象工厂/" itemprop="url">设计模式学习笔记（5）抽象工厂</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T10:32:00+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/20/设计模式学习笔记（5）抽象工厂/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/" class="cy_cmt_count" data-xid="2018/04/20/设计模式学习笔记（5）抽象工厂/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/04/20/设计模式学习笔记（5）抽象工厂/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（5）抽象工厂">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  908 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>抽象工厂模式是在工厂方法模式之上的有一次升级，以便能够处理更加复杂的对象创建场景。因此也是所有形态的工厂模式中最为抽象和最具一般性的一种形态。工厂 ( Factory ) 和产品 ( Product ) 是 Abstract Factory 模式的主要参与者。 该模式描述了怎样在不直接实例化类的情况下创建一系列相关的产品对象。 它最适用于产品对象的数目和种类不变， 而具体产品系列之间存在不同的情况。 我们通过实例化一个特定的具体工厂对象来选择产品系列， 并且以后一直使用该工厂生产产品对象。 我们也能够通过用一个不同的具体工厂实例来替换原来的工厂对象以改变整个产品系列。 抽象工厂模式对产品系列的强调使它区别于其他只与一种产品对象有关的创建性模式。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/20/设计模式学习笔记（5）抽象工厂/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    <!-- s reward 默认位置 -->
+
+    <!-- e resume 默认位置 -->
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2128,208 +2331,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/03/30/Spring整合Shiro权限控制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑保乐">
-      <meta itemprop="description" content="优秀的判断力来自经验，<br>但经验来自错误的判断。">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郑保乐的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/30/Spring整合Shiro权限控制/" itemprop="url">Spring 整合 Shiro 权限控制</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T10:50:07+08:00">
-                2018-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/后端/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/03/30/Spring整合Shiro权限控制/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::https://james.letec.top/2018/03/30/Spring整合Shiro权限控制/" class="cy_cmt_count" data-xid="2018/03/30/Spring整合Shiro权限控制/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2018/03/30/Spring整合Shiro权限控制/" class="leancloud_visitors" data-flag-title="Spring 整合 Shiro 权限控制">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,776 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Apache Shiro 是一个功能强大且灵活的开放源代码安全框架，可以细粒度地处理认证 (Authentication)，授权 (Authorization)，会话 (Session) 管理和加密 (cryptography) 等企业级应用中常见的安全控制流程。<br>Apache Shiro 的首要目标是易于使用和理解。 有时候安全性的流程控制会非常复杂，对开发人员来说是件很头疼的事情，但并不一定如此。 框架就应该尽可能地掩盖复杂性，并公开一个简洁而直观的 API，从而简化开发人员的工作，确保其应用程序安全性。这次我们聊一聊如何在 Spring Web 应用中使用 Shiro 实现权限控制。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/30/Spring整合Shiro权限控制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    <!-- s reward 默认位置 -->
-
-    <!-- e resume 默认位置 -->
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2384,7 +2385,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2518,7 +2519,7 @@
     
       <span class="post-meta-item-text">一共写了&#58;</span>
     
-    <span title="一共写了">24.8k字</span>
+    <span title="一共写了">25.7k字</span>
   
 </div>
 

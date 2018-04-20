@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="架构,Nginx,Linux,虚拟主机,域名,运维," />
+  <meta name="keywords" content="Java,设计模式," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。 Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代">
-<meta name="keywords" content="架构,Nginx,Linux,虚拟主机,域名,运维">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 抽象工厂模式是在工厂方法模式之上的有一次升级，以便能够处理更加复杂的对象创建场景。因此也是所有形态的工厂模式中最为抽象和最具一般性的一种形态。工厂 ( Factory ) 和产品 ( Product ) 是 Abstract Factory 模式的主要参与者。 该模式描述了怎样在不直接实">
+<meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx">
-<meta property="og:url" content="https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/index.html">
+<meta property="og:title" content="设计模式学习笔记（5）抽象工厂">
+<meta property="og:url" content="https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。 Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 抽象工厂模式是在工厂方法模式之上的有一次升级，以便能够处理更加复杂的对象创建场景。因此也是所有形态的工厂模式中最为抽象和最具一般性的一种形态。工厂 ( Factory ) 和产品 ( Product ) 是 Abstract Factory 模式的主要参与者。 该模式描述了怎样在不直接实">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-14T14:58:11.127Z">
+<meta property="og:updated_time" content="2018-04-20T08:15:56.643Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx">
-<meta name="twitter:description" content="虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。 Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代">
+<meta name="twitter:title" content="设计模式学习笔记（5）抽象工厂">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 抽象工厂模式是在工厂方法模式之上的有一次升级，以便能够处理更加复杂的对象创建场景。因此也是所有形态的工厂模式中最为抽象和最具一般性的一种形态。工厂 ( Factory ) 和产品 ( Product ) 是 Abstract Factory 模式的主要参与者。 该模式描述了怎样在不直接实">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/"/>
+  <link rel="canonical" href="https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/"/>
 
 
 
 
 
-  <title>Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx | 郑保乐的博客</title>
+  <title>设计模式学习笔记（5）抽象工厂 | 郑保乐的博客</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑保乐">
@@ -330,7 +330,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx</h2>
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记（5）抽象工厂</h2>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T20:30:53+08:00">
-                2018-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T10:32:00+08:00">
+                2018-04-20
               </time>
             
 
@@ -365,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -384,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/14/Ubuntu-Linux-中虚拟主机的配置/" itemprop="commentsCount"></span>
+                <a href="/2018/04/20/设计模式学习笔记（5）抽象工厂/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/20/设计模式学习笔记（5）抽象工厂/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -393,7 +393,7 @@
 
           
           
-             <span id="/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/" class="leancloud_visitors" data-flag-title="Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx">
+             <span id="/2018/04/20/设计模式学习笔记（5）抽象工厂/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（5）抽象工厂">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  603 字
+                  908 字
                 </span>
               
 
@@ -434,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -455,15 +455,32 @@
       
 
       
-        <p>虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。</p>
-<p>Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代理服务器的身份实现负载均衡。<br><a id="more"></a></p>
-<p>使用 Nginx 配置虚拟主机只需编辑 Nginx 安装目录下 conf/nginx.conf 即可，增加一个虚拟主机只需要在配置文件中添加一个 server 节点，就像这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name test1.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html;</span><br><span class="line">        root /home/www/test1/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name test2.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html;</span><br><span class="line">        root /home/www/test2/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>listen</code> 为监听的端口，本例中监听 80 端口<br><code>server_name</code> 即指定的虚拟主机名<br><code>location</code> 只 Nginx 代理的相对 URL 范围<br><code>index</code> 指主页的文件名<br><code>root</code> 为网站根目录在系统中的实际位置</p>
-<p><code>location /</code> 表示匹配这个主机名下的所有请求，<code>server_name</code> 的值可以为 <code>*.example.com</code> 这种形式，即匹配所有以 <code>example.com</code> 结尾的主机名，亦或 <code>test.*</code>，即所有以 <code>test</code> 开头的主机名，还可以用正则表达式的形式，比如 <code>~^test\d+\.example\.com$</code>，如果使用正则表达式，最前面要加上 <code>~</code> 这个符号。</p>
-<p>以上两个虚拟主机实现了将对不同主机名的请求指向不同的物理目录，下面介绍如何用虚拟主机实现区分端口，即将不同主机名的请求分发到不同端口上</p>
-<p>和上面的配置写法类似：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name demo1.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8080;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name demo2.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8081;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>proxy_pass 表示将请求转发到某个 URL，这样便可以实现虚拟主机名和端口的映射了。如果采用一台物理机部署多个 Tocmat 服务实例则可以采用这种方式，这样就避免了暴露多个端口的问题。</p>
+        <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>抽象工厂模式是在工厂方法模式之上的有一次升级，以便能够处理更加复杂的对象创建场景。因此也是所有形态的工厂模式中最为抽象和最具一般性的一种形态。工厂 ( Factory ) 和产品 ( Product ) 是 Abstract Factory 模式的主要参与者。 该模式描述了怎样在不直接实例化类的情况下创建一系列相关的产品对象。 它最适用于产品对象的数目和种类不变， 而具体产品系列之间存在不同的情况。 我们通过实例化一个特定的具体工厂对象来选择产品系列， 并且以后一直使用该工厂生产产品对象。 我们也能够通过用一个不同的具体工厂实例来替换原来的工厂对象以改变整个产品系列。 抽象工厂模式对产品系列的强调使它区别于其他只与一种产品对象有关的创建性模式。</p>
+<a id="more"></a>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>设想这样一种情景，一支远洋的队伍由船、船长以及水手组成，队伍有新人队伍和老兵队伍之分。新人的队伍有新船长、新水手以及崭新的船只；而老兵的队伍有老船长、经验丰富的老水手以及破旧的船只。不同队伍有着不同的特点，队伍中不同的部分之间存在一定的依赖。</p>
+<p>首先定义“成员”接口，规定每个成员都可以描述自己的特性：</p>
+<p>Member.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Member</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function">String <span class="title">getDescription</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三种具体成员的接口，它们都继承了“成员”接口:</p>
+<p>Captain.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Captain</span> <span class="keyword">extends</span> <span class="title">Member</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Sailor.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sailor</span> <span class="keyword">extends</span> <span class="title">Member</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ship.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Ship</span> <span class="keyword">extends</span> <span class="title">Member</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面就是一个抽象工厂，它描述了如何“生产”一支队伍：</p>
+<p>TeamFactory.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TeamFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function">Ship <span class="title">createShip</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Captain <span class="title">createCaptain</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Sailor <span class="title">createSailor</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两种不同的队伍工厂分别“生产”不同特性的队伍：</p>
+<p>TeamFactory.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YoungTeamFactory</span> <span class="keyword">implements</span> <span class="title">TeamFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Ship <span class="title">createShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> NewShip();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Captain <span class="title">createCaptain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> YoungCaptain();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Sailor <span class="title">createSailor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> YoungSailor();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PermanentTeamFactory</span> <span class="keyword">implements</span> <span class="title">TeamFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Ship <span class="title">createShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> OldShip();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Captain <span class="title">createCaptain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> OldCaptain();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Sailor <span class="title">createSailor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> OldSailor();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，一支队伍的“生产”就可以由这几步构成：创建具体特性的工厂，由工厂“生产”队伍：</p>
+<p>App.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TeamFactory factory = <span class="keyword">new</span> YoungTeamFactory();</span><br><span class="line"></span><br><span class="line">Ship ship = factory.createShip();</span><br><span class="line">Captain = factory.createCaptain();</span><br><span class="line">Sailor = factory.createSailor();</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>抽象工厂的“抽象”指的就是：确定一个应用创建的对象的类，只关心生产什么产品而无需关注产品具体由哪些部件组成，更不需要关注产品具体是怎么生产出来的，它对某一类产品的生产过程制定了一个规则，所以抽象工厂并不关心具体组件的实现，而是只专注于接口。</p>
+<p>关于抽象工厂模式和“开闭原则”：<br>如果需要重新组队，构成一支由新人和老人组成的混合队伍，那么只需要增加一种新的实现了 <code>TeamFactory</code> 接口的工厂即可，所以抽象工厂模式实现了“对扩展开放”。<br>但是，如果队伍中添加了一种新成员，比如“无线电操作员”，那么现有的所有接口都要跟着修改，所以它并没有实现“对修改关闭”。</p>
 
       
     </div>
@@ -485,7 +502,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/" title="Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx">https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/</a>
+    <a href="https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/" title="设计模式学习笔记（5）抽象工厂">https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -502,17 +519,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/架构/" rel="tag"># 架构</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
-            <a href="/tags/虚拟主机/" rel="tag"># 虚拟主机</a>
-          
-            <a href="/tags/域名/" rel="tag"># 域名</a>
-          
-            <a href="/tags/运维/" rel="tag"># 运维</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -525,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/31/Spring-MVC-中-ModelAttribute-注解的妙用/" rel="next" title="Spring MVC 中 @ModelAttribute 注解的妙用">
-                <i class="fa fa-chevron-left"></i> Spring MVC 中 @ModelAttribute 注解的妙用
+              <a href="/2018/04/20/设计模式学习笔记（4）构建者/" rel="next" title="设计模式学习笔记（4）构建者">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记（4）构建者
               </a>
             
           </div>
@@ -534,10 +543,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/" rel="prev" title="Nginx 解决浏览器 Ajax 跨域问题">
-                Nginx 解决浏览器 Ajax 跨域问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -622,8 +627,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -748,6 +762,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
