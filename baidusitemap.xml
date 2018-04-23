@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://james.letec.top/2018/04/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%888%EF%BC%89%E5%8D%95%E4%BE%8B/</loc>
+    <lastmod>2018-04-23T09:54:24.828Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记（8）单例</title>
+        <pubTime>2018-04-22T02:23:20.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://james.letec.top/2018/04/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%887%EF%BC%89%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2018-04-22T13:44:18.467Z</lastmod>
     <data>
@@ -303,11 +325,11 @@
         <title>使用 Hexo + Github 搭建自己的博客</title>
         <pubTime>2018-03-30T05:03:58.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>博客</tag>
          
         <tag>Git</tag>
+         
+        <tag>Linux</tag>
          
         <tag>Hexo</tag>
          

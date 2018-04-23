@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 构建者（Builder）模式通常用于将复杂对象的构造简化，将具体的构造过程与表示分离，使同样的构建过程可以创建不同的表示。使用多个简单的对象一步一步构建成一个复杂的对象，这种类型的设计模式属于创建型模式。建造模式可以将一个复杂对象的内部组成部分，与该对象本身的创建分离开来，从而使得复杂对">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 单例（Singleton）模式是最常用的设计模式之一，但同时也是最能体现 Java 特性的设计模式之一，它是创建型模式中最经典的一个。 单例模式的核心目的是，保证一个类的实例只存在一个。许多场景中整个软件系统只需要拥有一个该类的全局对象，这是为了更好的实现这个对象的功能。一个常见的场景，">
 <meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式学习笔记（4）构建者">
-<meta property="og:url" content="https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/index.html">
+<meta property="og:title" content="设计模式学习笔记（8）单例">
+<meta property="og:url" content="https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 构建者（Builder）模式通常用于将复杂对象的构造简化，将具体的构造过程与表示分离，使同样的构建过程可以创建不同的表示。使用多个简单的对象一步一步构建成一个复杂的对象，这种类型的设计模式属于创建型模式。建造模式可以将一个复杂对象的内部组成部分，与该对象本身的创建分离开来，从而使得复杂对">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 单例（Singleton）模式是最常用的设计模式之一，但同时也是最能体现 Java 特性的设计模式之一，它是创建型模式中最经典的一个。 单例模式的核心目的是，保证一个类的实例只存在一个。许多场景中整个软件系统只需要拥有一个该类的全局对象，这是为了更好的实现这个对象的功能。一个常见的场景，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-20T06:08:28.859Z">
+<meta property="og:updated_time" content="2018-04-23T09:54:24.828Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式学习笔记（4）构建者">
-<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 构建者（Builder）模式通常用于将复杂对象的构造简化，将具体的构造过程与表示分离，使同样的构建过程可以创建不同的表示。使用多个简单的对象一步一步构建成一个复杂的对象，这种类型的设计模式属于创建型模式。建造模式可以将一个复杂对象的内部组成部分，与该对象本身的创建分离开来，从而使得复杂对">
+<meta name="twitter:title" content="设计模式学习笔记（8）单例">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 单例（Singleton）模式是最常用的设计模式之一，但同时也是最能体现 Java 特性的设计模式之一，它是创建型模式中最经典的一个。 单例模式的核心目的是，保证一个类的实例只存在一个。许多场景中整个软件系统只需要拥有一个该类的全局对象，这是为了更好的实现这个对象的功能。一个常见的场景，">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/"/>
+  <link rel="canonical" href="https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/"/>
 
 
 
 
 
-  <title>设计模式学习笔记（4）构建者 | 郑保乐的博客</title>
+  <title>设计模式学习笔记（8）单例 | 郑保乐的博客</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑保乐">
@@ -330,7 +330,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">设计模式学习笔记（4）构建者</h2>
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记（8）单例</h2>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T09:12:00+08:00">
-                2018-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T10:23:20+08:00">
+                2018-04-22
               </time>
             
 
@@ -384,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/04/20/设计模式学习笔记（4）构建者/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/20/设计模式学习笔记（4）构建者/" itemprop="commentsCount"></span>
+                <a href="/2018/04/22/设计模式学习笔记（8）单例/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/22/设计模式学习笔记（8）单例/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -393,7 +393,7 @@
 
           
           
-             <span id="/2018/04/20/设计模式学习笔记（4）构建者/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（4）构建者">
+             <span id="/2018/04/22/设计模式学习笔记（8）单例/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（8）单例">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  884 字
+                  1,598 字
                 </span>
               
 
@@ -434,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4 分钟
+                  6 分钟
                 </span>
               
             </div>
@@ -456,17 +456,41 @@
 
       
         <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
-<p>构建者（Builder）模式通常用于将复杂对象的构造简化，将具体的构造过程与表示分离，使同样的构建过程可以创建不同的表示。使用多个简单的对象一步一步构建成一个复杂的对象，这种类型的设计模式属于创建型模式。建造模式可以将一个复杂对象的内部组成部分，与该对象本身的创建分离开来，从而使得复杂对象的组装更灵活。<br><a id="more"></a></p>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>设想一个场景，可以出现在游戏中，需要生成一个虚拟的人物模型，人物主要包括几个简单的属性：姓名、年龄、国籍以及肤色。假如一个数据模型的拥有很多属性，如果单纯使用构造方法来实例化对象，势必会造成构造方法参数爆炸的问题，也可以称之为“反可伸缩构造方法模式”。代码的可读性和可靠性大大降低。此时，可以为这个对象创建的过程指定一个创建者，我们只需要向创建者描述该对象的一些具体细节，接下来的构造过程就统统交给创建者完成了。</p>
-<p>构建者模式要解决的主要问题就是“不可伸缩构造方法模式”，顾名思义，对象的构造方法固定且参数较多，构造对象的时候很容易搞错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Person(String name,Integer age,Nationality nationality,SkinColor skinColor...)&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<p>如果一直这样下去，随着属性的增多，构造方法的参数的数量也会变得越来越多，对于开发人员是非常头疼的。对属性的更改使得构造方法的维护难度增加了不少，这就是所谓的“反可伸缩构造方法模式”。</p>
-<p>Person.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Person &#123;</span><br><span class="line">  private final String name;</span><br><span class="line">  private final Integer age;</span><br><span class="line">  private final Nationality nationality;</span><br><span class="line"></span><br><span class="line">  public String getName() &#123;</span><br><span class="line">    return name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public Integer getAge() &#123;</span><br><span class="line">    return age;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public Nationality getNationality() &#123;</span><br><span class="line">    return nationality;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public SkinColor getSkinColor() &#123;</span><br><span class="line">    return skinColor;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private final SkinColor skinColor;</span><br><span class="line"></span><br><span class="line">  public Person(Builder builder) &#123;</span><br><span class="line">    this.name = builder.name;</span><br><span class="line">    this.age = builder.age;</span><br><span class="line">    this.skinColor = builder.skinColor;</span><br><span class="line">    this.nationality = builder.nationality;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public static class Builder &#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line">    private Integer age;</span><br><span class="line">    private Nationality nationality;</span><br><span class="line">    private SkinColor skinColor;</span><br><span class="line"></span><br><span class="line">    public Builder age(Integer age) &#123;</span><br><span class="line">      this.age = age;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder name(String name) &#123;</span><br><span class="line">      if (null == name) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;人必须有名字!&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      this.name = name;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder nationality(Nationality nationality) &#123;</span><br><span class="line">      this.nationality = nationality;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder skinColor(SkinColor skinColor) &#123;</span><br><span class="line">      this.skinColor = skinColor;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Person build() &#123;</span><br><span class="line">      return new Person(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在就可以使用 Person.Builder 来构造一个 Person 对象了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person personWang = new Person.Builder()</span><br><span class="line">    .name(&quot;小王&quot;)</span><br><span class="line">    .age(25)</span><br><span class="line">    .nationality(Nationality.CHINA)</span><br><span class="line">    .skinColor(SkinColor.YELLOW)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>建造者模式通常适用于将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。主要解决在软件架构中，有时候会出现复杂对象的创建工作，解决思路是通常由各个部分的子对象用一定的方法构造而成。并且为了适应需求的变化，这个复杂对象的内容通常也会面临着频繁的变化，但是用子对象将它们组合在一起的方式就相对容易接受这种变化了。</p>
+<p>单例（Singleton）模式是最常用的设计模式之一，但同时也是最能体现 Java 特性的设计模式之一，它是创建型模式中最经典的一个。</p>
+<p>单例模式的核心目的是，保证一个类的实例只存在一个。许多场景中整个软件系统只需要拥有一个该类的全局对象，这是为了更好的实现这个对象的功能。一个常见的场景，服务器应用程序中，某些配置通常放在若干个文件中，某个类的一个单例对象将配置读取进来，以后每次需要获取配置信息只需要通过单例模式的风格获取这个对象，就能得到这些配置数据了。相反，如果每次需要获取配置信息都要 <code>new</code> 一个该类的对象并读取配置文件，那将造成许多本可以避免的性能开销。</p>
+<a id="more"></a>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>单例模式的应用场景理解起来比较简单，就不举具体的例子了，我们来看几种常用的单例写法：</p>
+<p>先来看最简单的，这里的 <code>Singleton</code>类只是为了演示单例的写法，实际中它还应当实现某些功能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Single instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Single();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写完后，每次需要获取 <code>Singleton</code> 类的实例，就调用 <code>Singleton.getInstance()</code> 这个方法。这样写对于一般的使用是可以了，但并不能完全保证 <code>Singleton</code> 类的对象只存在一个，因为我们可以手动调用 <code>Singleton</code> 类的构造方法来实例化出一个 <code>Singleton</code> 对象。那么如何避免这个问题呢？一个常用的方法就是将 <code>Singleton</code> 类的构造方法私有化，使得它的构造方法防止被外部的类调用，即只能由自己的静态方法实例化自己:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仔细看一下方法，每次获取实例对象之前先进行判空，如果对象为 <code>null</code> 则实例化一个 <code>instance</code>，如果存在则直接返回该实例。这种方法的看似是完美的，即看似实例只存在一个。但是，在多线程运行的时候，如果两个不同的线程同时运行到判空操作，会各自分别创建一个实例，这样一来，这种写法的使用结果就不是能保证单例了。</p>
+<p>为了保证只有一个线程，需要引入一个关键字 <code>synchronized</code>，它的作用是给其修饰的方法加上一把同步锁，当访问带有这个关键字的方法时，其他访问该方法的线程都会进入阻塞状态：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然这样写可以保证该类的实例只存在一个，但是这会使得除了执行这个方法的线程顺利执行外，其他所有线程都要等待，这会造成极大的系统开销，降低了程序的运行效率。所以这种方法代价过高，因为无论 instance 是否为 null ,每次执行时，整个方法都加上了锁，我们不妨将锁的范围尽可能的缩小，把对性能的影响降到最低，于是有了如下写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，只有当判断 <code>instance</code> 为 <code>null</code> 的时候才执行内层的同步代码块，同步代码块中的判空保证了不会产生多个实例。这样看似没问题了，但是在计算机中，有时为了提高运行效率，会对指令进行重排，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;          <span class="comment">//A</span></span><br><span class="line">a = <span class="number">3</span>;          <span class="comment">//B</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">5</span>;      <span class="comment">//C</span></span><br><span class="line"><span class="keyword">int</span> c = a + b;  <span class="comment">//D</span></span><br></pre></td></tr></table></figure>
+<p>可能会被重排成 A-C-B-D 或者 C-A-B-D，显然，重排之后是不影响程序最终的执行结果的，至于它究竟是如何提高运行效率的，我们暂时不考虑。回到 <code>Singleton</code> 的例子中， <code>instance</code> 对象势必会存在这样一种状态，即：已经为其分配了内存空间，但是并没有调用其构造方法进行实例化，就像上面代码中，语句 C 如果是判空，那么初始化就是语句 B，假如语句 C 赶在语句 B 之前执行了，a 确实不为空，但返回 a 一定会产生一个异常，因为它还没有被真正的初始化。</p>
+<p>于是，诞生了终极写法 —— 引入 <code>volatile</code> 关键字：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>volatile 关键字具有屏蔽指令重排的作用，即对 <code>instance</code> 加上了一把锁，在完成写操作之前不会允许其他线程对其进行任何读操作，即每次读取的内容都时实时的。因此，在初始化完成前，无法对其进行读操作，也就不会判断它是 <code>null</code> 了。</p>
+<p>最后抛出一个神奇的方法，利用枚举类线程安全的特点，使用枚举类代替 <code>class</code>，这样使用起来不用考虑多线程的问题，是最方便的一种写法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过枚举类获取单例的实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Singleton result = Singleton.INSTANCE;</span><br></pre></td></tr></table></figure></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>单例模式写法的要点：</p>
+<ul>
+<li>构造方法私有化</li>
+<li>私有静态引用指向该类的实例</li>
+<li>公有静态方法返回自己类的实例</li>
+</ul>
+<p>单例模式的应用场景主要有：</p>
+<ul>
+<li>一个类频繁的被实例化，但同时又频繁的被销毁</li>
+<li>一个类的实例化过程非常耗费资源，且该类的对象频繁的被使用</li>
+<li>类中的方法调用结果和类的状态有关</li>
+<li>需要频繁访问网络、数据库或文件的类</li>
+</ul>
 
       
     </div>
@@ -488,7 +512,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/" title="设计模式学习笔记（4）构建者">https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/</a>
+    <a href="https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/" title="设计模式学习笔记（8）单例">https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -520,8 +544,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/19/设计模式学习笔记（3）装饰器/" rel="next" title="设计模式学习笔记（3）装饰器">
-                <i class="fa fa-chevron-left"></i> 设计模式学习笔记（3）装饰器
+              <a href="/2018/04/21/设计模式学习笔记（7）原型模式/" rel="next" title="设计模式学习笔记（7）原型模式">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记（7）原型模式
               </a>
             
           </div>
@@ -529,10 +553,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/20/设计模式学习笔记（5）抽象工厂/" rel="prev" title="设计模式学习笔记（5）抽象工厂">
-                设计模式学习笔记（5）抽象工厂 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
