@@ -7,6 +7,7 @@ https://james.letec.top/2018/04/19/设计模式学习笔记（3）装饰器/
 https://james.letec.top/2018/04/18/设计模式学习笔记（2）单例/
 https://james.letec.top/2018/04/17/设计模式学习笔记（1）组合/
 https://james.letec.top/2018/04/16/基于-Spring-Boot-2-0-构建一个-RESTful-WebService/
+https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/
 https://james.letec.top/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/
 https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/
 https://james.letec.top/2018/03/31/Spring-MVC-中-ModelAttribute-注解的妙用/

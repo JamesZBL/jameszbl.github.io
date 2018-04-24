@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,后端,博客,Spring Boot,Spring,设计模式,大数据,Spark,Hadoop,程序员,软件开发" />
+  <meta name="keywords" content="Nginx,Linux,https,域名,运维," />
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="分享最新技术文章、开源项目、编程思想以及职业生涯规划。优秀的判断力来自经验，但经验来自错误的判断。">
-<meta name="keywords" content="Java,后端,博客,Spring Boot,Spring,MyBatis,设计模式,大数据,Spark,Hadoop,程序员,软件开发,数据分析,分布式计算">
-<meta property="og:type" content="website">
-<meta property="og:title" content="郑保乐的博客">
-<meta property="og:url" content="https://james.letec.top/tags/设计模式/index.html">
+<meta name="description" content="网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。">
+<meta name="keywords" content="Nginx,Linux,https,域名,运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx 从 http 跳转 https">
+<meta property="og:url" content="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="分享最新技术文章、开源项目、编程思想以及职业生涯规划。优秀的判断力来自经验，但经验来自错误的判断。">
+<meta property="og:description" content="网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-24T12:34:40.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="郑保乐的博客">
-<meta name="twitter:description" content="分享最新技术文章、开源项目、编程思想以及职业生涯规划。优秀的判断力来自经验，但经验来自错误的判断。">
+<meta name="twitter:title" content="Nginx 从 http 跳转 https">
+<meta name="twitter:description" content="网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://james.letec.top/tags/设计模式/"/>
+  <link rel="canonical" href="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/"/>
 
 
 
 
 
-  <title>标签: 设计模式 | 郑保乐的博客</title>
+  <title>Nginx 从 http 跳转 https | 郑保乐的博客</title>
   
 
 
@@ -156,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,170 +299,283 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>设计模式<small>标签</small>
-        </h2>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑保乐">
+      <meta itemprop="description" content="优秀的判断力来自经验，<br>但经验来自错误的判断。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郑保乐的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/04/22/设计模式学习笔记（8）单例/" itemprop="url">
-              
-                <span itemprop="name">设计模式学习笔记（8）单例</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Nginx 从 http 跳转 https</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-22T10:23:20+08:00"
-              content="2018-04-22" >
-          04-22
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T20:30:53+08:00">
+                2018-04-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/15/Nginx 从 http 跳转 https/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/15/Nginx 从 http 跳转 https/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/04/15/Nginx 从 http 跳转 https/" class="leancloud_visitors" data-flag-title="Nginx 从 http 跳转 https">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  142 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/21/设计模式学习笔记（7）原型模式/" itemprop="url">
-              
-                <span itemprop="name">设计模式学习笔记（7）原型模式</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-21T14:32:00+08:00"
-              content="2018-04-21" >
-          04-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/20/设计模式学习笔记（6）工厂方法/" itemprop="url">
-              
-                <span itemprop="name">设计模式学习笔记（6）工厂方法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-20T12:32:00+08:00"
-              content="2018-04-20" >
-          04-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/20/设计模式学习笔记（5）抽象工厂/" itemprop="url">
-              
-                <span itemprop="name">设计模式学习笔记（5）抽象工厂</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-20T10:32:00+08:00"
-              content="2018-04-20" >
-          04-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/20/设计模式学习笔记（4）构建者/" itemprop="url">
-              
-                <span itemprop="name">设计模式学习笔记（4）构建者</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-20T09:12:00+08:00"
-              content="2018-04-20" >
-          04-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。<br><a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name example.com;</span><br><span class="line">    rewrite ^(.*) https://$server_name$1 permanent;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name example.com;</span><br><span class="line">    ssl on;</span><br><span class="line">    # 视具体情况而定</span><br><span class="line">    ssl_certificate     /server/nginx/ssl/example.com.pem;</span><br><span class="line">    ssl_certificate_key /server/nginx/ssl/example.com.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    # location /&#123;</span><br><span class="line">        # ...</span><br><span class="line">    # &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    <!-- s reward 默认位置 -->
+
+    <!-- e resume 默认位置 -->
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    郑保乐
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/" title="Nginx 从 http 跳转 https">https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/https/" rel="tag"># https</a>
+          
+            <a href="/tags/域名/" rel="tag"># 域名</a>
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/" rel="next" title="Nginx 解决浏览器 Ajax 跨域问题">
+                <i class="fa fa-chevron-left"></i> Nginx 解决浏览器 Ajax 跨域问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/16/基于-Spring-Boot-2-0-构建一个-RESTful-WebService/" rel="prev" title="基于 Spring Boot 2.0 构建一个 RESTful WebService">
+                基于 Spring Boot 2.0 构建一个 RESTful WebService <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/设计模式/page/2/">2</a><a class="extend next" rel="next" href="/tags/设计模式/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_qzone"></a>
+<a class="jiathis_button_weixin"></a>
+<a class="jiathis_button_tsina"></a>
+<a class="jiathis_button_tqq"></a>
+<a class="jiathis_button_cqq"></a>
+<a class="jiathis_button_qq"></a>
+<a class="jiathis_button_kaixin001"></a>
+<a class="jiathis_button_douban"></a>
+<a class="jiathis_button_tieba"></a>
+<a class="jiathis_button_renren"></a>
+<a class="jiathis_button_ydnote"></a>
+<a href="http://www.jiathis.com/share?uid=2160247" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+	data_track_clickback:true,
+	summary:"",
+	shortUrl:false,
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2160247" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -469,6 +583,16 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+        <div id="cyReward" role="cylabs" data-use="reward" style="padding: 10px 0; margin: 0px auto; width: 90%; text-align: center;"></div>
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -791,6 +915,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
