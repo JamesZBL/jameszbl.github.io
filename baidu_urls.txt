@@ -1,6 +1,6 @@
 https://james.letec.top/2018/04/25/设计模式学习笔记（9）命令/
 https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/
-https://james.letec.top/2018/04/21/设计模式学习笔记（7）原型模式/
+https://james.letec.top/2018/04/21/设计模式学习笔记（7）原型/
 https://james.letec.top/2018/04/20/设计模式学习笔记（6）工厂方法/
 https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/
 https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/

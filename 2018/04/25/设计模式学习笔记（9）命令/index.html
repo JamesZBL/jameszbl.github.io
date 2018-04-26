@@ -89,10 +89,13 @@
 <meta property="og:site_name" content="郑保乐的博客">
 <meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 命令（Command）模式是一种数据驱动的设计模式，它属于行为型模式。请求被包装成一个命令对象，并由调用者传递给被调用对象。被调用对象寻找可以处理该命令的合适的处理对象，并把该命令传给这个处理对象，该处理对象执行命令。 命令模式中，命令的发出者和接收者是独立的，发出命令的职责和处理命令的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-26T06:35:41.334Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-2231f5ca9d53215b.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-da88d063aeded303.png">
+<meta property="og:updated_time" content="2018-04-26T06:52:51.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记（9）命令">
 <meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 命令（Command）模式是一种数据驱动的设计模式，它属于行为型模式。请求被包装成一个命令对象，并由调用者传递给被调用对象。被调用对象寻找可以处理该命令的合适的处理对象，并把该命令传给这个处理对象，该处理对象执行命令。 命令模式中，命令的发出者和接收者是独立的，发出命令的职责和处理命令的">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7134080-2231f5ca9d53215b.png">
 
 
 
@@ -418,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,937 字
+                  1,933 字
                 </span>
               
 
@@ -463,10 +466,10 @@
 <p>首先不考虑使用命令模式，而是以传统的对象间调用来实现这种需求。假设我们现在需要对某个字依次进行如下操作：增大字号、设置字体颜色为红色、设置为加粗，那么对于命令发出者，要处理的逻辑就是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">if(改变字号)&#123;</span><br><span class="line">    if(增大字号)&#123;</span><br><span class="line">        字号渲染器.增大字号();</span><br><span class="line">    &#125;else if(减小字号)&#123;</span><br><span class="line">        字号渲染器.减小字号();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">if(改变颜色)&#123;</span><br><span class="line">    颜色渲染器.改变颜色(颜色);</span><br><span class="line">&#125;</span><br><span class="line">if(改变粗细)&#123;</span><br><span class="line">    if(加粗)&#123;</span><br><span class="line">        粗细渲染器.加粗();</span><br><span class="line">    &#125;else if(不加粗)&#123;</span><br><span class="line">        粗细渲染器.变细();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种 “紧耦合” 的结构下，行为请求者与行为实现者之间的关系大概是这样的：</p>
-<p>图片</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7134080-2231f5ca9d53215b.png" alt=""></p>
 <p>首先，所有命令都要有对应的处理者去执行，这就意味着行为请求者需要持有多个处理者的引用。这样，每修改或添加一个命令就必须修改行为请求者的逻辑，没办法实现对扩展开放。其次，如果要实现对命令的撤销或重做，那么本来就复杂的行为判断逻辑会变得愈发臃肿，对程序员来说这简直是一场灾难。</p>
 <p>那么将行为请求者和行为实现者进行解耦后是怎样的呢？大概如图：</p>
-<p>图片</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7134080-da88d063aeded303.png" alt=""></p>
 <p>将行为请求者和行为实现者解耦，直观的改变就是：行为请求者不会直接调用行为实现者的具体方法，而是向行为实现者发出包含行为的具体命令，这个命令通常以对象的形式出现，他们之间传递的消息就是命令模式中的核心元素 —— “命令”，他在原始的行为请求者和行为实现者之间架起了一条高速公路，原来臃肿的逻辑判断代码得到了缩减，逻辑判断的职责被指派给了行为实现者，而行为请求者只需专注于发出正确的命令。</p>
 <p>为了将使行为请求者和行为的具体实现解耦，应当将命令进行抽象。继续上面字处理软件的例子，用户发出的命令应当至少包含 “撤销” 和 “重做” 的功能，因此我们可以这样设计 “命令” 抽象类：</p>
 <p>Command.java</p>
