@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://james.letec.top/2018/04/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%889%EF%BC%89%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-04-26T06:35:41.334Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记（9）命令</title>
+        <pubTime>2018-04-25T14:00:20.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://james.letec.top/2018/04/15/Nginx%20%E4%BB%8E%20http%20%E8%B7%B3%E8%BD%AC%20https/</loc>
     <lastmod>2018-04-24T12:34:40.387Z</lastmod>
     <data>
@@ -301,9 +323,9 @@
         <title>Spring 整合 Shiro 权限控制</title>
         <pubTime>2018-03-30T02:50:07.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>Shiro</tag>
+         
+        <tag>Spring</tag>
          
         <tag>权限控制</tag>
          
@@ -433,9 +455,9 @@
         <title>Spring 应用中集成 Apache Shiro</title>
         <pubTime>2018-02-17T01:55:00.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>Shiro</tag>
+         
+        <tag>Spring</tag>
          
          
            
