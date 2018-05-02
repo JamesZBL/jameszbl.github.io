@@ -6,7 +6,6 @@ https://james.letec.top/2018/04/20/设计模式学习笔记（6）工厂方法/
 https://james.letec.top/2018/04/20/设计模式学习笔记（5）抽象工厂/
 https://james.letec.top/2018/04/20/设计模式学习笔记（4）构建者/
 https://james.letec.top/2018/04/19/设计模式学习笔记（3）装饰器/
-https://james.letec.top/2018/04/18/设计模式学习笔记（2）单例/
 https://james.letec.top/2018/04/17/设计模式学习笔记（1）组合/
 https://james.letec.top/2018/04/16/基于-Spring-Boot-2-0-构建一个-RESTful-WebService/
 https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/
