@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux,博客,Git,Hexo," />
+  <meta name="keywords" content="Java,设计模式," />
 
 
 
@@ -81,26 +81,18 @@
 
 
 
-<meta name="description" content="Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。">
-<meta name="keywords" content="Linux,博客,Git,Hexo">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 迭代器（Iterator）模式又称游标模式，是集合类型对外提供统一的顺序访问元素而隐藏内部的实现细节的一种方式，是一种行为模式。">
+<meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 Hexo + Github 搭建自己的博客">
-<meta property="og:url" content="https://james.letec.top/2018/03/30/使用Hexo搭建自己的博客/index.html">
+<meta property="og:title" content="设计模式学习笔记（12）迭代器">
+<meta property="og:url" content="https://james.letec.top/2018/05/09/设计模式学习笔记（12）迭代器/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 迭代器（Iterator）模式又称游标模式，是集合类型对外提供统一的顺序访问元素而隐藏内部的实现细节的一种方式，是一种行为模式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c5e3beb8f919e30c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c1363a9feb73fda6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-df16f35a46e2c669.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c039d4e9117a5f31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-c039d4e9117a5f31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-a3bf55f9e72586af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-e5fa264b0b204944.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-31T05:44:28.238Z">
+<meta property="og:updated_time" content="2018-05-10T14:21:57.465Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 Hexo + Github 搭建自己的博客">
-<meta name="twitter:description" content="Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7134080-c5e3beb8f919e30c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="设计模式学习笔记（12）迭代器">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 迭代器（Iterator）模式又称游标模式，是集合类型对外提供统一的顺序访问元素而隐藏内部的实现细节的一种方式，是一种行为模式。">
 
 
 
@@ -130,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://james.letec.top/2018/03/30/使用Hexo搭建自己的博客/"/>
+  <link rel="canonical" href="https://james.letec.top/2018/05/09/设计模式学习笔记（12）迭代器/"/>
 
 
 
 
 
-  <title>使用 Hexo + Github 搭建自己的博客 | 郑保乐的博客</title>
+  <title>设计模式学习笔记（12）迭代器 | 郑保乐的博客</title>
   
 
 
@@ -321,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/03/30/使用Hexo搭建自己的博客/">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/05/09/设计模式学习笔记（12）迭代器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑保乐">
@@ -338,7 +330,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">使用 Hexo + Github 搭建自己的博客</h2>
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记（12）迭代器</h2>
         
 
         <div class="post-meta">
@@ -350,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T13:03:58+08:00">
-                2018-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T20:13:20+08:00">
+                2018-05-09
               </time>
             
 
@@ -373,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/博客/" itemprop="url" rel="index">
-                    <span itemprop="name">博客</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -392,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/03/30/使用Hexo搭建自己的博客/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/03/30/使用Hexo搭建自己的博客/" itemprop="commentsCount"></span>
+                <a href="/2018/05/09/设计模式学习笔记（12）迭代器/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/05/09/设计模式学习笔记（12）迭代器/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -401,7 +393,7 @@
 
           
           
-             <span id="/2018/03/30/使用Hexo搭建自己的博客/" class="leancloud_visitors" data-flag-title="使用 Hexo + Github 搭建自己的博客">
+             <span id="/2018/05/09/设计模式学习笔记（12）迭代器/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（12）迭代器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -426,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,417 字
+                  1,514 字
                 </span>
               
 
@@ -442,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5 分钟
+                  6 分钟
                 </span>
               
             </div>
@@ -463,63 +455,36 @@
       
 
       
-        <p><img src="https://upload-images.jianshu.io/upload_images/7134080-c5e3beb8f919e30c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>Hexo 是一个快速、简洁且高效的静态博客应用，它的一大亮点是提供了强大的 CLI 工具，真正实现了一键部署。Hexo 使用 Markdown 来解析文章，可以在很短时间内渲染出简洁大方的页面。本文将从安装到部署来详细介绍 Hexo。<br><a id="more"></a><br>本文涉及到的一些工具需要一定操作基础，若有疑问，请先自行搜索学习。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>Hexo 的运行和部署需要以下工具：</p>
-<ul>
-<li>Node.js</li>
-<li>Git</li>
-</ul>
-<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>Windows 平台使用官网提供的安装包来安装，在 cmd 中验证是否安装好：<br><img src="https://upload-images.jianshu.io/upload_images/7134080-c1363a9feb73fda6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="安装-Hexo-Cli"><a href="#安装-Hexo-Cli" class="headerlink" title="安装 Hexo-Cli"></a>安装 Hexo-Cli</h2><p>安装 Node 时一般默认安装了 npm 工具，因此使用以下命令来安装 Hexo 的命令行工具 Hexo-Cli:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><p>Windows 平台下安装 git-for-windows，*nix 平台使用自带的包管理工具安装，以 Ubuntu 为例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> apt-get install git</span><br></pre></td></tr></table></figure>
-<h2 id="创建一个站点"><a href="#创建一个站点" class="headerlink" title="创建一个站点"></a>创建一个站点</h2><p>在任意位置打开 cmd，使用 <code>hexo init &lt;dir&gt;</code> 命令创建一个博客，<code>dir</code> 为博客目录名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo init &lt;folder&gt;</span><br><span class="line"><span class="meta">$</span> cd &lt;folder&gt;</span><br><span class="line"><span class="meta">$</span> npm install</span><br></pre></td></tr></table></figure>
-<p>等待所有依赖包安装完成</p>
-<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="配置站点"><a href="#配置站点" class="headerlink" title="配置站点"></a>配置站点</h2><p>博客根目录的 <code>_config.yml</code> 为 “站点配置文件”，包括 SEO、主题、布局、插件等配置项</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">xxx的博客</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">对站点的描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">关键词</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">语言（中文简体为：zh-Hans）</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">时区（国内这里填写：Asia/Shanghai）</span></span><br></pre></td></tr></table></figure>
-<p>Hexo 默认的样式大概是这样的：<br><img src="https://upload-images.jianshu.io/upload_images/7134080-df16f35a46e2c669.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>推荐使用 Next 主题</p>
-<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><h3 id="安装-Next-主题"><a href="#安装-Next-主题" class="headerlink" title="安装 Next 主题"></a>安装 Next 主题</h3><p>在站点根目录打开 cmd，运行命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
-<h3 id="切换主题"><a href="#切换主题" class="headerlink" title="切换主题"></a>切换主题</h3><p>主题相关的文件就从 Next 的 github 仓库克隆到了 themes/next 目录下，只需要在 “站点配置文件” 中将 <code>theme</code> 字段的值改为 <code>next</code> 就实现了主题的切换<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h3><p>Hexo 提供的命令行工具中自带服务器功能，在站点根目录运行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo s</span><br></pre></td></tr></table></figure>
-<p>当出现提示：</p>
-<pre><code>INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
-</code></pre><p>的时候，就可以打开浏览器访问：<code>http://localhost:4000</code> 来查看效果了，默认效果是这样的：<br><img src="https://upload-images.jianshu.io/upload_images/7134080-c039d4e9117a5f31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>如果觉得不好看可以通过修改<code>themes/next</code>目录下 “主题配置文件” <code>_config.yml</code>来自定义主题样式，这里只介绍一些常用配置，详细配置请参考 <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next 官网</a></p>
-<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>Next 的默认布局为 Muse，就是这个样子：<br><img src="https://upload-images.jianshu.io/upload_images/7134080-c039d4e9117a5f31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>Next 还提供另外两种布局：</p>
-<ul>
-<li>Pisces</li>
-<li>Mist</li>
-</ul>
-<p>我这里使用的是 Pisces，所有这样修改 “主题” 配置文件：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">scheme:</span> <span class="string">Pisces</span></span><br></pre></td></tr></table></figure>
-<p>Pisces 布局的效果：<br><img src="https://upload-images.jianshu.io/upload_images/7134080-a3bf55f9e72586af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><p>在站点根目录运行命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [title]</span><br></pre></td></tr></table></figure></p>
-<p>其中，[title] 为文章题目，运行命令后在 <code>source/_posts</code> 目录下可以看到 <code>文章题目.md</code> 这样一个文件，用任意编辑器打开这个文件，里面的内容大概是这样：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-<p>这段内容在 Hexo 官方的叫法为 <code>Front matter</code>，在渲染文章的时候，渲染引擎会读取这段内容并在页面适当的地方展示文章的各种信息，<code>Front matter</code> 主要有一下几项：</p>
-<ul>
-<li>title：文章标题</li>
-<li>date：创建日期</li>
-<li>tags：标签</li>
-<li>categories：分类</li>
-</ul>
-<p>需要注意的是，分类是具有层次性的，也就是说 <code>Python,爬虫</code> 这种分类和 <code>爬虫,Python</code> 是完全不同的，它们会被分为两类，而标签则没有这种层次性</p>
-<p>如果觉得使用起来不是很方便，可以只给定一个分类，比如这样：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">日记</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">上海</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">旅行</span></span><br></pre></td></tr></table></figure></p>
-<p>站点首页会以分页的方式展示最近发布的文章，默认展示全文，如果想要只展示开头部分内容，比如这种效果：<br><img src="https://upload-images.jianshu.io/upload_images/7134080-e5fa264b0b204944.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>可以在文章适当的位置添加 <code>&lt;!-- more --&gt;</code> 标记，这样可以在首页只展示标记之前的内容，避免首页一次加载过多内容造成不好的体验</p>
-<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>如果有可用的服务器，可以使用 <code>hexo g</code> 命令，生成静态站点，通过 FTP 或其他方式将站点上传到服务器对应目录，并配合 nginx 或 Apache 服务器，即可完成部署，这里介绍一下没有服务器情况下，如何搭建一个完整的博客站点</p>
-<p>首先要有一个 github 账号，如果没有，可到 <a href="http://github.com" target="_blank" rel="noopener">github</a> 用邮箱注册</p>
-<p>新建一个仓库，仓库的名字必须符合 <code>&lt;用户名&gt;.github.io</code>，用户名指的是浏览 github 个人主页的时候，浏览器地址栏 <code>github.com/</code> 后面的那个名字，比如我的 <a href="http://github.com/jameszbl" target="_blank" rel="noopener">github 主页</a>，则我的用户名就是 <code>jameszbl</code>，新建仓库后会跳转到初始化页面，显示一个类似于 <code>https://github.com/jameszbl/jameszbl.github.io.git</code> 的 url， 记下这个url，稍候会用到</p>
-<p>在 “站点配置文件” 中，找到 <code>deploy</code>，如果没有可以手动添加，像这样填写：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">    - type:</span> <span class="string">git</span></span><br><span class="line">      <span class="comment"># 远端仓库地址（刚才记下的 url)</span></span><br><span class="line"><span class="attr">      repo:</span> <span class="attr">https://github.com/JamesZBL/jameszbl.github.io.git</span></span><br><span class="line"><span class="attr">      branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
-<p>这里的部署配置需要安装一个插件，因此在站点根目录运行命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<p>插件安装完成后，再执行：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure></p>
-<p>部署插件会自动将编译完成的静态站点推送到 github 的远端仓库，等待几分钟后，访问 <code>&lt;github 用户名&gt;.github.io</code>，即可看到搭建好的效果了</p>
+        <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>迭代器（Iterator）模式又称游标模式，是集合类型对外提供统一的顺序访问元素而隐藏内部的实现细节的一种方式，是一种行为模式。<br><a id="more"></a><br>迭代器在 Java 的集合类中非常常见，我们使用迭代器来遍历集合中的每一个元素。迭代器在 ArrayList 的使用通常是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String[] array = <span class="keyword">new</span> String[]&#123;<span class="string">"百度"</span>, <span class="string">"阿里"</span>, <span class="string">"腾讯"</span>&#125;;</span><br><span class="line">List&lt;String&gt; list = Arrays.asList(array);</span><br><span class="line">Iterator&lt;String&gt; iterator = list.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">    System.out.println(iterator.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">百度</span><br><span class="line">阿里</span><br><span class="line">腾讯</span><br></pre></td></tr></table></figure></p>
+<p>我们使用 Iterator 接口的一个实例来访问这个 List 实例，Iterator 接口非常小巧，定义了两个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否有后继元素</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 获取下一个元素的引用，执行此方法后，“游标”自动向后移动</span></span><br><span class="line">    <span class="function">E <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java 中的“容器”类的之间的关系：</p>
+<p>图片</p>
+<p>Collection 接口继承自 Iterable:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以可以理解为所有的集合都是可遍历的，因为集合就是一系列元素的“容器”。而 Collection 接口中的 iterator() 方法返回一个 Iterator 接口的引用，所以可以对所有的 Collection 的子类调用 iterator() 方法来获取这个容器实例的迭代器。对于不同的容器的实现，其内部数据结构是不同的，所以具体的迭代方式自然也不尽相同，但是它们都通过这个统一的接口方法来获取迭代器，迭代的实现被巧妙的隐藏了。</p>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>现实生活中有一个常用的场景和迭代器的工作方式非常相似，那就是在图书馆中寻找自己想要的一本书，我们通常的做法是找到这个类目的书架，然后按一定的顺序一本一本的找，这个过程可以大致视为迭代器遍历书架这个容器。</p>
+<p>我们把这个书架上的书分为三个大类：IT、小说和卡通，用一个枚举类来表示：</p>
+<p>ItemType.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ItemType &#123;</span><br><span class="line">  IT, FICTION, CARTOON</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>和 JDK 中提供给我们的 Iterator 接口类似，我们也定义一个 Iterator 接口：</p>
+<p>ItemIterator.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ItemIterator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">Item <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个书架类 BookShelf，它持有一个 List<itemtype> 类型的引用，表示书架上所有图书的集合：</itemtype></p>
+<p>BookShelf.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookShelf</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> List&lt;Item&gt; items;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">BookShelf</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    items = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.FICTION, <span class="string">"西游记"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.FICTION, <span class="string">"水浒传"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.FICTION, <span class="string">"三国演义"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.FICTION, <span class="string">"红楼梦"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.CARTOON, <span class="string">"阿衰"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.CARTOON, <span class="string">"七龙珠"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.CARTOON, <span class="string">"火影忍者"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.IT, <span class="string">"设计模式-可复用面向对象软件的基础"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.IT, <span class="string">"重构-改善既有代码的设计"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.IT, <span class="string">"Effective Java"</span>));</span><br><span class="line">    items.add(<span class="keyword">new</span> Item(ItemType.IT, <span class="string">"Java编程思想"</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;Item&gt; <span class="title">getItemList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;Item&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.addAll(items);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在来定义专门为 BookShelf 服务的迭代器，它实现 ItemIterator 接口：</p>
+<p>BookShelfIterator.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookShelfIterator</span> <span class="keyword">implements</span> <span class="title">ItemIterator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> ItemType type;</span><br><span class="line">  <span class="keyword">private</span> BookShelf shelf;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> idx;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">BookShelfIterator</span><span class="params">(ItemType type, BookShelf shelf)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.type = type;</span><br><span class="line">    <span class="keyword">this</span>.shelf = shelf;</span><br><span class="line">    <span class="keyword">this</span>.idx = -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span> != getNexIdx();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Item <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    idx = getNexIdx();</span><br><span class="line">    <span class="keyword">if</span> (-<span class="number">1</span> != idx) &#123;</span><br><span class="line">      <span class="keyword">return</span> shelf.getItemList().get(idx);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getNexIdx</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;Item&gt; list = shelf.getItemList();</span><br><span class="line">    <span class="keyword">int</span> tempIdx = idx;</span><br><span class="line">    <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (!found) &#123;</span><br><span class="line">      tempIdx++;</span><br><span class="line">      <span class="keyword">if</span> (tempIdx &gt;= list.size()) &#123;</span><br><span class="line">        tempIdx = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (list.get(tempIdx).getType().equals(type)) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tempIdx;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们间接的使用了 List 接口提供的方法 get() 来获取第 n 个元素，其内部实现同样被隐藏了，这里只是演示遍历的过程，因此不必考虑 List 的内部数据结构。</p>
+<p>显然，这和 Collection 中的结构是不同的，BookShelfIterator 持有 BookShelf 的引用，而不是由 BookShelf 来生成适用于它自身的迭代器，虽然看起来比较别扭，不过还是符合实际情况的，迭代器要拿到书架这个对象才能遍历它。如果大范围的使用，还是应当仿照 Collection 中的设计思路，避免出现过多的类，给系统的复杂度造成负担。</p>
+<p>现在拿一个装满书的书架来试一下这个迭代器的效果：</p>
+<p>App.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Application.class);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 查找小说</span></span><br><span class="line">    ItemIterator iterator = <span class="keyword">new</span> BookShelfIterator(ItemType.FICTION, <span class="keyword">new</span> BookShelf());</span><br><span class="line">    LOGGER.info(<span class="string">"正在查找小说类图书"</span>);</span><br><span class="line">    <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">      Item nextItem = iterator.next();</span><br><span class="line">      LOGGER.info(<span class="string">"找到了符合条件的图书，书名为：&#123;&#125;"</span>, nextItem.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找IT</span></span><br><span class="line">    ItemIterator iterator2 = <span class="keyword">new</span> BookShelfIterator(ItemType.IT, <span class="keyword">new</span> BookShelf());</span><br><span class="line">    LOGGER.info(<span class="string">"正在查找IT类图书"</span>);</span><br><span class="line">    <span class="keyword">while</span> (iterator2.hasNext()) &#123;</span><br><span class="line">      Item nextItem = iterator2.next();</span><br><span class="line">      LOGGER.info(<span class="string">"找到了符合条件的图书，书名为：&#123;&#125;"</span>, nextItem.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找漫画</span></span><br><span class="line">    ItemIterator iterator3 = <span class="keyword">new</span> BookShelfIterator(ItemType.CARTOON, <span class="keyword">new</span> BookShelf());</span><br><span class="line">    LOGGER.info(<span class="string">"正在查找漫画类图书"</span>);</span><br><span class="line">    <span class="keyword">while</span> (iterator3.hasNext()) &#123;</span><br><span class="line">      Item nextItem = iterator3.next();</span><br><span class="line">      LOGGER.info(<span class="string">"找到了符合条件的图书，书名为：&#123;&#125;"</span>, nextItem.toString());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>迭代器模式提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示。迭代器模式关乎遍历集合的解决思路是把游标在元素之间移动的职责转交给迭代器，而不是集合对象自己。</p>
+<p>迭代器模式的优点有：<br>1、它支持以不同的方式遍历一个集合合对象<br>2、迭代器模式简化了集合类<br>3、在同一个聚合上可以有多个遍历<br>4、使用迭代器模式，新建聚合类和迭代器，无须修改原有代码</p>
 
       
     </div>
@@ -541,7 +506,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://james.letec.top/2018/03/30/使用Hexo搭建自己的博客/" title="使用 Hexo + Github 搭建自己的博客">https://james.letec.top/2018/03/30/使用Hexo搭建自己的博客/</a>
+    <a href="https://james.letec.top/2018/05/09/设计模式学习笔记（12）迭代器/" title="设计模式学习笔记（12）迭代器">https://james.letec.top/2018/05/09/设计模式学习笔记（12）迭代器/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -558,13 +523,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/博客/" rel="tag"># 博客</a>
-          
-            <a href="/tags/Git/" rel="tag"># Git</a>
-          
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -577,8 +538,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/30/Spring整合Shiro权限控制/" rel="next" title="Spring 整合 Shiro 权限控制">
-                <i class="fa fa-chevron-left"></i> Spring 整合 Shiro 权限控制
+              <a href="/2018/05/01/设计模式学习笔记（11）解释器/" rel="next" title="设计模式学习笔记（11）解释器">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记（11）解释器
               </a>
             
           </div>
@@ -586,10 +547,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/31/Spring-MVC-中-ModelAttribute-注解的妙用/" rel="prev" title="Spring MVC 中 @ModelAttribute 注解的妙用">
-                Spring MVC 中 @ModelAttribute 注解的妙用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -819,7 +776,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Node-js"><span class="nav-number">1.1.</span> <span class="nav-text">安装 Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Hexo-Cli"><span class="nav-number">1.2.</span> <span class="nav-text">安装 Hexo-Cli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Git"><span class="nav-number">1.3.</span> <span class="nav-text">安装 Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个站点"><span class="nav-number">1.4.</span> <span class="nav-text">创建一个站点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置站点"><span class="nav-number">2.1.</span> <span class="nav-text">配置站点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题"><span class="nav-number">2.2.</span> <span class="nav-text">主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Next-主题"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装 Next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换主题"><span class="nav-number">2.2.2.</span> <span class="nav-text">切换主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看效果"><span class="nav-number">2.2.3.</span> <span class="nav-text">查看效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局"><span class="nav-number">2.2.4.</span> <span class="nav-text">布局</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写文章"><span class="nav-number">3.</span> <span class="nav-text">写文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署"><span class="nav-number">4.</span> <span class="nav-text">部署</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
