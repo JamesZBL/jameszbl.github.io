@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://james.letec.top/2018/05/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
-    <lastmod>2018-05-10T14:21:57.465Z</lastmod>
+    <lastmod>2018-05-11T13:23:33.790Z</lastmod>
     <data>
         <display>
         <title>设计模式学习笔记（12）迭代器</title>
@@ -121,9 +121,9 @@
         <title>Nginx 从 http 跳转 https</title>
         <pubTime>2018-04-15T12:30:53.000Z</pubTime>
         
-        <tag>Nginx</tag>
-         
         <tag>Linux</tag>
+         
+        <tag>Nginx</tag>
          
         <tag>https</tag>
          
@@ -307,11 +307,11 @@
         <title>Nginx 解决浏览器 Ajax 跨域问题</title>
         <pubTime>2018-04-14T14:52:21.000Z</pubTime>
         
+        <tag>Nginx</tag>
+         
         <tag>服务器</tag>
          
         <tag>架构</tag>
-         
-        <tag>Nginx</tag>
          
         <tag>Ajax</tag>
          
@@ -337,15 +337,15 @@
         <title>Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx</title>
         <pubTime>2018-04-14T12:30:53.000Z</pubTime>
         
-        <tag>架构</tag>
+        <tag>Linux</tag>
          
         <tag>Nginx</tag>
-         
-        <tag>Linux</tag>
          
         <tag>域名</tag>
          
         <tag>运维</tag>
+         
+        <tag>架构</tag>
          
         <tag>虚拟主机</tag>
          

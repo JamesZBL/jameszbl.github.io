@@ -89,10 +89,12 @@
 <meta property="og:site_name" content="郑保乐的博客">
 <meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 迭代器（Iterator）模式又称游标模式，是集合类型对外提供统一的顺序访问元素而隐藏内部的实现细节的一种方式，是一种行为模式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-10T14:21:57.465Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-3bb3c992f92b829d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-11T13:23:33.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记（12）迭代器">
 <meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 迭代器（Iterator）模式又称游标模式，是集合类型对外提供统一的顺序访问元素而隐藏内部的实现细节的一种方式，是一种行为模式。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7134080-3bb3c992f92b829d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -418,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,514 字
+                  1,512 字
                 </span>
               
 
@@ -462,7 +464,7 @@
 <p>我们使用 Iterator 接口的一个实例来访问这个 List 实例，Iterator 接口非常小巧，定义了两个方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否有后继元素</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 获取下一个元素的引用，执行此方法后，“游标”自动向后移动</span></span><br><span class="line">    <span class="function">E <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Java 中的“容器”类的之间的关系：</p>
-<p>图片</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7134080-3bb3c992f92b829d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>Collection 接口继承自 Iterable:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>所以可以理解为所有的集合都是可遍历的，因为集合就是一系列元素的“容器”。而 Collection 接口中的 iterator() 方法返回一个 Iterator 接口的引用，所以可以对所有的 Collection 的子类调用 iterator() 方法来获取这个容器实例的迭代器。对于不同的容器的实现，其内部数据结构是不同的，所以具体的迭代方式自然也不尽相同，但是它们都通过这个统一的接口方法来获取迭代器，迭代的实现被巧妙的隐藏了。</p>
