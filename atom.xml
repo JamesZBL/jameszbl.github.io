@@ -367,9 +367,9 @@
       <category term="运维" scheme="https://james.letec.top/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="Linux" scheme="https://james.letec.top/tags/Linux/"/>
-    
       <category term="Nginx" scheme="https://james.letec.top/tags/Nginx/"/>
+    
+      <category term="Linux" scheme="https://james.letec.top/tags/Linux/"/>
     
       <category term="https" scheme="https://james.letec.top/tags/https/"/>
     
@@ -397,11 +397,11 @@
       <category term="后端" scheme="https://james.letec.top/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
-      <category term="Nginx" scheme="https://james.letec.top/tags/Nginx/"/>
-    
       <category term="服务器" scheme="https://james.letec.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="架构" scheme="https://james.letec.top/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="Nginx" scheme="https://james.letec.top/tags/Nginx/"/>
     
       <category term="Ajax" scheme="https://james.letec.top/tags/Ajax/"/>
     
@@ -430,15 +430,15 @@
       <category term="运维" scheme="https://james.letec.top/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="Linux" scheme="https://james.letec.top/tags/Linux/"/>
+      <category term="架构" scheme="https://james.letec.top/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="Nginx" scheme="https://james.letec.top/tags/Nginx/"/>
+    
+      <category term="Linux" scheme="https://james.letec.top/tags/Linux/"/>
     
       <category term="域名" scheme="https://james.letec.top/tags/%E5%9F%9F%E5%90%8D/"/>
     
       <category term="运维" scheme="https://james.letec.top/tags/%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="架构" scheme="https://james.letec.top/tags/%E6%9E%B6%E6%9E%84/"/>
     
       <category term="虚拟主机" scheme="https://james.letec.top/tags/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/"/>
     

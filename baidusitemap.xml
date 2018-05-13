@@ -165,9 +165,9 @@
         <title>Nginx 从 http 跳转 https</title>
         <pubTime>2018-04-15T12:30:53.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>Nginx</tag>
+         
+        <tag>Linux</tag>
          
         <tag>https</tag>
          
@@ -329,11 +329,11 @@
         <title>Nginx 解决浏览器 Ajax 跨域问题</title>
         <pubTime>2018-04-14T14:52:21.000Z</pubTime>
         
-        <tag>Nginx</tag>
-         
         <tag>服务器</tag>
          
         <tag>架构</tag>
+         
+        <tag>Nginx</tag>
          
         <tag>Ajax</tag>
          
@@ -359,15 +359,15 @@
         <title>Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx</title>
         <pubTime>2018-04-14T12:30:53.000Z</pubTime>
         
-        <tag>Linux</tag>
+        <tag>架构</tag>
          
         <tag>Nginx</tag>
+         
+        <tag>Linux</tag>
          
         <tag>域名</tag>
          
         <tag>运维</tag>
-         
-        <tag>架构</tag>
          
         <tag>虚拟主机</tag>
          
