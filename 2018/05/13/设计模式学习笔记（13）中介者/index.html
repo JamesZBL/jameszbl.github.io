@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。 实例现在要举行一场派对，派对">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。">
 <meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式学习笔记（13）中介者">
 <meta property="og:url" content="https://james.letec.top/2018/05/13/设计模式学习笔记（13）中介者/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。 实例现在要举行一场派对，派对">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-13T08:12:17.019Z">
+<meta property="og:updated_time" content="2018-05-13T08:14:37.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记（13）中介者">
-<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。 实例现在要举行一场派对，派对">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。">
 
 
 
@@ -456,7 +456,7 @@
 
       
         <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
-<p>中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。</p>
+<p>中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。<br><a id="more"></a></p>
 <h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>现在要举行一场派对，派对中会穿插各种游戏活动，凡是参加派对的人都要到派对举办者那里登记。并且，每次有参与者想要参加派对中的某个活动的时候都要先向派对举办者提出请求，由举办者来批准他的请求，然后这个活动才开始进行。</p>
 <p>先定义派对举办者行为的接口，举办者的职责有邀请成员加入和批准成员参加活动</p>
 <p>Party.java</p>
