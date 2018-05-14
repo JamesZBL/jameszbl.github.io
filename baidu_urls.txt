@@ -1,3 +1,4 @@
+https://james.letec.top/2018/05/14/设计模式学习笔记（14）备忘录/
 https://james.letec.top/2018/05/13/设计模式学习笔记（13）中介者/
 https://james.letec.top/2018/05/09/设计模式学习笔记（12）迭代器/
 https://james.letec.top/2018/05/01/设计模式学习笔记（11）解释器/
