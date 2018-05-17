@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux,Nginx,https,域名,运维," />
+  <meta name="keywords" content="Java,设计模式," />
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。">
-<meta name="keywords" content="Linux,Nginx,https,域名,运维">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 观察者（Observer）模式实现了一种一对多的通信方式，它的核心是由多个对象监听中心对象，中心对象发生某种变化时将这个变化通知给关注它的周边对象，所以，它又被称为 “订阅-发送” 模式。 在现实生活中也有许多和观察者模式的运作方式相似的例子，比如当我们订阅某个公众号后，一旦该公众号的主">
+<meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx 从 http 跳转 https">
-<meta property="og:url" content="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/index.html">
+<meta property="og:title" content="设计模式学习笔记（15）观察者">
+<meta property="og:url" content="https://james.letec.top/2018/05/17/设计模式学习笔记（15）观察者/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 观察者（Observer）模式实现了一种一对多的通信方式，它的核心是由多个对象监听中心对象，中心对象发生某种变化时将这个变化通知给关注它的周边对象，所以，它又被称为 “订阅-发送” 模式。 在现实生活中也有许多和观察者模式的运作方式相似的例子，比如当我们订阅某个公众号后，一旦该公众号的主">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-24T12:34:40.387Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7134080-ef24103f141c9740.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-17T13:01:53.677Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx 从 http 跳转 https">
-<meta name="twitter:description" content="网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。">
+<meta name="twitter:title" content="设计模式学习笔记（15）观察者">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 观察者（Observer）模式实现了一种一对多的通信方式，它的核心是由多个对象监听中心对象，中心对象发生某种变化时将这个变化通知给关注它的周边对象，所以，它又被称为 “订阅-发送” 模式。 在现实生活中也有许多和观察者模式的运作方式相似的例子，比如当我们订阅某个公众号后，一旦该公众号的主">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7134080-ef24103f141c9740.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/"/>
+  <link rel="canonical" href="https://james.letec.top/2018/05/17/设计模式学习笔记（15）观察者/"/>
 
 
 
 
 
-  <title>Nginx 从 http 跳转 https | 郑保乐的博客</title>
+  <title>设计模式学习笔记（15）观察者 | 郑保乐的博客</title>
   
 
 
@@ -313,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/05/17/设计模式学习笔记（15）观察者/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑保乐">
@@ -330,7 +332,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Nginx 从 http 跳转 https</h2>
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记（15）观察者</h2>
         
 
         <div class="post-meta">
@@ -342,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T20:30:53+08:00">
-                2018-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T16:03:00+08:00">
+                2018-05-17
               </time>
             
 
@@ -365,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -384,8 +386,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/04/15/Nginx 从 http 跳转 https/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/15/Nginx 从 http 跳转 https/" itemprop="commentsCount"></span>
+                <a href="/2018/05/17/设计模式学习笔记（15）观察者/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/05/17/设计模式学习笔记（15）观察者/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -393,7 +395,7 @@
 
           
           
-             <span id="/2018/04/15/Nginx 从 http 跳转 https/" class="leancloud_visitors" data-flag-title="Nginx 从 http 跳转 https">
+             <span id="/2018/05/17/设计模式学习笔记（15）观察者/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（15）观察者">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  142 字
+                  1,150 字
                 </span>
               
 
@@ -434,7 +436,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  5 分钟
                 </span>
               
             </div>
@@ -455,8 +457,36 @@
       
 
       
-        <p>网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。<br><a id="more"></a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name example.com;</span><br><span class="line">    rewrite ^(.*) https://$server_name$1 permanent;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name example.com;</span><br><span class="line">    ssl on;</span><br><span class="line">    # 视具体情况而定</span><br><span class="line">    ssl_certificate     /server/nginx/ssl/example.com.pem;</span><br><span class="line">    ssl_certificate_key /server/nginx/ssl/example.com.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    # location /&#123;</span><br><span class="line">        # ...</span><br><span class="line">    # &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>观察者（Observer）模式实现了一种一对多的通信方式，它的核心是由多个对象监听中心对象，中心对象发生某种变化时将这个变化通知给关注它的周边对象，所以，它又被称为 “订阅-发送” 模式。</p>
+<p>在现实生活中也有许多和观察者模式的运作方式相似的例子，比如当我们订阅某个公众号后，一旦该公众号的主人发不了新的文章或消息，所有订阅这个公众号的用户都会受到这个消息。这些用户就对应着观察者模式里的订阅者，公众号对应着发布者，一旦订阅者对关注点失去了兴趣，就会取消对发布者的订阅，也就不会再受到发布者的任何消息了。所以，实现观察者模式的主要方法就是订阅和发布。</p>
+<a id="more"></a>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>我们的祖国地大物博，南方人和北方人的生活习惯在某些方面的差异是很大的，这一点饮食习惯上可以非常容易看出来。所以我们现在用一天中不同时段，南方人和北方人的饮食活动举个例子。</p>
+<p>现在有一个智能闹钟，南方人和北方人都在这个闹钟上定时，每到特定时刻，这个闹钟就会分别提醒它的用户。所以，用户要统一实现一个接口，以便闹钟能够调用用户中的方法来通知用户，这个接口同时代表了订阅者的关注点，即时间的变化。首先定义一个枚举类来表示不同的时间点：</p>
+<p>TimePoint.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> TimePoint &#123;</span><br><span class="line">  MORNING(<span class="string">"早晨"</span>), NOON(<span class="string">"中午"</span>), AFTERNOON(<span class="string">"下午"</span>), EVENING(<span class="string">"晚上"</span>);</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">  TimePoint(String name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所有闹钟的用户都要实现的接口 <code>TimeObserver</code>，通过接口实现了发布者向订阅者传递消息：</p>
+<p>TimeObserver.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TimeObserver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(TimePoint time)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>南方的朋友和北方的朋友分别实现 <code>TimeObserver</code> 接口：</p>
+<p>Southern.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Southern</span> <span class="keyword">implements</span> <span class="title">TimeObserver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Southern.class);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(TimePoint time)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    LOGGER.info(<span class="string">"南方的朋友吃饭了"</span>);</span><br><span class="line">    <span class="keyword">switch</span> (time) &#123;</span><br><span class="line">      <span class="keyword">case</span> MORNING:</span><br><span class="line">        LOGGER.info(<span class="string">"热干面"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> NOON:</span><br><span class="line">        LOGGER.info(<span class="string">"米饭"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> AFTERNOON:</span><br><span class="line">        LOGGER.info(<span class="string">"茶"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> EVENING:</span><br><span class="line">        LOGGER.info(<span class="string">"鱼"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Northern.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Northern</span> <span class="keyword">implements</span> <span class="title">TimeObserver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Northern.class);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(TimePoint time)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    LOGGER.info(<span class="string">"北方人吃饭了"</span>);</span><br><span class="line">    <span class="keyword">switch</span> (time) &#123;</span><br><span class="line">      <span class="keyword">case</span> MORNING:</span><br><span class="line">        LOGGER.info(<span class="string">"煎饼果子"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> NOON:</span><br><span class="line">        LOGGER.info(<span class="string">"炸酱面"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> AFTERNOON:</span><br><span class="line">        LOGGER.info(<span class="string">"牛奶"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> EVENING:</span><br><span class="line">        LOGGER.info(<span class="string">"包子"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面开始定义时间点消息的发布者 <code>Time</code>，也就是上文中的闹钟：</p>
+<p>Time.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Time</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Time.class);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> TimePoint point;</span><br><span class="line">  <span class="keyword">private</span> List&lt;TimeObserver&gt; observers;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Time</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.point = TimePoint.MORNING;</span><br><span class="line">    observers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(TimeObserver observer)</span> </span>&#123;</span><br><span class="line">    observers.add(observer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(TimeObserver observer)</span> </span>&#123;</span><br><span class="line">    observers.remove(observer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">passing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    TimePoint[] points = TimePoint.values();</span><br><span class="line">    point = points[(point.ordinal() + <span class="number">1</span>) % points.length];</span><br><span class="line">    LOGGER.info(<span class="string">"时间来到了&#123;&#125;"</span>, point);</span><br><span class="line">    notifyObservers();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (TimeObserver observer : observers) &#123;</span><br><span class="line">      observer.update(point);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Time</code> 对象持有一系列 <code>TimeObserver</code> 对象的引用，每当时间点发生变化， <code>Time</code> 就会通过调用 <code>TimeObserver</code> 的 <code>update()</code> 方法，下面模拟一下这个闹钟的使用过程：</p>
+<p>App.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Time time = <span class="keyword">new</span> Time();</span><br><span class="line">    time.addObserver(<span class="keyword">new</span> Northern());</span><br><span class="line">    time.addObserver(<span class="keyword">new</span> Southern());</span><br><span class="line"></span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">    time.passing();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这是整个包的类图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7134080-ef24103f141c9740.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>观察者模式的具体应用形式可能多种多样，但都包括以下几点共性：</p>
+<ul>
+<li>发布者（被观察方）和订阅者（观察方）通常是一对多的关系，即发布者可以同时被多个订阅者订阅，所以比较常用的方式是用发布者用集合的方式维护一系列订阅者</li>
+<li>可以通过控制发布者的实现细节来控制最终是否向某个订阅者发布消息</li>
+<li>订阅者的关注点发生变化时，发布者通过接口回调来通知订阅者</li>
+</ul>
 
       
     </div>
@@ -478,7 +508,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/" title="Nginx 从 http 跳转 https">https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/</a>
+    <a href="https://james.letec.top/2018/05/17/设计模式学习笔记（15）观察者/" title="设计模式学习笔记（15）观察者">https://james.letec.top/2018/05/17/设计模式学习笔记（15）观察者/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -495,15 +525,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
-          
-            <a href="/tags/https/" rel="tag"># https</a>
-          
-            <a href="/tags/域名/" rel="tag"># 域名</a>
-          
-            <a href="/tags/运维/" rel="tag"># 运维</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -516,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/" rel="next" title="Nginx 解决浏览器 Ajax 跨域问题">
-                <i class="fa fa-chevron-left"></i> Nginx 解决浏览器 Ajax 跨域问题
+              <a href="/2018/05/14/设计模式学习笔记（14）备忘录/" rel="next" title="设计模式学习笔记（14）备忘录">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记（14）备忘录
               </a>
             
           </div>
@@ -525,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/16/基于-Spring-Boot-2-0-构建一个-RESTful-WebService/" rel="prev" title="基于 Spring Boot 2.0 构建一个 RESTful WebService">
-                基于 Spring Boot 2.0 构建一个 RESTful WebService <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -613,8 +633,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -739,6 +768,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
