@@ -4,12 +4,34 @@
 
     
   <url>
-    <loc>https://james.letec.top/2018/05/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%8817%EF%BC%89%E7%AD%96%E7%95%A5/</loc>
-    <lastmod>2018-06-04T14:50:31.907Z</lastmod>
+    <loc>https://james.letec.top/2018/06/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%8818%EF%BC%89%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-06-05T14:19:07.203Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记（18）模板方法</title>
+        <pubTime>2018-06-05T04:33:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://james.letec.top/2018/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%8817%EF%BC%89%E7%AD%96%E7%95%A5/</loc>
+    <lastmod>2018-06-05T04:31:12.793Z</lastmod>
     <data>
         <display>
         <title>设计模式学习笔记（17）策略</title>
-        <pubTime>2018-05-20T13:56:00.000Z</pubTime>
+        <pubTime>2018-06-04T12:56:00.000Z</pubTime>
         
         <tag>Java</tag>
          
@@ -254,9 +276,9 @@
         <title>Nginx 从 http 跳转 https</title>
         <pubTime>2018-04-15T12:30:53.000Z</pubTime>
         
-        <tag>Nginx</tag>
-         
         <tag>Linux</tag>
+         
+        <tag>Nginx</tag>
          
         <tag>https</tag>
          
@@ -392,9 +414,9 @@
         <title>基于 Spring Boot 2.0 构建一个 RESTful WebService</title>
         <pubTime>2018-04-16T05:12:45.000Z</pubTime>
         
-        <tag>Spring MVC</tag>
-         
         <tag>Spring</tag>
+         
+        <tag>Spring MVC</tag>
          
         <tag>Spring Boot</tag>
          
@@ -418,11 +440,11 @@
         <title>Nginx 解决浏览器 Ajax 跨域问题</title>
         <pubTime>2018-04-14T14:52:21.000Z</pubTime>
         
-        <tag>服务器</tag>
+        <tag>Nginx</tag>
          
         <tag>架构</tag>
          
-        <tag>Nginx</tag>
+        <tag>服务器</tag>
          
         <tag>Ajax</tag>
          
@@ -448,17 +470,17 @@
         <title>Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx</title>
         <pubTime>2018-04-14T12:30:53.000Z</pubTime>
         
-        <tag>架构</tag>
+        <tag>Linux</tag>
          
         <tag>Nginx</tag>
-         
-        <tag>Linux</tag>
          
         <tag>域名</tag>
          
         <tag>运维</tag>
          
         <tag>虚拟主机</tag>
+         
+        <tag>架构</tag>
          
          
            
@@ -478,9 +500,9 @@
         <title>Spring 整合 Shiro 权限控制</title>
         <pubTime>2018-03-30T02:50:07.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>Shiro</tag>
+         
+        <tag>Spring</tag>
          
         <tag>权限控制</tag>
          
@@ -506,9 +528,9 @@
         <title>Spring MVC 中 @ModelAttribute 注解的妙用</title>
         <pubTime>2018-03-31T02:44:32.000Z</pubTime>
         
-        <tag>Spring MVC</tag>
-         
         <tag>Spring</tag>
+         
+        <tag>Spring MVC</tag>
          
         <tag>Java</tag>
          
@@ -609,9 +631,9 @@
         <title>Spring 应用中集成 Apache Shiro</title>
         <pubTime>2018-02-17T01:55:00.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>Shiro</tag>
+         
+        <tag>Spring</tag>
          
          
            
@@ -673,9 +695,9 @@
         <title>SpringMVC 解析之 DispatcherServlet</title>
         <pubTime>2018-03-29T12:31:22.508Z</pubTime>
         
-        <tag>Spring MVC</tag>
-         
         <tag>Spring</tag>
+         
+        <tag>Spring MVC</tag>
          
          
            

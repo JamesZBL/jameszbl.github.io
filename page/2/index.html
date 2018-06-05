@@ -313,6 +313,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郑保乐">
+      <meta itemprop="description" content="优秀的判断力来自经验，<br>但经验来自错误的判断。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郑保乐的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/22/设计模式学习笔记（8）单例/" itemprop="url">设计模式学习笔记（8）单例</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T10:23:20+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/04/22/设计模式学习笔记（8）单例/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::https://james.letec.top/2018/04/22/设计模式学习笔记（8）单例/" class="cy_cmt_count" data-xid="2018/04/22/设计模式学习笔记（8）单例/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/04/22/设计模式学习笔记（8）单例/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（8）单例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,598 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>单例（Singleton）模式是最常用的设计模式之一，但同时也是最能体现 Java 特性的设计模式之一，它是创建型模式中最经典的一个。</p>
+<p>单例模式的核心目的是，保证一个类的实例只存在一个。许多场景中整个软件系统只需要拥有一个该类的全局对象，这是为了更好的实现这个对象的功能。一个常见的场景，服务器应用程序中，某些配置通常放在若干个文件中，某个类的一个单例对象将配置读取进来，以后每次需要获取配置信息只需要通过单例模式的风格获取这个对象，就能得到这些配置数据了。相反，如果每次需要获取配置信息都要 <code>new</code> 一个该类的对象并读取配置文件，那将造成许多本可以避免的性能开销。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/22/设计模式学习笔记（8）单例/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    <!-- s reward 默认位置 -->
+
+    <!-- e resume 默认位置 -->
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/21/设计模式学习笔记（7）原型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -462,7 +666,7 @@
 <p>原型（Prototype）模式用于创建重复的对象，与工厂模式类似。它们之间的区别是：工厂模式通过 <code>new</code> 关键字调用类的构造方法来创建对象，而原型模式采用复制已存在对象的方式创建新的对象。如果通过构造方法创建对象会造成一定程度上的性能问题，就应当考虑使用原型模式。例如，一个对象需在创建时需要进行读数据库的操作，并且这个对象需要被频繁的创建，那么就应当采用缓存的方式，在数据不更新的前提下，尽可能的使用缓存，也就是克隆的对象。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/21/设计模式学习笔记（7）原型/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/21/设计模式学习笔记（7）原型/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -665,7 +869,7 @@
 <p>工厂方法（Factory Method)模式，又叫做虚拟构造（Virtual Constructor）模式或多态工厂(Polymorphic Factory）模式。工厂方法的特点是定义一个用于创建对象的接口， 让子类决定实例化哪一个类。 工厂方法使一个类的实例化延迟到其子类。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/20/设计模式学习笔记（6）工厂方法/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/20/设计模式学习笔记（6）工厂方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -868,7 +1072,7 @@
 <p>抽象工厂模式是在工厂方法模式之上的有一次升级，以便能够处理更加复杂的对象创建场景。因此也是所有形态的工厂模式中最为抽象和最具一般性的一种形态。工厂 ( Factory ) 和产品 ( Product ) 是 Abstract Factory 模式的主要参与者。 该模式描述了怎样在不直接实例化类的情况下创建一系列相关的产品对象。 它最适用于产品对象的数目和种类不变， 而具体产品系列之间存在不同的情况。 我们通过实例化一个特定的具体工厂对象来选择产品系列， 并且以后一直使用该工厂生产产品对象。 我们也能够通过用一个不同的具体工厂实例来替换原来的工厂对象以改变整个产品系列。 抽象工厂模式对产品系列的强调使它区别于其他只与一种产品对象有关的创建性模式。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/20/设计模式学习笔记（5）抽象工厂/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/20/设计模式学习笔记（5）抽象工厂/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1071,7 +1275,7 @@
 <p>构建者（Builder）模式通常用于将复杂对象的构造简化，将具体的构造过程与表示分离，使同样的构建过程可以创建不同的表示。使用多个简单的对象一步一步构建成一个复杂的对象，这种类型的设计模式属于创建型模式。建造模式可以将一个复杂对象的内部组成部分，与该对象本身的创建分离开来，从而使得复杂对象的组装更灵活。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/20/设计模式学习笔记（4）构建者/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/20/设计模式学习笔记（4）构建者/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1274,7 +1478,7 @@
 <p>装饰器（Decorator）模式用于动态地给一个对象添加一些额外的职责。 就增加功能来说， Decorator模式相比生成子类更为灵活。装饰模式以对客户端透明的方式扩展对象的功能，是继承关系的一个替代方案。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/19/设计模式学习笔记（3）装饰器/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/19/设计模式学习笔记（3）装饰器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1477,7 +1681,7 @@
 <p>组合（Composite）模式用于将对象组合成树形结构以表示 “部分——整体” 的层次结构。它使得用户对单个对象和组合对象的使用具有一致性。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/设计模式学习笔记（1）组合/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/17/设计模式学习笔记（1）组合/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1680,7 +1884,7 @@
 <p>REST 全称是 Representational State Transfer，中文意思是“表述性状态转移”。RESTful 是关于 Web 的现有特征和使用方式的一些准则和约束。 基于 Spring MVC 的 RestController，我们可以方便的构建一个 RESTful 风格的应用。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/16/基于-Spring-Boot-2-0-构建一个-RESTful-WebService/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/16/基于-Spring-Boot-2-0-构建一个-RESTful-WebService/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1882,7 +2086,7 @@
           <p>网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/15/Nginx 从 http 跳转 https/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/15/Nginx 从 http 跳转 https/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2084,210 +2288,7 @@
           <p>跨域是指 host 为 A 页面中的 Ajax 发起指向 host B 的请求，只要 A 和 B 的协议、域名、端口、子域名其中任何一项不同，则执行的访问都会被认为是跨域的请求，几乎所有的浏览器为了安全等问题，对跨域访问做了限制，也就是无法通过浏览器发起跨域请求。跨域问题的本质是浏览器的限制。但也并不意味着浏览器根本不能发出任何跨域请求，在发起跨域请求后，浏览器总会发送一个 OPTION 请求，并根据响应的 Header 中 <code>Access-Control-Allow-Origin</code> 参数值进行下一步操作，如果这个参数不存在或不符合当前的域，则拒绝这个跨域请求。解决这个问题的一个简单方法就是使用 Nginx 反向代理。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/#espandi" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    <!-- s reward 默认位置 -->
-
-    <!-- e resume 默认位置 -->
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="郑保乐">
-      <meta itemprop="description" content="优秀的判断力来自经验，<br>但经验来自错误的判断。">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郑保乐的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/" itemprop="url">Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T20:30:53+08:00">
-                2018-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::https://james.letec.top/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/" class="cy_cmt_count" data-xid="2018/04/14/Ubuntu-Linux-中虚拟主机的配置/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/" class="leancloud_visitors" data-flag-title="Ubuntu Linux 中虚拟主机的配置 - 搭配 Nginx">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  603 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>虚拟主机，正如其名，就是将一台服务器划分为多个虚拟的主机，可以将每个域名分配给不同的虚拟主机，这样可以充分利用了域名资源和硬件资源。这次我们采用 Nginx 实现虚拟主机的配置。</p>
-<p>Nginx 是一款 free、开源的高性能 HTTP 服务器和反向代理服务器，同时可用作 IMAP、POP3、SMTP 服务器，它经常被用作 HTTP 服务器进行 Web 应用的部署使用，另外，Nginx 还经常以反向代理服务器的身份实现负载均衡。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/14/Ubuntu-Linux-中虚拟主机的配置/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/14/Nginx-解决浏览器-Ajax-跨域问题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2382,7 +2383,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2516,7 +2517,7 @@
     
       <span class="post-meta-item-text">一共写了&#58;</span>
     
-    <span title="一共写了">39.2k字</span>
+    <span title="一共写了">40.6k字</span>
   
 </div>
 

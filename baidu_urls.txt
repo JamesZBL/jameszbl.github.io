@@ -1,4 +1,5 @@
-https://james.letec.top/2018/05/20/设计模式学习笔记（17）策略/
+https://james.letec.top/2018/06/05/设计模式学习笔记（18）模板方法/
+https://james.letec.top/2018/06/04/设计模式学习笔记（17）策略/
 https://james.letec.top/2018/05/20/设计模式学习笔记（16）状态/
 https://james.letec.top/2018/05/17/设计模式学习笔记（15）观察者/
 https://james.letec.top/2018/05/14/设计模式学习笔记（14）备忘录/
