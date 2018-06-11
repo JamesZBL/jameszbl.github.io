@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://james.letec.top/2018/06/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%8819%EF%BC%89%E8%AE%BF%E9%97%AE%E8%80%85/</loc>
+    <lastmod>2018-06-11T02:37:05.529Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记（19）访问者</title>
+        <pubTime>2018-06-05T04:33:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://james.letec.top/2018/06/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%8818%EF%BC%89%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2018-06-05T14:19:07.203Z</lastmod>
     <data>
@@ -442,9 +464,9 @@
         
         <tag>Nginx</tag>
          
-        <tag>架构</tag>
-         
         <tag>服务器</tag>
+         
+        <tag>架构</tag>
          
         <tag>Ajax</tag>
          
@@ -478,9 +500,9 @@
          
         <tag>运维</tag>
          
-        <tag>虚拟主机</tag>
-         
         <tag>架构</tag>
+         
+        <tag>虚拟主机</tag>
          
          
            
