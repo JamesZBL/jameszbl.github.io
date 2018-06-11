@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Shiro,Spring," />
+  <meta name="keywords" content="Java,设计模式," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="这一篇文章涵盖了将 Shiro 集成到基于 Spring 的应用程序的方法。 Shiro 的 Java Bean兼容性使它非常适合通过 Spring XML 或其他基于 Spring 的配置机制进行配置。Shiro 的应用程序需要一个应用程序单例安全管理器 ( SecuriyManager) 实例。注意，这并不一定是静态的单例，但是应用程序应该只使用一个实例，不管它是否是静态的单例。">
-<meta name="keywords" content="Shiro,Spring">
+<meta name="description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 适配器（Adapter）模式用来将两个不同的接口进行适配，所以它是一种结构型的模式。适配器可以实现把一种接口进行转换，从而能够适应客户端的需求，所以它解决了两个类之间因为接口不匹配而无法工作的问题。适配器在日常生活中也很常见，比如 Micro-SD 卡需要一个转换器才在大多数的笔记本上存">
+<meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring 应用中集成 Apache Shiro">
-<meta property="og:url" content="https://james.letec.top/2018/02/17/Spring 应用中集成 Apache Shiro/index.html">
+<meta property="og:title" content="设计模式学习笔记（2）适配器">
+<meta property="og:url" content="https://james.letec.top/2018/04/18/设计模式学习笔记（2）适配器/index.html">
 <meta property="og:site_name" content="郑保乐的博客">
-<meta property="og:description" content="这一篇文章涵盖了将 Shiro 集成到基于 Spring 的应用程序的方法。 Shiro 的 Java Bean兼容性使它非常适合通过 Spring XML 或其他基于 Spring 的配置机制进行配置。Shiro 的应用程序需要一个应用程序单例安全管理器 ( SecuriyManager) 实例。注意，这并不一定是静态的单例，但是应用程序应该只使用一个实例，不管它是否是静态的单例。">
+<meta property="og:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 适配器（Adapter）模式用来将两个不同的接口进行适配，所以它是一种结构型的模式。适配器可以实现把一种接口进行转换，从而能够适应客户端的需求，所以它解决了两个类之间因为接口不匹配而无法工作的问题。适配器在日常生活中也很常见，比如 Micro-SD 卡需要一个转换器才在大多数的笔记本上存">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-29T14:31:06.317Z">
+<meta property="og:updated_time" content="2018-06-11T11:15:07.769Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring 应用中集成 Apache Shiro">
-<meta name="twitter:description" content="这一篇文章涵盖了将 Shiro 集成到基于 Spring 的应用程序的方法。 Shiro 的 Java Bean兼容性使它非常适合通过 Spring XML 或其他基于 Spring 的配置机制进行配置。Shiro 的应用程序需要一个应用程序单例安全管理器 ( SecuriyManager) 实例。注意，这并不一定是静态的单例，但是应用程序应该只使用一个实例，不管它是否是静态的单例。">
+<meta name="twitter:title" content="设计模式学习笔记（2）适配器">
+<meta name="twitter:description" content="本文实例代码：https://github.com/JamesZBL/java_design_patterns 适配器（Adapter）模式用来将两个不同的接口进行适配，所以它是一种结构型的模式。适配器可以实现把一种接口进行转换，从而能够适应客户端的需求，所以它解决了两个类之间因为接口不匹配而无法工作的问题。适配器在日常生活中也很常见，比如 Micro-SD 卡需要一个转换器才在大多数的笔记本上存">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://james.letec.top/2018/02/17/Spring 应用中集成 Apache Shiro/"/>
+  <link rel="canonical" href="https://james.letec.top/2018/04/18/设计模式学习笔记（2）适配器/"/>
 
 
 
 
 
-  <title>Spring 应用中集成 Apache Shiro | 郑保乐的博客</title>
+  <title>设计模式学习笔记（2）适配器 | 郑保乐的博客</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/02/17/Spring 应用中集成 Apache Shiro/">
+    <link itemprop="mainEntityOfPage" href="https://james.letec.top/2018/04/18/设计模式学习笔记（2）适配器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郑保乐">
@@ -330,7 +330,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Spring 应用中集成 Apache Shiro</h2>
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记（2）适配器</h2>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-17T09:55:00+08:00">
-                2018-02-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T21:22:00+08:00">
+                2018-04-18
               </time>
             
 
@@ -365,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/后端/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -384,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/02/17/Spring 应用中集成 Apache Shiro/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/02/17/Spring 应用中集成 Apache Shiro/" itemprop="commentsCount"></span>
+                <a href="/2018/04/18/设计模式学习笔记（2）适配器/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/04/18/设计模式学习笔记（2）适配器/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -393,7 +393,7 @@
 
           
           
-             <span id="/2018/02/17/Spring 应用中集成 Apache Shiro/" class="leancloud_visitors" data-flag-title="Spring 应用中集成 Apache Shiro">
+             <span id="/2018/04/18/设计模式学习笔记（2）适配器/" class="leancloud_visitors" data-flag-title="设计模式学习笔记（2）适配器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,167 字
+                  1,250 字
                 </span>
               
 
@@ -455,17 +455,38 @@
       
 
       
-        <p>这一篇文章涵盖了将 Shiro 集成到基于 Spring 的应用程序的方法。</p>
-<p>Shiro 的 Java Bean兼容性使它非常适合通过 Spring XML 或其他基于 Spring 的配置机制进行配置。Shiro 的应用程序需要一个应用程序单例安全管理器 ( SecuriyManager) 实例。注意，这并不一定是静态的单例，但是应用程序应该只使用一个实例，不管它是否是静态的单例。<br><a id="more"></a></p>
-<h2 id="1-独立的应用程序"><a href="#1-独立的应用程序" class="headerlink" title="1.独立的应用程序"></a>1.独立的应用程序</h2><p>以下是在 Spring 应用程序中启用应用程序单例安全管理器的最简单方法:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义连接到后端安全数据源的 Realm : --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myRealm"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.mgt.DefaultSecurityManager"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 单一 Realm 应用这样写。如果有多个 Realm ，可以使用 "realms" 属性 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"myRealm"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"lifecycleBeanPostProcessor"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.LifecycleBeanPostProcessor"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 对于最简单的集成方式，就像所有的 SecurityUtils 中的静态</span></span><br><span class="line"><span class="comment">方法一样，在所有情况下都适用，将 securityManager bean 声明</span></span><br><span class="line"><span class="comment">为一个静态的单例对象。但不要在 web 应用程序中这样做。参见</span></span><br><span class="line"><span class="comment">下面的 “web 应用程序” 部分。  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.beans.factory.config.MethodInvokingFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"staticMethod"</span> <span class="attr">value</span>=<span class="string">"org.apache.shiro.SecurityUtils.setSecurityManager"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"arguments"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-Web-应用程序"><a href="#2-Web-应用程序" class="headerlink" title="2.Web 应用程序"></a>2.Web 应用程序</h2><p>Shiro 对 Spring web 应用程序有很棒的支持。在一个 web 应用程序中，所有的可用的 web 请求都必须经过 Shiro Filter。这个过滤器非常强大，允许基于 URL 路径表达式执行的特殊自定义任何过滤器链。</p>
-<p>在 Shiro 1.0之前，你必须在 Spring web 应用程序中使用一种混合的方法，定义 Shiro 的过滤器所有的配置属性都在 web.xml 中。但是在 spring.xml中定义 securityManager，这有点不友好。</p>
-<p>现在，在 Shiro 1.0 以上的版本中，所有的 Shiro 配置都是在Spring XML 中完成的，它提供了更健壮的 Spring 配置机制。<br>以下是如何在基于 spring 的 web 应用程序中配置 Shiro:</p>
-<h3 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h3><p>除了其他的 spring 的一些标签 ( ContextLoaderListener、Log4jConfigListener 等)，还定义了以下过滤器和过滤器的映射:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 applicationContext.xml 中，过滤器名称 “shiroFilter” bean的名称匹配。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.DelegatingFilterProxy<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>targetFilterLifecycle<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 确保你想要的任何请求都可以被过滤。/ * 捕获所有</span></span><br><span class="line"><span class="comment">请求。通常，这个过滤器映射首先 （在所有其他的之前）定义，</span></span><br><span class="line"><span class="comment">确保 Shiro 在过滤器链的后续过滤器中工作:--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>shiroFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="applicationContext-xml"><a href="#applicationContext-xml" class="headerlink" title="applicationContext.xml"></a>applicationContext.xml</h3><p>在 applicationContext.xml 文件，定义 web 适用的SecurityManager 和 “shiroFilter” bean，这个bean 在 web.xml 中会被引用。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroFilter"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根据具体情况定义以下几个属性:</span></span><br><span class="line"><span class="comment">    &lt;property name="loginUrl" value="/login.jsp"/&gt;</span></span><br><span class="line"><span class="comment">    &lt;property name="successUrl" value="/home.jsp"/&gt;</span></span><br><span class="line"><span class="comment">    &lt;property name="unauthorizedUrl" value="/unauthorized.jsp"/&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 如果声明过任何的 javax.servlet，“filters” 属性就是不必要的了--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;property name="filters"&gt;</span></span><br><span class="line"><span class="comment">        &lt;util:map&gt;</span></span><br><span class="line"><span class="comment">            &lt;entry key="anAlias" value-ref="someFilter"/&gt;</span></span><br><span class="line"><span class="comment">        &lt;/util:map&gt;</span></span><br><span class="line"><span class="comment">    &lt;/property&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filterChainDefinitions"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">            # 定义需要过滤的 url :</span><br><span class="line">            /admin/** = authc, roles[admin]</span><br><span class="line">            /docs/** = authc, perms[document:read]</span><br><span class="line">            /** = authc</span><br><span class="line">            <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 可以在上下文中定义的任何 javax.servlet.Filter bean，它们会自动被上面的 “shiroFilter” bean 所捕获，并为“filterChainDefinitions” 属性所用。如果需要的话，可以手动添加/显式添加到 shiroFilter 的 “filters” Map 上。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"someFilter"</span> <span class="attr">class</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"anotherFilter"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"securityManager"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 单一 Realm 应用这样写。如果有多个 Realm ，可以使用 "realms" 属性. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"realm"</span> <span class="attr">ref</span>=<span class="string">"myRealm"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 认情况下，适用 servlet 容器的 session 。取消对这一行的注释后则使用 shiro的原生 session  --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;property name="sessionMode" value="native"/&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"lifecycleBeanPostProcessor"</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.LifecycleBeanPostProcessor"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过自定义 Shiro Realm 的子类来使用后台的数据源 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myRealm"</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="启用-Shiro-的注解"><a href="#启用-Shiro-的注解" class="headerlink" title="启用 Shiro 的注解"></a>启用 Shiro 的注解</h2><p>在应用程序中，可能需要使用 Shiro 的注释来进行安全检查(例如，@RequiresRole、@requiresPermission 等等。这需要 Shiro的 Spring AOP 集成，以扫描适当的带注释的类，并在必要时执行安全逻辑。下面是如何启用这些注释，将这两个 bean 定义添加到 applicationContext.xml 中:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"</span> <span class="attr">depends-on</span>=<span class="string">"lifecycleBeanPostProcessor"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+        <p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p>
+<p>适配器（Adapter）模式用来将两个不同的接口进行适配，所以它是一种结构型的模式。适配器可以实现把一种接口进行转换，从而能够适应客户端的需求，所以它解决了两个类之间因为接口不匹配而无法工作的问题。适配器在日常生活中也很常见，比如 Micro-SD 卡需要一个转换器才在大多数的笔记本上存取数据，两脚插头需要转换器才能在只提供三脚插孔的插座上使用，Micro-USB 的数据线需要转换器才能在只具备 Type-C 的接口的设备之间传输数据等等…… 这些转换设备都属于适配器，它们都将一种接口转换成另一种接口，而使用者只需了解转换设备如何使用即可，无需关注其内部实现逻辑。</p>
+<a id="more"></a>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>老张有辆小汽车，他每天都开着它上下班，我们将小汽车抽象成 <code>Car</code> 接口：</p>
+<p>Car.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">drive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>老张驾驶小汽车很熟练，所以老张（司机）实现了 <code>Car</code> 接口</p>
+<p>Driver.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Driver</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Car car;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    car.drive();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Driver</span><span class="params">(Car car)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.car = car;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>某个周末，他的小汽车被朋友借走了，但是公司突发紧急情况需要他马上赶到公司。打了一圈电话之后发现，只有一个开大巴的朋友的车当天没有任务，思考了片刻后，老张还是把大巴车借过来了（有点扯了，不过当初代码写成这样的时候并不觉得扯，所以继续扯下去吧）。他之所以能把大巴车借来，是因为他自己是有大车的驾驶证的，他又犹豫了片刻是因为他已经多年没有驾驶过大车了。</p>
+<p>驾驶小汽车的方式和大巴车是有一定差别的，这只大巴车的接口 <code>Bus</code>:</p>
+<p>Bus.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bus</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Bus.class);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"公共汽车在行驶"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>老张上车后发现对车上的各种设备都不熟悉，于是向车主朋友请教，经过朋友几分钟的讲解，老张经过和小汽车的类比，将自己驾驶大车的技能又“激活”了，这时的老张就可以被视为一种适配器，我们将他抽象为 <code>BusAdapter</code></p>
+<p>BusAdapter.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BusAdapter</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Bus bus;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">BusAdapter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.bus = <span class="keyword">new</span> Bus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    bus.run();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了这个“适配器”，大巴车成功的被开到了公司：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Driver driver = <span class="keyword">new</span> Driver(<span class="keyword">new</span> BusAdapter());</span><br><span class="line">    driver.drive();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>适配器模式的使用场景有：</p>
+<ul>
+<li>需要使用的类的接口与需要的接口类型不匹配</li>
+<li>需要创建一个可重用的类，它可以与不相关的或不可预见的类进行协作，也就是说，类不一定具有兼容的接口</li>
+<li>需要使用几个现有的子类，但是通过子类化每个子类来调整它们的接口是不切实际的。对象适配器可以调整其父类的接口</li>
+</ul>
+<p>适配器又可以分为对象适配器和类适配器，上面的实例就是类适配器的一种，类适配器和对象适配器的却别有：</p>
+<ul>
+<li>类适配器的适配功能是通过被适配类（接口）的一个对象间接完成的。因此，类适配器不能无法<br>对被适配类的所有子类进行适配</li>
+<li>类适配器重写了被适配类（接口）的方法，所以，类适配器可以看做被适配类（接口）的一个子类，上面例子中的 <code>BusAdapter</code> 类就可以视为 <code>Car</code> 的一个子类</li>
+<li>类适配器一般只需持有一个被适配类（接口）的对象，并不需要额外的对被适配类（接口）的引用， <code>BusAdapter</code> 只对 <code>Car</code> 接口进行了适配</li>
+<li>对象适配器可以和多个被适配类（接口）的对象协同工作——即被适配类（接口）本身及其所有子类。适配器也可以一次为所有的被适配类（接口）添加自定义的功能</li>
+<li>对象适配器使得重写被适配类（接口）的方法变成了不可能，这时需要的是被适配类（接口）的子类，而不是被适配类（接口）本身</li>
+</ul>
+<p>适配器模式的主要目的是解决接口之间不匹配的问题，所以它经常被用来解决现有设计中结构设计问题，使得软件在不修改既有类或接口的情况下实现新的功能组合。</p>
 
       
     </div>
@@ -487,7 +508,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://james.letec.top/2018/02/17/Spring 应用中集成 Apache Shiro/" title="Spring 应用中集成 Apache Shiro">https://james.letec.top/2018/02/17/Spring 应用中集成 Apache Shiro/</a>
+    <a href="https://james.letec.top/2018/04/18/设计模式学习笔记（2）适配器/" title="设计模式学习笔记（2）适配器">https://james.letec.top/2018/04/18/设计模式学习笔记（2）适配器/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -504,9 +525,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Shiro/" rel="tag"># Shiro</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -519,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/在 SpringMVC 中对表单提交参数进行验证 Bean Validator/" rel="next" title="在 SpringMVC 中对表单提交参数进行验证（使用 Bean Validator）">
-                <i class="fa fa-chevron-left"></i> 在 SpringMVC 中对表单提交参数进行验证（使用 Bean Validator）
+              <a href="/2018/04/17/设计模式学习笔记（1）组合/" rel="next" title="设计模式学习笔记（1）组合">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记（1）组合
               </a>
             
           </div>
@@ -529,8 +550,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/24/Python 第一个爬虫-教务系统信息收集/" rel="prev" title="Python 第一个爬虫-教务系统信息收集">
-                Python 第一个爬虫-教务系统信息收集 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/19/设计模式学习笔记（3）装饰器/" rel="prev" title="设计模式学习笔记（3）装饰器">
+                设计模式学习笔记（3）装饰器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -761,7 +782,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-独立的应用程序"><span class="nav-number">1.</span> <span class="nav-text">1.独立的应用程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Web-应用程序"><span class="nav-number">2.</span> <span class="nav-text">2.Web 应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web-xml"><span class="nav-number">2.1.</span> <span class="nav-text">web.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#applicationContext-xml"><span class="nav-number">2.2.</span> <span class="nav-text">applicationContext.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用-Shiro-的注解"><span class="nav-number">3.</span> <span class="nav-text">启用 Shiro 的注解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

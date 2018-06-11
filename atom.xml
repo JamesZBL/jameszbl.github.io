@@ -451,6 +451,31 @@
   </entry>
   
   <entry>
+    <title>设计模式学习笔记（2）适配器</title>
+    <link href="https://james.letec.top/2018/04/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%E9%80%82%E9%85%8D%E5%99%A8/"/>
+    <id>https://james.letec.top/2018/04/18/设计模式学习笔记（2）适配器/</id>
+    <published>2018-04-18T13:22:00.000Z</published>
+    <updated>2018-06-11T11:15:07.769Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文实例代码：<a href="https://github.com/JamesZBL/java_design_patterns" target="_blank" rel="noopener">https://github.com/JamesZBL/java_design_patterns</a></p><p>适配器（Adapter）模式用来将两个不同的接口进行适配，所以它是一种结构型的模式。适配器可以实现把一种接口进行转换，从而能够适应客户端的需求，所以它解决了两个类之间因为接口不匹配而无法工作的问题。适配器在日常生活中也很常见，比如 Micro-SD 卡需要一个转换器才在大多数的笔记本上存取数据，两脚插头需要转换器才能在只提供三脚插孔的插座上使用，Micro-USB 的数据线需要转换器才能在只具备 Type-C 的接口的设备之间传输数据等等…… 这些转换设备都属于适配器，它们都将一种接口转换成另一种接口，而使用者只需了解转换设备如何使用即可，无需关注其内部实现逻辑。</p><a id="more"></a><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>老张有辆小汽车，他每天都开着它上下班，我们将小汽车抽象成 <code>Car</code> 接口：</p><p>Car.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">drive</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>老张驾驶小汽车很熟练，所以老张（司机）实现了 <code>Car</code> 接口</p><p>Driver.java</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Driver</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Car car;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    car.drive();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Driver</span><span class="params">(Car car)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.car = car;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>某个周末，他的小汽车被朋友借走了，但是公司突发紧急情况需要他马上赶到公司。打了一圈电话之后发现，只有一个开大巴的朋友的车当天没有任务，思考了片刻后，老张还是把大巴车借过来了（有点扯了，不过当初代码写成这样的时候并不觉得扯，所以继续扯下去吧）。他之所以能把大巴车借来，是因为他自己是有大车的驾驶证的，他又犹豫了片刻是因为他已经多年没有驾驶过大车了。</p><p>驾驶小汽车的方式和大巴车是有一定差别的，这只大巴车的接口 <code>Bus</code>:</p><p>Bus.java</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bus</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(Bus.class);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"公共汽车在行驶"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>老张上车后发现对车上的各种设备都不熟悉，于是向车主朋友请教，经过朋友几分钟的讲解，老张经过和小汽车的类比，将自己驾驶大车的技能又“激活”了，这时的老张就可以被视为一种适配器，我们将他抽象为 <code>BusAdapter</code></p><p>BusAdapter.java</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BusAdapter</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Bus bus;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">BusAdapter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.bus = <span class="keyword">new</span> Bus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    bus.run();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>有了这个“适配器”，大巴车成功的被开到了公司：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Driver driver = <span class="keyword">new</span> Driver(<span class="keyword">new</span> BusAdapter());</span><br><span class="line">    driver.drive();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>适配器模式的使用场景有：</p><ul><li>需要使用的类的接口与需要的接口类型不匹配</li><li>需要创建一个可重用的类，它可以与不相关的或不可预见的类进行协作，也就是说，类不一定具有兼容的接口</li><li>需要使用几个现有的子类，但是通过子类化每个子类来调整它们的接口是不切实际的。对象适配器可以调整其父类的接口</li></ul><p>适配器又可以分为对象适配器和类适配器，上面的实例就是类适配器的一种，类适配器和对象适配器的却别有：</p><ul><li>类适配器的适配功能是通过被适配类（接口）的一个对象间接完成的。因此，类适配器不能无法<br>对被适配类的所有子类进行适配</li><li>类适配器重写了被适配类（接口）的方法，所以，类适配器可以看做被适配类（接口）的一个子类，上面例子中的 <code>BusAdapter</code> 类就可以视为 <code>Car</code> 的一个子类</li><li>类适配器一般只需持有一个被适配类（接口）的对象，并不需要额外的对被适配类（接口）的引用， <code>BusAdapter</code> 只对 <code>Car</code> 接口进行了适配</li><li>对象适配器可以和多个被适配类（接口）的对象协同工作——即被适配类（接口）本身及其所有子类。适配器也可以一次为所有的被适配类（接口）添加自定义的功能</li><li>对象适配器使得重写被适配类（接口）的方法变成了不可能，这时需要的是被适配类（接口）的子类，而不是被适配类（接口）本身</li></ul><p>适配器模式的主要目的是解决接口之间不匹配的问题，所以它经常被用来解决现有设计中结构设计问题，使得软件在不修改既有类或接口的情况下实现新的功能组合。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文实例代码：&lt;a href=&quot;https://github.com/JamesZBL/java_design_patterns&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/JamesZBL/java_design_patterns&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;适配器（Adapter）模式用来将两个不同的接口进行适配，所以它是一种结构型的模式。适配器可以实现把一种接口进行转换，从而能够适应客户端的需求，所以它解决了两个类之间因为接口不匹配而无法工作的问题。适配器在日常生活中也很常见，比如 Micro-SD 卡需要一个转换器才在大多数的笔记本上存取数据，两脚插头需要转换器才能在只提供三脚插孔的插座上使用，Micro-USB 的数据线需要转换器才能在只具备 Type-C 的接口的设备之间传输数据等等…… 这些转换设备都属于适配器，它们都将一种接口转换成另一种接口，而使用者只需了解转换设备如何使用即可，无需关注其内部实现逻辑。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="设计模式" scheme="https://james.letec.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="Java" scheme="https://james.letec.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="https://james.letec.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>设计模式学习笔记（1）组合</title>
     <link href="https://james.letec.top/2018/04/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E7%BB%84%E5%90%88/"/>
     <id>https://james.letec.top/2018/04/17/设计模式学习笔记（1）组合/</id>
@@ -501,36 +526,6 @@
       <category term="Spring Boot" scheme="https://james.letec.top/tags/Spring-Boot/"/>
     
       <category term="RESTful" scheme="https://james.letec.top/tags/RESTful/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx 从 http 跳转 https</title>
-    <link href="https://james.letec.top/2018/04/15/Nginx%20%E4%BB%8E%20http%20%E8%B7%B3%E8%BD%AC%20https/"/>
-    <id>https://james.letec.top/2018/04/15/Nginx 从 http 跳转 https/</id>
-    <published>2018-04-15T12:30:53.000Z</published>
-    <updated>2018-04-24T12:34:40.387Z</updated>
-    
-    <content type="html"><![CDATA[<p>网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。<br><a id="more"></a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name example.com;</span><br><span class="line">    rewrite ^(.*) https://$server_name$1 permanent;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name example.com;</span><br><span class="line">    ssl on;</span><br><span class="line">    # 视具体情况而定</span><br><span class="line">    ssl_certificate     /server/nginx/ssl/example.com.pem;</span><br><span class="line">    ssl_certificate_key /server/nginx/ssl/example.com.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    # location /&#123;</span><br><span class="line">        # ...</span><br><span class="line">    # &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;网站由 http 升级到 https， 原来的链接是不是就都失效了呢？其实旧链接依然可用，在 Nginx 中简单设置一下即可实现将 http 请求重定向到 https 地址。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="运维" scheme="https://james.letec.top/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-      <category term="Linux" scheme="https://james.letec.top/tags/Linux/"/>
-    
-      <category term="Nginx" scheme="https://james.letec.top/tags/Nginx/"/>
-    
-      <category term="https" scheme="https://james.letec.top/tags/https/"/>
-    
-      <category term="域名" scheme="https://james.letec.top/tags/%E5%9F%9F%E5%90%8D/"/>
-    
-      <category term="运维" scheme="https://james.letec.top/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
