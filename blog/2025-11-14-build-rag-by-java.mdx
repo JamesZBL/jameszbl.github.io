@@ -1,0 +1,661 @@
+---
+slug: build-rag-by-java
+title: 从零实现一个Java版RAG系统
+authors: [james]
+tags: [ai,java,rag]
+---
+
+{/* truncate */}
+
+
+# 从零实现一个 Java 版 RAG 系统
+
+## 前言
+
+上一篇文章介绍了 RAG（Retrieval-Augmented Generation）的整体架构，以及为什么它已经成为企业 AI 应用的标配。
+
+本篇将通过 Java 实战，从零实现一个完整的 RAG 系统，包括：
+
+* 文档解析
+* Chunk 切分
+* Embedding 向量生成
+* Qdrant 存储
+* 向量检索
+* 大模型生成最终答案
+
+最终实现如下流程：
+
+```text
+用户问题
+    ↓
+Embedding
+    ↓
+Qdrant向量检索
+    ↓
+获取相关知识片段
+    ↓
+Prompt组装
+    ↓
+LLM生成答案
+```
+
+技术栈：
+
+* Spring Boot 3
+* LangChain4j
+* OpenAI Compatible API
+* Qdrant
+* Apache POI
+* PDFBox
+
+---
+
+# 1. 文档解析
+
+企业知识库中的数据通常来自：
+
+* PDF
+* Word
+* Markdown
+* Wiki
+* Excel
+
+第一步需要将这些文档统一转换成纯文本。
+
+---
+
+## PDF解析
+
+使用 PDFBox：
+
+```xml
+<dependency>
+    <groupId>org.apache.pdfbox</groupId>
+    <artifactId>pdfbox</artifactId>
+    <version>3.0.2</version>
+</dependency>
+```
+
+```java
+public String parsePdf(File file) throws IOException {
+
+    try (PDDocument document = Loader.loadPDF(file)) {
+
+        PDFTextStripper stripper = new PDFTextStripper();
+
+        return stripper.getText(document);
+    }
+}
+```
+
+---
+
+## Word解析
+
+使用 Apache POI：
+
+```xml
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+</dependency>
+```
+
+```java
+public String parseWord(File file) throws Exception {
+
+    try (XWPFDocument document =
+             new XWPFDocument(new FileInputStream(file))) {
+
+        return document.getParagraphs()
+                .stream()
+                .map(XWPFParagraph::getText)
+                .collect(Collectors.joining("\n"));
+    }
+}
+```
+
+---
+
+## Markdown解析
+
+Markdown最简单：
+
+```java
+String content = Files.readString(
+        Path.of("rag.md"));
+```
+
+统一抽象：
+
+```java
+public interface DocumentParser {
+
+    String parse(File file);
+}
+```
+
+这样后续新增 Excel、HTML、Wiki 解析器也非常方便。
+
+---
+
+# 2. Chunk切分策略
+
+大模型无法一次读取几十万字文档。
+
+因此需要将文档拆分成多个 Chunk。
+
+---
+
+## Fixed Size
+
+最简单方案：
+
+```text
+每500字符
+切一次
+```
+
+示例：
+
+```java
+public List<String> split(
+        String text,
+        int chunkSize) {
+
+    List<String> chunks = new ArrayList<>();
+
+    for (int i = 0; i < text.length(); i += chunkSize) {
+
+        chunks.add(
+                text.substring(
+                        i,
+                        Math.min(
+                                i + chunkSize,
+                                text.length()
+                        )
+                )
+        );
+    }
+
+    return chunks;
+}
+```
+
+优点：
+
+* 实现简单
+* 速度快
+
+缺点：
+
+* 容易截断语义
+
+---
+
+## Sliding Window
+
+生产环境最常见。
+
+```text
+Chunk1
+[1-500]
+
+Chunk2
+[400-900]
+
+Chunk3
+[800-1300]
+```
+
+重叠部分保留上下文。
+
+```java
+public List<String> split(
+        String text,
+        int chunkSize,
+        int overlap) {
+
+    List<String> chunks = new ArrayList<>();
+
+    for (int i = 0;
+         i < text.length();
+         i += chunkSize - overlap) {
+
+        chunks.add(
+                text.substring(
+                        i,
+                        Math.min(
+                                i + chunkSize,
+                                text.length()
+                        )
+                )
+        );
+    }
+
+    return chunks;
+}
+```
+
+推荐：
+
+```text
+Chunk Size = 500~1000 Token
+Overlap = 100~200 Token
+```
+
+---
+
+## Semantic Chunk
+
+按照语义切分。
+
+例如：
+
+```markdown
+# 商品评价系统
+
+介绍...
+
+# AI回复系统
+
+介绍...
+```
+
+切分结果：
+
+```text
+Chunk1
+商品评价系统
+
+Chunk2
+AI回复系统
+```
+
+LangChain4j 已经提供相关实现：
+
+```java
+DocumentSplitter splitter =
+        DocumentSplitters.recursive(
+                500,
+                100
+        );
+```
+
+企业知识库一般采用：
+
+```text
+语义切分
++
+Sliding Window
+```
+
+效果最佳。
+
+---
+
+# 3. Embedding生成
+
+Chunk完成后，需要生成向量。
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-open-ai</artifactId>
+</dependency>
+```
+
+配置Embedding模型：
+
+```java
+@Bean
+EmbeddingModel embeddingModel() {
+
+    return OpenAiEmbeddingModel.builder()
+            .baseUrl(baseUrl)
+            .apiKey(apiKey)
+            .modelName("text-embedding-v4")
+            .build();
+}
+```
+
+生成向量：
+
+```java
+Embedding embedding =
+        embeddingModel.embed(text)
+                .content();
+
+float[] vector = embedding.vector();
+```
+
+返回结果：
+
+```text
+[0.123,
+ 0.555,
+ -0.233,
+ ...]
+```
+
+通常维度：
+
+```text
+768
+1024
+1536
+3072
+```
+
+---
+
+# 4. Qdrant存储
+
+向量数据库负责保存：
+
+```text
+向量
++
+原文
++
+元数据
+```
+
+启动Qdrant：
+
+```yaml
+version: "3"
+
+services:
+
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+```
+
+启动：
+
+```bash
+docker compose up -d
+```
+
+---
+
+创建Collection：
+
+```java
+client.createCollectionAsync(
+        "knowledge",
+        VectorParams.newBuilder()
+                .setSize(1536)
+                .setDistance(Distance.Cosine)
+                .build()
+);
+```
+
+---
+
+写入向量：
+
+```java
+PointStruct point =
+        PointStruct.newBuilder()
+                .setId(
+                        PointIdFactory.id(
+                                UUID.randomUUID().toString()
+                        )
+                )
+                .setVectors(
+                        VectorsFactory.vectors(vector)
+                )
+                .putAllPayload(
+                        Map.of(
+                                "content",
+                                ValueFactory.value(text)
+                        )
+                )
+                .build();
+
+client.upsertAsync(
+        "knowledge",
+        List.of(point)
+);
+```
+
+存储结构：
+
+```text
+ID
+Vector
+Content
+Source
+Title
+CreateTime
+```
+
+---
+
+# 5. 向量检索
+
+用户提问：
+
+```text
+商品评价AI回复如何实现？
+```
+
+先转成向量：
+
+```java
+Embedding queryEmbedding =
+        embeddingModel.embed(question)
+                .content();
+```
+
+---
+
+执行相似度搜索：
+
+```java
+SearchPoints searchPoints =
+        SearchPoints.newBuilder()
+                .setCollectionName("knowledge")
+                .addAllVector(
+                        Floats.asList(
+                                queryEmbedding.vector()
+                        )
+                )
+                .setLimit(5)
+                .build();
+
+List<ScoredPoint> points =
+        client.searchAsync(searchPoints)
+                .get();
+```
+
+获得结果：
+
+```text
+Chunk A
+Score = 0.91
+
+Chunk B
+Score = 0.88
+
+Chunk C
+Score = 0.85
+```
+
+取Top-K：
+
+```text
+Top3
+Top5
+Top10
+```
+
+一般：
+
+```text
+Top5
+```
+
+即可。
+
+---
+
+# 6. 最终回答生成
+
+检索出的知识需要注入Prompt。
+
+---
+
+构造上下文：
+
+```java
+String context = chunks.stream()
+        .collect(Collectors.joining("\n"));
+```
+
+Prompt模板：
+
+```java
+String prompt = """
+你是企业知识库助手。
+
+请严格依据提供的知识回答。
+
+知识：
+
+%s
+
+问题：
+
+%s
+
+如果知识中没有答案，
+请明确说明不知道。
+""".formatted(
+        context,
+        question
+);
+```
+
+---
+
+调用大模型：
+
+```java
+String answer =
+        chatModel.chat(prompt)
+                .aiMessage()
+                .text();
+```
+
+最终效果：
+
+```text
+问题：
+商品评价AI回复如何实现？
+
+回答：
+
+系统首先进行情感识别，
+判断评价属于好评还是差评。
+
+对于差评进一步进行意图识别，
+例如物流慢、商品质量问题、
+水果不甜等。
+
+随后检索对应知识库，
+结合Prompt模板生成回复。
+```
+
+---
+
+# 完整流程代码
+
+```java
+public String ask(String question) {
+
+    // 1. 问题向量化
+    Embedding queryEmbedding =
+            embeddingModel.embed(question)
+                    .content();
+
+    // 2. Qdrant检索
+    List<String> chunks =
+            vectorStore.search(
+                    queryEmbedding.vector(),
+                    5
+            );
+
+    // 3. 拼接上下文
+    String context =
+            String.join("\n", chunks);
+
+    // 4. 构造Prompt
+    String prompt = """
+            请依据知识回答问题
+
+            知识:
+            %s
+
+            问题:
+            %s
+            """
+            .formatted(
+                    context,
+                    question
+            );
+
+    // 5. LLM生成
+    return chatModel.chat(prompt)
+            .aiMessage()
+            .text();
+}
+```
+
+整体架构：
+
+```text
+文档
+ ↓
+解析
+ ↓
+Chunk
+ ↓
+Embedding
+ ↓
+Qdrant
+ ↓
+向量检索
+ ↓
+Prompt增强
+ ↓
+LLM回答
+```
+
+---
+
+# 总结
+
+一个完整的 RAG 系统，本质上只包含六个核心步骤：
+
+1. 文档解析（PDF/Word/Markdown）
+2. Chunk切分
+3. Embedding向量生成
+4. Qdrant存储
+5. 向量检索
+6. LLM生成答案
+
+对于企业级应用，还会继续增加以下能力：
+
+* Hybrid Search（关键词+向量检索）
+* ReRank重排序
+* 多路知识库路由
+* Metadata过滤
+* Query Rewrite
+* 多轮会话记忆
+* 文档增量更新
+* 检索结果评估
