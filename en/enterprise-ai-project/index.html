@@ -1,0 +1,240 @@
+<!doctype html><html lang=en dir=ltr class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>AI应用规模化后的治理体系 | James' Blog</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://jameszbl.github.io/en/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://jameszbl.github.io/en/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://jameszbl.github.io/en/enterprise-ai-project /><meta data-rh=true property=og:locale content=en /><meta data-rh=true property=og:locale:alternate content=zh_Hans /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docusaurus_tag content=default /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docsearch:docusaurus_tag content=default /><meta data-rh=true property=og:title content="AI应用规模化后的治理体系 | James' Blog"/><meta data-rh=true name=description content="{/ truncate /}"/><meta data-rh=true property=og:description content="{/ truncate /}"/><meta data-rh=true property=og:type content=article /><meta data-rh=true property=article:published_time content=2026-03-13T00:00:00.000Z /><meta data-rh=true property=article:author content=https://github.com/jameszbl /><meta data-rh=true property=article:tag content=ai,java /><link data-rh=true rel=icon href=/en/img/favicon.ico /><link data-rh=true rel=canonical href=https://jameszbl.github.io/en/enterprise-ai-project /><link data-rh=true rel=alternate href=https://jameszbl.github.io/enterprise-ai-project hreflang=zh-Hans /><link data-rh=true rel=alternate href=https://jameszbl.github.io/en/enterprise-ai-project hreflang=en /><link data-rh=true rel=alternate href=https://jameszbl.github.io/enterprise-ai-project hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@id":"https://jameszbl.github.io/en/enterprise-ai-project","@type":"BlogPosting","author":{"@type":"Person","description":"Javaer","image":"https://avatars.githubusercontent.com/u/26003056?v=4","name":"James Zheng","url":"https://github.com/jameszbl"},"datePublished":"2026-03-13T00:00:00.000Z","description":"{/ truncate /}","headline":"AI应用规模化后的治理体系","isPartOf":{"@id":"https://jameszbl.github.io/en/","@type":"Blog","name":"Blog"},"keywords":[],"mainEntityOfPage":"https://jameszbl.github.io/en/enterprise-ai-project","name":"AI应用规模化后的治理体系","url":"https://jameszbl.github.io/en/enterprise-ai-project"}</script><link rel=alternate type=application/rss+xml href=/en/rss.xml title="James' Blog RSS Feed"><link rel=alternate type=application/atom+xml href=/en/atom.xml title="James' Blog Atom Feed"><link rel=stylesheet href=/en/assets/css/styles.5b0e4cfb.css /><script src=/en/assets/js/runtime~main.64e1e29e.js defer></script><script src=/en/assets/js/main.57f95d59.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-2db")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/en/img/logo.svg /><link rel=preload as=image href="https://avatars.githubusercontent.com/u/26003056?v=4"/><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/en/><div class=navbar__logo><img src=/en/img/logo.svg alt="James' Blog logo" class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/en/img/logo.svg alt="James' Blog logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">James' Blog</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/facebook/docusaurus target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class=row><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">Recent posts</div><div role=group><h3 class=yearGroupHeading_rMGB>2026</h3><ul class="sidebarItemList_Yudw clean-list"><li class=sidebarItem__DBe><a class=sidebarItemLink_mo7H href=/en/summary>summary</a><li class=sidebarItem__DBe><a class=sidebarItemLink_mo7H href=/en/feedback-reply-rag-history>商品评价AI回复系统的演进</a><li class=sidebarItem__DBe><a class=sidebarItemLink_mo7H href=/en/enterprise-ai-platform>从0到1搭建企业AI平台</a><li class=sidebarItem__DBe><a aria-current=page class="sidebarItemLink_mo7H sidebarItemLinkActive_I1ZP" href=/en/enterprise-ai-project>AI应用规模化后的治理体系</a><li class=sidebarItem__DBe><a class=sidebarItemLink_mo7H href=/en/feedback-reply-bot>AI商品评价自动回复系统设计与实现</a></ul></div></nav></aside><main class="col col--7"><article class=""><header><h1 class=title_f1Hy>AI应用规模化后的治理体系</h1><div class="container_mt6G margin-vert--md"><time datetime=2026-03-13T00:00:00.000Z>March 13, 2026</time> · <!-- -->6 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--12 authorCol_Hf19"><div class="avatar margin-bottom--sm"><a class=avatar__photo-link href=/en/authors/james><img class="avatar__photo authorImage_XqGP" src="https://avatars.githubusercontent.com/u/26003056?v=4" alt="James Zheng"/></a><div class="avatar__intro authorDetails_lV9A"><div class=avatar__name><a href=/en/authors/james><span class=authorName_yefp translate=no>James Zheng</span></a></div><small class=authorTitle_nd0D title=Javaer>Javaer</small><div class=authorSocials_rSDt><a href=https://github.com/jameszbl target=_blank rel="noopener noreferrer" class=authorSocialLink_owbf title=GitHub><svg xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 256 250" preserveAspectRatio=xMidYMid style=--dark:#000;--light:#fff class="authorSocialIcon_XYv3 githubSvg_Uu4N"><path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46 6.397 1.185 8.746-2.777 8.746-6.158 0-3.052-.12-13.135-.174-23.83-35.61 7.742-43.124-15.103-43.124-15.103-5.823-14.795-14.213-18.73-14.213-18.73-11.613-7.944.876-7.78.876-7.78 12.853.902 19.621 13.19 19.621 13.19 11.417 19.568 29.945 13.911 37.249 10.64 1.149-8.272 4.466-13.92 8.127-17.116-28.431-3.236-58.318-14.212-58.318-63.258 0-13.975 5-25.394 13.188-34.358-1.329-3.224-5.71-16.242 1.24-33.874 0 0 10.749-3.44 35.21 13.121 10.21-2.836 21.16-4.258 32.038-4.307 10.878.049 21.837 1.47 32.066 4.307 24.431-16.56 35.165-13.12 35.165-13.12 6.967 17.63 2.584 30.65 1.255 33.873 8.207 8.964 13.173 20.383 13.173 34.358 0 49.163-29.944 59.988-58.447 63.157 4.591 3.972 8.682 11.762 8.682 23.704 0 17.126-.148 30.91-.148 35.126 0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002 256 57.307 198.691 0 128.001 0Zm-80.06 182.34c-.282.636-1.283.827-2.194.39-.929-.417-1.45-1.284-1.15-1.922.276-.655 1.279-.838 2.205-.399.93.418 1.46 1.293 1.139 1.931Zm6.296 5.618c-.61.566-1.804.303-2.614-.591-.837-.892-.994-2.086-.375-2.66.63-.566 1.787-.301 2.626.591.838.903 1 2.088.363 2.66Zm4.32 7.188c-.785.545-2.067.034-2.86-1.104-.784-1.138-.784-2.503.017-3.05.795-.547 2.058-.055 2.861 1.075.782 1.157.782 2.522-.019 3.08Zm7.304 8.325c-.701.774-2.196.566-3.29-.49-1.119-1.032-1.43-2.496-.726-3.27.71-.776 2.213-.558 3.315.49 1.11 1.03 1.45 2.505.701 3.27Zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033-1.448-.439-2.395-1.613-2.103-2.626.301-1.01 1.747-1.484 3.207-1.028 1.446.436 2.396 1.602 2.095 2.622Zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95-1.53.034-2.769-.82-2.786-1.86 0-1.065 1.202-1.932 2.733-1.958 1.522-.03 2.768.818 2.768 1.868Zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37-1.485.271-2.861-.365-3.05-1.386-.184-1.056.893-2.114 2.376-2.387 1.514-.263 2.868.356 3.061 1.403Z"/></svg></a></div></div></div></div></div></header><div id=__blog-post-container class=markdown>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=前言>前言<a href=#前言 class=hash-link aria-label="Direct link to 前言" title="Direct link to 前言" translate=no>​</a></h2>
+<p>很多团队在接触AI开发时，关注点往往集中在模型选型、Prompt设计、RAG实现以及Agent编排等技术问题。</p>
+<p>但当AI应用真正进入生产环境后，会发现一个新的问题：</p>
+<p><strong>系统上线只是开始，治理才是真正的挑战。</strong></p>
+<p>一个内部试点阶段表现优秀的AI系统，当面对数十万用户、数百万次调用时，很容易出现各种问题：</p>
+<ul>
+<li class="">Prompt被频繁修改导致效果波动</li>
+<li class="">知识库内容过期</li>
+<li class="">模型成本快速上涨</li>
+<li class="">响应时间不稳定</li>
+<li class="">输出内容存在风险</li>
+</ul>
+<p>因此，企业级AI应用不仅需要开发能力，更需要完善的治理体系。</p>
+<p>本文结合实际项目经验，介绍AI应用规模化后的核心治理方案。</p>
+<hr/>
+<h1>一、企业AI项目为什么容易失控</h1>
+<p>传统软件系统的逻辑是确定性的。</p>
+<p>例如：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">if(score > 60){</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    return "pass";</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p>同样的输入永远得到同样的输出。</p>
+<p>但AI系统并不是这样。</p>
+<p>AI应用本质上由多个动态组件组成：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">用户问题</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Prompt</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">知识库</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">模型</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">结果输出</span><br/></div></code></pre></div></div>
+<p>其中每个环节都可能发生变化。</p>
+<p>例如：</p>
+<ul>
+<li class="">Prompt调整</li>
+<li class="">知识库更新</li>
+<li class="">Embedding模型升级</li>
+<li class="">LLM切换版本</li>
+</ul>
+<p>这些变化叠加后，很容易导致线上效果不可预测。</p>
+<p>因此企业AI治理的目标可以总结为：</p>
+<blockquote>
+<p>让AI系统具备可观测、可控制、可回滚、可审计能力。</p>
+</blockquote>
+<hr/>
+<h1>二、Prompt治理</h1>
+<p>Prompt已经成为AI应用中的核心资产。</p>
+<p>很多企业AI项目中，Prompt数量甚至超过业务代码。</p>
+<p>如果缺乏管理机制，很快就会变成：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">prompt_v1</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">prompt_v2</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">prompt_v2_final</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">prompt_v2_final_new</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">prompt_v2_final_new2</span><br/></div></code></pre></div></div>
+<p>最终没人知道线上到底在运行哪个版本。</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-版本管理>1. 版本管理<a href=#1-版本管理 class=hash-link aria-label="Direct link to 1. 版本管理" title="Direct link to 1. 版本管理" translate=no>​</a></h2>
+<p>Prompt需要像代码一样进行管理。</p>
+<p>例如：</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token key atrule" style=color:#00a4db>name</span><span class="token punctuation" style=color:#393A34>:</span><span class="token plain"> product_review_reply</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain"></span><span class="token key atrule" style=color:#00a4db>version</span><span class="token punctuation" style=color:#393A34>:</span><span class="token plain"> 1.0.3</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain"></span><span class="token key atrule" style=color:#00a4db>description</span><span class="token punctuation" style=color:#393A34>:</span><span class="token plain"> 商品评价回复Prompt</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain"></span><span class="token key atrule" style=color:#00a4db>owner</span><span class="token punctuation" style=color:#393A34>:</span><span class="token plain"> ai</span><span class="token punctuation" style=color:#393A34>-</span><span class="token plain">team</span><br/></div></code></pre></div></div>
+<p>企业通常会将Prompt存储在：</p>
+<ul>
+<li class="">Git</li>
+<li class="">配置中心</li>
+<li class="">Prompt管理平台</li>
+</ul>
+<p>每次修改都记录：</p>
+<ul>
+<li class="">修改人</li>
+<li class="">修改时间</li>
+<li class="">修改内容</li>
+<li class="">影响范围</li>
+</ul>
+<p>这样出现问题时能够快速回滚。</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-灰度发布>2. 灰度发布<a href=#2-灰度发布 class=hash-link aria-label="Direct link to 2. 灰度发布" title="Direct link to 2. 灰度发布" translate=no>​</a></h2>
+<p>Prompt修改后不要直接全量上线。</p>
+<p>推荐采用：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">新Prompt</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">   ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">5%流量</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">   ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">20%流量</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">   ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">50%流量</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">   ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">100%流量</span><br/></div></code></pre></div></div>
+<p>重点观察：</p>
+<ul>
+<li class="">用户满意度</li>
+<li class="">点击率</li>
+<li class="">人工接管率</li>
+<li class="">回复准确率</li>
+</ul>
+<p>如果指标下降，可以立即回退。</p>
+<p>这种方式与传统互联网系统的灰度发布完全一致。</p>
+<hr/>
+<h1>三、知识库治理</h1>
+<p>很多团队认为：</p>
+<blockquote>
+<p>只要搭建RAG，知识库问题就解决了。</p>
+</blockquote>
+<p>实际上知识库往往是AI项目中最容易失效的部分。</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-增量更新>1. 增量更新<a href=#1-增量更新 class=hash-link aria-label="Direct link to 1. 增量更新" title="Direct link to 1. 增量更新" translate=no>​</a></h2>
+<p>企业文档每天都在变化。</p>
+<p>例如：</p>
+<ul>
+<li class="">商品信息更新</li>
+<li class="">仓储规则调整</li>
+<li class="">物流政策变化</li>
+<li class="">售后流程修改</li>
+</ul>
+<p>如果每次都全量重建向量库：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">重新解析</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">重新切Chunk</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">重新Embedding</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">重新写入</span><br/></div></code></pre></div></div>
+<p>成本会非常高。</p>
+<p>因此需要增量更新机制：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">文档变更</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">变更检测</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">重新切分</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">更新向量</span><br/></div></code></pre></div></div>
+<p>仅更新变化部分。</p>
+<p>这样能够显著降低Embedding成本。</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-文档质量检查>2. 文档质量检查<a href=#2-文档质量检查 class=hash-link aria-label="Direct link to 2. 文档质量检查" title="Direct link to 2. 文档质量检查" translate=no>​</a></h2>
+<p>很多RAG效果差，并不是检索问题，而是文档质量问题。</p>
+<p>常见问题：</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=内容重复>内容重复<a href=#内容重复 class=hash-link aria-label="Direct link to 内容重复" title="Direct link to 内容重复" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">退款流程</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">退款流程</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">退款流程</span><br/></div></code></pre></div></div>
+<p>会影响召回结果。</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=内容缺失>内容缺失<a href=#内容缺失 class=hash-link aria-label="Direct link to 内容缺失" title="Direct link to 内容缺失" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">商品保质期：</span><br/></div></code></pre></div></div>
+<p>关键信息为空。</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=ocr错误>OCR错误<a href=#ocr错误 class=hash-link aria-label="Direct link to OCR错误" title="Direct link to OCR错误" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">七天无理由退货</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">七天无理由退贷</span><br/></div></code></pre></div></div>
+<p>Embedding后会产生错误语义。</p>
+<hr/>
+<p>上线前建议增加文档质检流程：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">上传文档</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">格式检查</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">内容检查</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">重复检查</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">入库</span><br/></div></code></pre></div></div>
+<p>从源头保证知识质量。</p>
+<hr/>
+<h1>四、模型治理</h1>
+<p>企业级AI系统通常不会依赖单一模型。</p>
+<p>原因很简单：</p>
+<ul>
+<li class="">成本不同</li>
+<li class="">性能不同</li>
+<li class="">稳定性不同</li>
+</ul>
+<p>因此需要模型治理能力。</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-模型路由>1. 模型路由<a href=#1-模型路由 class=hash-link aria-label="Direct link to 1. 模型路由" title="Direct link to 1. 模型路由" translate=no>​</a></h2>
+<p>典型架构：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">用户请求</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Router</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ├─ GPT</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ├─ DeepSeek</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ├─ Qwen</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> └─ Claude</span><br/></div></code></pre></div></div>
+<p>根据任务自动选择模型。</p>
+<p>例如：</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=简单问答>简单问答<a href=#简单问答 class=hash-link aria-label="Direct link to 简单问答" title="Direct link to 简单问答" translate=no>​</a></h3>
+<p>使用低成本模型：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">DeepSeek-V4-Flash</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=复杂推理>复杂推理<a href=#复杂推理 class=hash-link aria-label="Direct link to 复杂推理" title="Direct link to 复杂推理" translate=no>​</a></h3>
+<p>使用高性能模型：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">GPT</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Claude</span><br/></div></code></pre></div></div>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=内容审核>内容审核<a href=#内容审核 class=hash-link aria-label="Direct link to 内容审核" title="Direct link to 内容审核" translate=no>​</a></h3>
+<p>使用专门审核模型。</p>
+<p>这样能够平衡：</p>
+<ul>
+<li class="">效果</li>
+<li class="">延迟</li>
+<li class="">成本</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-降级策略>2. 降级策略<a href=#2-降级策略 class=hash-link aria-label="Direct link to 2. 降级策略" title="Direct link to 2. 降级策略" translate=no>​</a></h2>
+<p>模型服务不可能100%稳定。</p>
+<p>需要设计降级链路：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">GPT</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">DeepSeek</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Qwen</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">规则回复</span><br/></div></code></pre></div></div>
+<p>例如：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-java codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">try{</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    return gpt.generate();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}catch(Exception e){</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    return deepseek.generate();</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">}</span><br/></div></code></pre></div></div>
+<p>即使上游服务异常，也能保证业务连续运行。</p>
+<hr/>
+<h1>五、成本治理</h1>
+<p>AI项目进入规模化阶段后，成本往往成为最大的挑战。</p>
+<p>很多团队上线后才发现：</p>
+<blockquote>
+<p>Token费用远远超过预期。</p>
+</blockquote>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-token监控>1. Token监控<a href=#1-token监控 class=hash-link aria-label="Direct link to 1. Token监控" title="Direct link to 1. Token监控" translate=no>​</a></h2>
+<p>需要监控：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">输入Token</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">输出Token</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">请求次数</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">模型费用</span><br/></div></code></pre></div></div>
+<p>例如：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">GPT-4</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">今日消耗：</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">1200万Token</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">费用：</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">350美元</span><br/></div></code></pre></div></div>
+<p>做到按天、按业务、按用户维度统计。</p>
+<p>常见指标：</p>
+<ul>
+<li class="">Token总量</li>
+<li class="">人均Token</li>
+<li class="">单次请求成本</li>
+<li class="">模型成本排行</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-缓存机制>2. 缓存机制<a href=#2-缓存机制 class=hash-link aria-label="Direct link to 2. 缓存机制" title="Direct link to 2. 缓存机制" translate=no>​</a></h2>
+<p>大量请求其实存在重复。</p>
+<p>例如：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">退货流程是什么？</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">退货规则是什么？</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">如何申请退款？</span><br/></div></code></pre></div></div>
+<p>经过标准化后，本质是同一问题。</p>
+<p>可以增加缓存层：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Query</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Cache</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">LLM</span><br/></div></code></pre></div></div>
+<p>命中缓存直接返回结果。</p>
+<p>企业实践中：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">缓存命中率</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">20% ~ 50%</span><br/></div></code></pre></div></div>
+<p>并不罕见。</p>
+<p>对于高频问答场景，成本下降非常明显。</p>
+<hr/>
+<h1>六、风险治理</h1>
+<p>AI应用最终面向用户，因此风险治理不可缺少。</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-敏感词检测>1. 敏感词检测<a href=#1-敏感词检测 class=hash-link aria-label="Direct link to 1. 敏感词检测" title="Direct link to 1. 敏感词检测" translate=no>​</a></h2>
+<p>用户输入可能包含：</p>
+<ul>
+<li class="">政治敏感内容</li>
+<li class="">违法内容</li>
+<li class="">广告内容</li>
+<li class="">恶意攻击内容</li>
+</ul>
+<p>处理流程：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">用户输入</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">敏感词检测</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">风险判断</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">模型调用</span><br/></div></code></pre></div></div>
+<p>高风险内容直接拦截。</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-内容审核>2. 内容审核<a href=#2-内容审核 class=hash-link aria-label="Direct link to 2. 内容审核" title="Direct link to 2. 内容审核" translate=no>​</a></h2>
+<p>除了输入审核，还需要审核模型输出。</p>
+<p>因为模型可能产生：</p>
+<ul>
+<li class="">幻觉内容</li>
+<li class="">错误承诺</li>
+<li class="">不当言论</li>
+<li class="">违规回复</li>
+</ul>
+<p>典型流程：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">用户问题</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">LLM生成</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">审核模型</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">输出用户</span><br/></div></code></pre></div></div>
+<p>对于高风险业务：</p>
+<ul>
+<li class="">金融</li>
+<li class="">医疗</li>
+<li class="">法律</li>
+</ul>
+<p>通常还会增加：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">AI生成</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">人工审核</span><br/></div><div class=token-line style=color:#393A34><span class="token plain"> ↓</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">最终发布</span><br/></div></code></pre></div></div>
+<p>确保结果安全可靠。</p>
+<hr/>
+<h1>总结</h1>
+<p>随着AI应用从PoC走向生产环境，技术重点会逐渐从“如何生成答案”转向“如何稳定运行”。</p>
+<p>一个成熟的企业AI治理体系通常包括：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Prompt治理</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Knowledge治理</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Model治理</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Cost治理</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Risk治理</span><br/></div></code></pre></div></div>
+<p>前期决定项目能否做出来，</p>
+<p>而治理体系决定项目能否长期稳定运行。</div><footer class=docusaurus-mt-lg><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class=col><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class=tag_QGVx><a rel=tag class="tag_zVej tagRegular_sFm0" href=/en/tags/ai>ai</a><li class=tag_QGVx><a rel=tag class="tag_zVej tagRegular_sFm0" href=/en/tags/java>java</a></ul></div></div><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2026-03-13-enterprise-ai-project.mdx target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href=/en/enterprise-ai-platform><div class=pagination-nav__sublabel>Newer post</div><div class=pagination-nav__label>从0到1搭建企业AI平台</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/en/feedback-reply-bot><div class=pagination-nav__sublabel>Older post</div><div class=pagination-nav__label>AI商品评价自动回复系统设计与实现</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#前言 class="table-of-contents__link toc-highlight">前言</a><li><a href=#1-版本管理 class="table-of-contents__link toc-highlight">1. 版本管理</a><li><a href=#2-灰度发布 class="table-of-contents__link toc-highlight">2. 灰度发布</a><li><a href=#1-增量更新 class="table-of-contents__link toc-highlight">1. 增量更新</a><li><a href=#2-文档质量检查 class="table-of-contents__link toc-highlight">2. 文档质量检查</a><ul><li><a href=#内容重复 class="table-of-contents__link toc-highlight">内容重复</a><li><a href=#内容缺失 class="table-of-contents__link toc-highlight">内容缺失</a><li><a href=#ocr错误 class="table-of-contents__link toc-highlight">OCR错误</a></ul><li><a href=#1-模型路由 class="table-of-contents__link toc-highlight">1. 模型路由</a><ul><li><a href=#简单问答 class="table-of-contents__link toc-highlight">简单问答</a><li><a href=#复杂推理 class="table-of-contents__link toc-highlight">复杂推理</a><li><a href=#内容审核 class="table-of-contents__link toc-highlight">内容审核</a></ul><li><a href=#2-降级策略 class="table-of-contents__link toc-highlight">2. 降级策略</a><li><a href=#1-token监控 class="table-of-contents__link toc-highlight">1. Token监控</a><li><a href=#2-缓存机制 class="table-of-contents__link toc-highlight">2. 缓存机制</a><li><a href=#1-敏感词检测 class="table-of-contents__link toc-highlight">1. 敏感词检测</a><li><a href=#2-内容审核 class="table-of-contents__link toc-highlight">2. 内容审核</a></ul></div></div></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/jameszbl target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright © 2026 JamesZBL, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

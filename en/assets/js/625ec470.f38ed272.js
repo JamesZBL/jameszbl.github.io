@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([["4858"],{4259(e){e.exports=JSON.parse('{"tag":{"label":"rag","permalink":"/en/tags/rag","allTagsPath":"/en/tags","count":6,"unlisted":false},"listMetadata":{"permalink":"/en/tags/rag","page":1,"postsPerPage":10,"totalPages":1,"totalCount":6,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
