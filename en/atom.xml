@@ -1139,6 +1139,346 @@
         <category label="rag" term="rag"/>
     </entry>
     <entry>
+        <title type="html"><![CDATA[节点明明执行了，状态却丢了]]></title>
+        <id>https://jameszbl.github.io/en/state-missed</id>
+        <link href="https://jameszbl.github.io/en/state-missed"/>
+        <updated>2025-12-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[{/ truncate /}]]></summary>
+        <content type="html"><![CDATA[
+<hr>
+<p>最近尝试着把原来基于 LangChain4j 的串行流程改造成 LangGraph 工作流，遇到了一个问题。
+这种场景在实际项目里非常常见，而且很容易让人怀疑是框架 Bug，最后却发现是自己对 LangGraph 状态机制理解不够。</p>
+<p><strong>节点明明执行了，状态却丢了</strong></p>
+<hr>
+<p>整体流程很简单：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">用户评价</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">情感分析</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">意图识别</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">知识库检索</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">回复生成</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">人工审核</span><br></div></code></pre></div></div>
+<p>因为后面还计划增加条件路由和人工节点，所以决定尝试一下LangGraph。</p>
+<p>刚开始开发的时候非常顺利，节点也都跑通了。</p>
+<p>结果到了第三个节点突然出现一个特别诡异的问题。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="问题现象">问题现象<a href="https://jameszbl.github.io/en/state-missed#%E9%97%AE%E9%A2%98%E7%8E%B0%E8%B1%A1" class="hash-link" aria-label="Direct link to 问题现象" title="Direct link to 问题现象" translate="no">​</a></h2>
+<p>情感分析节点输出正常：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">state.put("sentiment", "NEGATIVE");</span><br></div></code></pre></div></div>
+<p>日志也能看到：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">EmotionNode execute</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">sentiment=NEGATIVE</span><br></div></code></pre></div></div>
+<p>到了意图识别节点：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">String sentiment = state.get("sentiment");</span><br></div></code></pre></div></div>
+<p>结果直接变成：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">null</span><br></div></code></pre></div></div>
+<p>整个流程继续往下走。</p>
+<p>然后生成回复时报错：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">java.lang.NullPointerException</span><br></div></code></pre></div></div>
+<p>第一反应是：</p>
+<blockquote>
+<p>LangGraph状态没有传递成功？</p>
+</blockquote>
+<p>于是开始疯狂排查。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第一轮排查">第一轮排查<a href="https://jameszbl.github.io/en/state-missed#%E7%AC%AC%E4%B8%80%E8%BD%AE%E6%8E%92%E6%9F%A5" class="hash-link" aria-label="Direct link to 第一轮排查" title="Direct link to 第一轮排查" translate="no">​</a></h2>
+<p>先怀疑是不是Spring Bean作用域问题。</p>
+<p>因为节点都是：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">@Component</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">public class EmotionNode implements Node</span><br></div></code></pre></div></div>
+<p>怀疑多个请求共享状态。</p>
+<p>于是加日志：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">System.out.println(state);</span><br></div></code></pre></div></div>
+<p>发现每个请求拿到的 state 都不一样。</p>
+<p>排除。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第二轮排查">第二轮排查<a href="https://jameszbl.github.io/en/state-missed#%E7%AC%AC%E4%BA%8C%E8%BD%AE%E6%8E%92%E6%9F%A5" class="hash-link" aria-label="Direct link to 第二轮排查" title="Direct link to 第二轮排查" translate="no">​</a></h2>
+<p>怀疑是不是异步执行导致。</p>
+<p>因为工作流配置里用了：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ExecutorService executor =</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Executors.newFixedThreadPool(10);</span><br></div></code></pre></div></div>
+<p>于是把线程池全部关掉。</p>
+<p>改成单线程。</p>
+<p>问题依旧。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第三轮排查">第三轮排查<a href="https://jameszbl.github.io/en/state-missed#%E7%AC%AC%E4%B8%89%E8%BD%AE%E6%8E%92%E6%9F%A5" class="hash-link" aria-label="Direct link to 第三轮排查" title="Direct link to 第三轮排查" translate="no">​</a></h2>
+<p>开始翻官方文档。</p>
+<p>看到一句不起眼的话：</p>
+<blockquote>
+<p>State updates are merged using reducers.</p>
+</blockquote>
+<p>当时完全没理解。</p>
+<p>继续往下看源码。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="发现异常点">发现异常点<a href="https://jameszbl.github.io/en/state-missed#%E5%8F%91%E7%8E%B0%E5%BC%82%E5%B8%B8%E7%82%B9" class="hash-link" aria-label="Direct link to 发现异常点" title="Direct link to 发现异常点" translate="no">​</a></h2>
+<p>在 LangGraph 中：</p>
+<p>节点并不是直接修改全局状态。</p>
+<p>而是：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">return Map.of(</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "sentiment",</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "NEGATIVE"</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">);</span><br></div></code></pre></div></div>
+<p>框架会把节点返回结果合并到 State 中。</p>
+<p>而我写成了：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">state.put("sentiment", "NEGATIVE");</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">return state;</span><br></div></code></pre></div></div>
+<p>看起来没问题。</p>
+<p>实际上问题就出在这里。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="langgraph状态机制原理">LangGraph状态机制原理<a href="https://jameszbl.github.io/en/state-missed#langgraph%E7%8A%B6%E6%80%81%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to LangGraph状态机制原理" title="Direct link to LangGraph状态机制原理" translate="no">​</a></h2>
+<p>很多人第一次接触 LangGraph 都会下意识认为：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Node A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">修改State</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node B读取State</span><br></div></code></pre></div></div>
+<p>实际上内部更接近：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">State</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Delta</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Reducer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">New State</span><br></div></code></pre></div></div>
+<p>也就是说：</p>
+<p>节点返回的是状态增量（Delta）。</p>
+<p>框架负责合并。</p>
+<p>而不是直接共享同一个对象。</p>
+<p>所以：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">state.put(...)</span><br></div></code></pre></div></div>
+<p>只是改了当前节点拿到的对象。</p>
+<p>最终状态树未必会使用这个对象。</p>
+<p>尤其涉及：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">并行节点</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">条件路由</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Checkpoint恢复</span><br></div></code></pre></div></div>
+<p>时更明显。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么设计成这样">为什么设计成这样<a href="https://jameszbl.github.io/en/state-missed#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%BE%E8%AE%A1%E6%88%90%E8%BF%99%E6%A0%B7" class="hash-link" aria-label="Direct link to 为什么设计成这样" title="Direct link to 为什么设计成这样" translate="no">​</a></h2>
+<p>后来读源码才理解。</p>
+<p>假设有两个并行节点：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">          → NodeB →</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">NodeA →</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          → NodeC →</span><br></div></code></pre></div></div>
+<p>NodeB返回：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">{</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "intent":"物流问题"</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>NodeC返回：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">{</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "product":"苹果"</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>框架最后统一合并：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">{</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "intent":"物流问题",</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "product":"苹果"</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>如果所有节点都直接修改同一个对象：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sharedState</span><br></div></code></pre></div></div>
+<p>那么并发冲突会非常严重。</p>
+<p>所以 LangGraph 采用：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">节点输出</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Reducer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">新State</span><br></div></code></pre></div></div>
+<p>的不可变状态思想。</p>
+<p>这其实和 React 的 State 更新逻辑很像。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="真正解决方案">真正解决方案<a href="https://jameszbl.github.io/en/state-missed#%E7%9C%9F%E6%AD%A3%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" class="hash-link" aria-label="Direct link to 真正解决方案" title="Direct link to 真正解决方案" translate="no">​</a></h2>
+<p>节点不要修改原 State。</p>
+<p>只返回变更内容。</p>
+<p>错误写法：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">public Map&lt;String,Object&gt; execute(</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Map&lt;String,Object&gt; state){</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    state.put("sentiment","NEGATIVE");</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    return state;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>正确写法：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">public Map&lt;String,Object&gt; execute(</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Map&lt;String,Object&gt; state){</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    return Map.of(</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        "sentiment",</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        "NEGATIVE"</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    );</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>再次执行：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">EmotionNode execute</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">sentiment=NEGATIVE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">IntentNode execute</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">sentiment=NEGATIVE</span><br></div></code></pre></div></div>
+<p>恢复正常。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第二个隐藏坑字段覆盖">第二个隐藏坑：字段覆盖<a href="https://jameszbl.github.io/en/state-missed#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%9A%90%E8%97%8F%E5%9D%91%E5%AD%97%E6%AE%B5%E8%A6%86%E7%9B%96" class="hash-link" aria-label="Direct link to 第二个隐藏坑：字段覆盖" title="Direct link to 第二个隐藏坑：字段覆盖" translate="no">​</a></h2>
+<p>问题解决后没两天又遇到一个新坑。</p>
+<p>知识库检索节点：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">return Map.of(</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "documents",</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    docs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">);</span><br></div></code></pre></div></div>
+<p>生成节点：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">return Map.of(</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    "documents",</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    rerankDocs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">);</span><br></div></code></pre></div></div>
+<p>结果发现最终 State 中只剩下：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">rerankDocs</span><br></div></code></pre></div></div>
+<p>原始召回结果消失。</p>
+<p>最开始以为是框架缓存问题。</p>
+<p>后来发现是 Reducer 默认行为。</p>
+<p>默认情况下：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">同名字段</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">=</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">后写覆盖前写</span><br></div></code></pre></div></div>
+<p>即：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">documents = newValue</span><br></div></code></pre></div></div>
+<p>而不是：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">documents.addAll(...)</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么官方一直强调reducer">为什么官方一直强调Reducer<a href="https://jameszbl.github.io/en/state-missed#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%98%E6%96%B9%E4%B8%80%E7%9B%B4%E5%BC%BA%E8%B0%83reducer" class="hash-link" aria-label="Direct link to 为什么官方一直强调Reducer" title="Direct link to 为什么官方一直强调Reducer" translate="no">​</a></h2>
+<p>看到这里终于理解官方文档为什么一直在讲：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Reducer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">State Schema</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Merge Strategy</span><br></div></code></pre></div></div>
+<p>因为 LangGraph 本质上不是流程编排框架。</p>
+<p>而是：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">状态驱动框架</span><br></div></code></pre></div></div>
+<p>流程只是表象。</p>
+<p>State 才是核心。</p>
+<p>所有节点都围绕 State 演化。</p>
+<p>这也是它和传统工作流引擎最大的区别。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="这个坑背后的启示">这个坑背后的启示<a href="https://jameszbl.github.io/en/state-missed#%E8%BF%99%E4%B8%AA%E5%9D%91%E8%83%8C%E5%90%8E%E7%9A%84%E5%90%AF%E7%A4%BA" class="hash-link" aria-label="Direct link to 这个坑背后的启示" title="Direct link to 这个坑背后的启示" translate="no">​</a></h2>
+<p>这次问题前后排查了接近两个小时。</p>
+<p>从 Spring Bean、线程池、异步执行一路查到 LangGraph 源码，最后发现根本不是框架问题，而是自己把 LangGraph 当成了普通责任链模式来理解。</p>
+<p>如果把 LangGraph 看成：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Node1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node3</span><br></div></code></pre></div></div>
+<p>很多设计都会觉得奇怪。</p>
+<p>但如果换个视角：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">State</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">State</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">State</span><br></div></code></pre></div></div>
+<p>很多源码设计瞬间就合理了。</p>]]></content>
+        <author>
+            <name>James Zheng</name>
+            <uri>https://github.com/jameszbl</uri>
+        </author>
+        <category label="ai" term="ai"/>
+        <category label="java" term="java"/>
+        <category label="langgraph" term="langgraph"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Qdrant数据写进去了却搜不到]]></title>
+        <id>https://jameszbl.github.io/en/qdrant-no-data</id>
+        <link href="https://jameszbl.github.io/en/qdrant-no-data"/>
+        <updated>2025-12-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[{/ truncate /}]]></summary>
+        <content type="html"><![CDATA[
+<hr>
+<p>最近在做的系统中集成RAG，需要将商品知识库、物流知识库写入Qdrant，实现RAG检索。</p>
+<p>技术栈：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Spring Boot</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">LangChain4j</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Qdrant</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">OpenAI Embedding</span><br></div></code></pre></div></div>
+<p>整体流程非常简单：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">文档</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Chunk切分</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Embedding</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Qdrant存储</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">向量检索</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> ↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">LLM生成</span><br></div></code></pre></div></div>
+<p>结果测试时，出现了一个非常奇怪的问题。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="问题现象">问题现象<a href="https://jameszbl.github.io/en/qdrant-no-data#%E9%97%AE%E9%A2%98%E7%8E%B0%E8%B1%A1" class="hash-link" aria-label="Direct link to 问题现象" title="Direct link to 问题现象" translate="no">​</a></h2>
+<p>数据写入完全正常。</p>
+<p>Qdrant后台也能看到数据：</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">"id"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">"vector"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">...</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>插入日志：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">INFO Insert 5000 points success</span><br></div></code></pre></div></div>
+<p>但是查询始终为空：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">List&lt;ScoredPoint&gt; result = client.search(...)</span><br></div></code></pre></div></div>
+<p>返回：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">[]</span><br></div></code></pre></div></div>
+<p>完全搜不到数据。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第一轮排查">第一轮排查<a href="https://jameszbl.github.io/en/qdrant-no-data#%E7%AC%AC%E4%B8%80%E8%BD%AE%E6%8E%92%E6%9F%A5" class="hash-link" aria-label="Direct link to 第一轮排查" title="Direct link to 第一轮排查" translate="no">​</a></h2>
+<p>怀疑Embedding有问题。</p>
+<p>打印向量长度：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Embedding embedding =</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    embeddingModel.embed(text).content();</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">System.out.println(</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    embedding.vector().length</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">);</span><br></div></code></pre></div></div>
+<p>结果：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1536</span><br></div></code></pre></div></div>
+<p>正常。</p>
+<p>再查看Qdrant Collection：</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">curl localhost:6333/collections/docs</span><br></div></code></pre></div></div>
+<p>返回：</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">"vectors"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">"size"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1536</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>维度一致。</p>
+<p>排除Embedding问题。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第二轮排查">第二轮排查<a href="https://jameszbl.github.io/en/qdrant-no-data#%E7%AC%AC%E4%BA%8C%E8%BD%AE%E6%8E%92%E6%9F%A5" class="hash-link" aria-label="Direct link to 第二轮排查" title="Direct link to 第二轮排查" translate="no">​</a></h2>
+<p>怀疑相似度阈值过高。</p>
+<p>代码：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">SearchParams.newBuilder()</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .setHnswEf(128)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .build();</span><br></div></code></pre></div></div>
+<p>搜索：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">scoreThreshold=0.8</span><br></div></code></pre></div></div>
+<p>改成：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">scoreThreshold=0.3</span><br></div></code></pre></div></div>
+<p>还是查不到。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第三轮排查">第三轮排查<a href="https://jameszbl.github.io/en/qdrant-no-data#%E7%AC%AC%E4%B8%89%E8%BD%AE%E6%8E%92%E6%9F%A5" class="hash-link" aria-label="Direct link to 第三轮排查" title="Direct link to 第三轮排查" translate="no">​</a></h2>
+<p>开始怀疑数据没写进去。</p>
+<p>查看point数量：</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">curl localhost:6333/collections/docs</span><br></div></code></pre></div></div>
+<p>结果：</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">"points_count"</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>确实存在。</p>
+<p>甚至通过ID查询：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">retrieve(1)</span><br></div></code></pre></div></div>
+<p>也能返回数据。</p>
+<p>说明：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">数据存在</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">向量存在</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Collection存在</span><br></div></code></pre></div></div>
+<p>但就是搜不到。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="真正原因">真正原因<a href="https://jameszbl.github.io/en/qdrant-no-data#%E7%9C%9F%E6%AD%A3%E5%8E%9F%E5%9B%A0" class="hash-link" aria-label="Direct link to 真正原因" title="Direct link to 真正原因" translate="no">​</a></h2>
+<p>最后查看官方文档才发现问题。</p>
+<p>创建Collection时：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">VectorParams.newBuilder()</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .setSize(1536)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .setDistance(Distance.Cosine)</span><br></div></code></pre></div></div>
+<p>后来项目切换Embedding模型：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">bge-large-zh</span><br></div></code></pre></div></div>
+<p>向量维度变成：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1024</span><br></div></code></pre></div></div>
+<p>但是Collection没有重建。</p>
+<p>此时出现：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Qdrant Collection: 1536维</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Embedding结果: 1024维</span><br></div></code></pre></div></div>
+<p>写入时因为封装层没有显式报错。</p>
+<p>查询时：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1536 vs 1024</span><br></div></code></pre></div></div>
+<p>向量根本不在同一个空间。</p>
+<p>自然检索不到结果。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么会这样">为什么会这样？<a href="https://jameszbl.github.io/en/qdrant-no-data#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%BF%99%E6%A0%B7" class="hash-link" aria-label="Direct link to 为什么会这样？" title="Direct link to 为什么会这样？" translate="no">​</a></h2>
+<p>这里涉及Qdrant底层原理。</p>
+<p>Qdrant本质上是：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">向量ID</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">向量数组</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">HNSW索引</span><br></div></code></pre></div></div>
+<p>例如：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">[0.12,0.33,0.55...]</span><br></div></code></pre></div></div>
+<p>HNSW建立的是固定维度空间。</p>
+<p>比如：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1536维空间</span><br></div></code></pre></div></div>
+<p>所有向量必须：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">长度完全一致</span><br></div></code></pre></div></div>
+<p>否则无法计算：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Cosine Similarity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Euclidean Distance</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Dot Product</span><br></div></code></pre></div></div>
+<p>因为：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A=[1,2,3]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">B=[1,2]</span><br></div></code></pre></div></div>
+<p>数学上根本无法求距离。</p>
+<p>所以Qdrant要求：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Collection创建后</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Vector Size不可变</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="深入源码">深入源码<a href="https://jameszbl.github.io/en/qdrant-no-data#%E6%B7%B1%E5%85%A5%E6%BA%90%E7%A0%81" class="hash-link" aria-label="Direct link to 深入源码" title="Direct link to 深入源码" translate="no">​</a></h2>
+<p>Qdrant创建Collection时：</p>
+<div class="language-protobuf codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-protobuf codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">message VectorParams {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  uint64 size = 1;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Distance distance = 2;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>对应：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">CreateCollection.newBuilder()</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .setCollectionName("docs")</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .setVectorsConfig(...)</span><br></div></code></pre></div></div>
+<p>最终保存到：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Collection Config</span><br></div></code></pre></div></div>
+<p>后续所有Point都会校验：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">vector.length == size</span><br></div></code></pre></div></div>
+<p>一旦不一致：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Wrong input vector dimension</span><br></div></code></pre></div></div>
+<p>或者某些SDK直接吞掉异常。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="如何避免">如何避免<a href="https://jameszbl.github.io/en/qdrant-no-data#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D" class="hash-link" aria-label="Direct link to 如何避免" title="Direct link to 如何避免" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="方案一启动时校验">方案一：启动时校验<a href="https://jameszbl.github.io/en/qdrant-no-data#%E6%96%B9%E6%A1%88%E4%B8%80%E5%90%AF%E5%8A%A8%E6%97%B6%E6%A0%A1%E9%AA%8C" class="hash-link" aria-label="Direct link to 方案一：启动时校验" title="Direct link to 方案一：启动时校验" translate="no">​</a></h3>
+<p>项目启动时读取Collection信息：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">CollectionInfo info =</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    client.getCollection("docs");</span><br></div></code></pre></div></div>
+<p>检查：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">info.getConfig()</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .getParams()</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .getVectors()</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    .getSize();</span><br></div></code></pre></div></div>
+<p>与Embedding模型配置对比：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1536 == embeddingDimension</span><br></div></code></pre></div></div>
+<p>不一致直接启动失败。</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="方案二collection版本化">方案二：Collection版本化<a href="https://jameszbl.github.io/en/qdrant-no-data#%E6%96%B9%E6%A1%88%E4%BA%8Ccollection%E7%89%88%E6%9C%AC%E5%8C%96" class="hash-link" aria-label="Direct link to 方案二：Collection版本化" title="Direct link to 方案二：Collection版本化" translate="no">​</a></h3>
+<p>不要复用Collection。</p>
+<p>例如：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">knowledge_v1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">knowledge_v2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">knowledge_v3</span><br></div></code></pre></div></div>
+<p>Embedding模型升级：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">text-embedding-3-small</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">bge-large-zh</span><br></div></code></pre></div></div>
+<p>直接创建：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">knowledge_v4</span><br></div></code></pre></div></div>
+<p>重新构建索引。</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="方案三记录embedding模型">方案三：记录Embedding模型<a href="https://jameszbl.github.io/en/qdrant-no-data#%E6%96%B9%E6%A1%88%E4%B8%89%E8%AE%B0%E5%BD%95embedding%E6%A8%A1%E5%9E%8B" class="hash-link" aria-label="Direct link to 方案三：记录Embedding模型" title="Direct link to 方案三：记录Embedding模型" translate="no">​</a></h3>
+<p>Payload中增加：</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">"model"</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">"bge-large-zh"</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>检索异常时快速定位：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">到底是哪批数据生成的Embedding</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="后续引出的qdrant原理">后续引出的Qdrant原理<a href="https://jameszbl.github.io/en/qdrant-no-data#%E5%90%8E%E7%BB%AD%E5%BC%95%E5%87%BA%E7%9A%84qdrant%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 后续引出的Qdrant原理" title="Direct link to 后续引出的Qdrant原理" translate="no">​</a></h2>
+<p>这个问题解决后，又顺带理解了几个以前没注意的知识点：</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="collection为什么不能随便改维度">Collection为什么不能随便改维度<a href="https://jameszbl.github.io/en/qdrant-no-data#collection%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E9%9A%8F%E4%BE%BF%E6%94%B9%E7%BB%B4%E5%BA%A6" class="hash-link" aria-label="Direct link to Collection为什么不能随便改维度" title="Direct link to Collection为什么不能随便改维度" translate="no">​</a></h3>
+<p>因为HNSW索引是基于固定维度建立的。</p>
+<p>修改维度意味着：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">整个索引失效</span><br></div></code></pre></div></div>
+<p>必须重建。</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么embedding模型不能随便切换">为什么Embedding模型不能随便切换<a href="https://jameszbl.github.io/en/qdrant-no-data#%E4%B8%BA%E4%BB%80%E4%B9%88embedding%E6%A8%A1%E5%9E%8B%E4%B8%8D%E8%83%BD%E9%9A%8F%E4%BE%BF%E5%88%87%E6%8D%A2" class="hash-link" aria-label="Direct link to 为什么Embedding模型不能随便切换" title="Direct link to 为什么Embedding模型不能随便切换" translate="no">​</a></h3>
+<p>因为不同模型生成的是不同向量空间：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">OpenAI</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1536维</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">BGE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1024维</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Jina</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">768维</span><br></div></code></pre></div></div>
+<p>即使维度相同：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">语义空间也不同</span><br></div></code></pre></div></div>
+<p>老数据和新数据混存会导致召回效果急剧下降。</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么rag要做全量重建">为什么RAG要做全量重建<a href="https://jameszbl.github.io/en/qdrant-no-data#%E4%B8%BA%E4%BB%80%E4%B9%88rag%E8%A6%81%E5%81%9A%E5%85%A8%E9%87%8F%E9%87%8D%E5%BB%BA" class="hash-link" aria-label="Direct link to 为什么RAG要做全量重建" title="Direct link to 为什么RAG要做全量重建" translate="no">​</a></h3>
+<p>很多团队升级Embedding后发现：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">检索命中率下降</span><br></div></code></pre></div></div>
+<p>根本原因往往不是Qdrant。</p>
+<p>而是：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">旧Embedding</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">新Embedding</span><br></div></code></pre></div></div>
+<p>混在同一个Collection里。</p>
+<hr>
+<p>这个案例在真实项目里非常常见，而且很有迷惑性，因为：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">数据能写进去</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Collection也存在</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">没有明显报错</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">查询结果却永远为空</span><br></div></code></pre></div></div>
+<p>最后定位下来并不是Spring问题，也不是LangChain4j问题，而是Qdrant最核心的设计原则——<strong>一个Collection只能对应一个固定维度、固定语义空间的Embedding模型</strong></p>]]></content>
+        <author>
+            <name>James Zheng</name>
+            <uri>https://github.com/jameszbl</uri>
+        </author>
+        <category label="ai" term="ai"/>
+        <category label="java" term="java"/>
+        <category label="qdrant" term="qdrant"/>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Agent到底是什么]]></title>
         <id>https://jameszbl.github.io/en/what-is-agent</id>
         <link href="https://jameszbl.github.io/en/what-is-agent"/>
